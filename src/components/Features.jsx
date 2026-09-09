@@ -1,142 +1,130 @@
 const FEATURES = [
   {
-    id: 'sourcing',
+    id: "sourcing",
+    label: "Talent Discovery",
+    title: "Build a Stronger Talent Pipeline",
+    accent: "#7F9FE8",
+    glow: "rgba(92,126,205,0.14)",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803a7.5 7.5 0 0010.607 10.607z"
-        />
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+        <circle cx="10.5" cy="10.5" r="5.5" strokeWidth="1.7" />
+        <path d="m15 15 4 4" strokeWidth="1.7" strokeLinecap="round" />
+        <path d="M8.5 10.5h4M10.5 8.5v4" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    label: 'Talent Discovery',
-    headline: 'Build a Stronger Talent Pipeline',
-    accent: '#4F6F9F',
-    soft: '#EEF3F9',
     bullets: [
-      'Centralize candidate profiles in one searchable workspace',
-      'Organize talent into structured pools and pipelines',
-      'Search profiles using skills, roles and experience',
-      'Keep candidate information accessible across your recruitment team',
+      "Centralize candidate profiles in one searchable workspace",
+      "Organize talent into structured pools and pipelines",
+      "Search profiles using skills, roles and experience",
+      "Keep candidate information accessible across your team",
     ],
   },
   {
-    id: 'screening',
+    id: "screening",
+    label: "AI Screening",
+    title: "Move from Resumes to Relevant Candidates Faster",
+    accent: "#A18CE3",
+    glow: "rgba(135,105,210,0.15)",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-      >
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
         <path
-          strokeLinecap="round"
+          d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8l2-4.5Z"
+          strokeWidth="1.6"
           strokeLinejoin="round"
-          d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622"
+        />
+        <path
+          d="m16.5 16.5 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z"
+          strokeWidth="1.4"
         />
       </svg>
     ),
-    label: 'AI Screening',
-    headline: 'Move from Resumes to Relevant Candidates Faster',
-    accent: '#6B6FA9',
-    soft: '#F0F0F8',
     bullets: [
-      'Analyze resumes and identify relevant skills and experience',
-      'Compare candidate profiles against role requirements',
-      'Surface stronger matches for recruiter review',
-      'Keep human judgement at the centre of every hiring decision',
+      "Analyze resumes and identify relevant skills",
+      "Compare profiles against role requirements",
+      "Surface stronger matches for recruiter review",
+      "Keep human judgement at the centre",
     ],
   },
   {
-    id: 'profile-sharing',
+    id: "profile-sharing",
+    label: "Candidate Sharing",
+    title: "Present Better Shortlists to Hiring Teams",
+    accent: "#8EA8B4",
+    glow: "rgba(110,145,160,0.12)",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-      >
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+        <circle cx="9" cy="9" r="3" strokeWidth="1.7" />
         <path
+          d="M4 18c.8-2.5 2.5-4 5-4s4.2 1.5 5 4"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15 8h5m-2-2 2 2-2 2"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314"
         />
       </svg>
     ),
-    label: 'Candidate Sharing',
-    headline: 'Present Better Shortlists to Hiring Teams',
-    accent: '#6C7D8B',
-    soft: '#F1F4F5',
     bullets: [
-      'Create clear and structured candidate profiles',
-      'Share shortlisted candidates with hiring stakeholders',
-      'Centralize feedback and candidate evaluation',
-      'Keep hiring discussions connected to each profile',
+      "Create clear and structured candidate profiles",
+      "Share shortlisted candidates with stakeholders",
+      "Centralize feedback and candidate evaluation",
+      "Keep hiring discussions connected",
     ],
   },
   {
-    id: 'reports',
+    id: "reports",
+    label: "Recruitment Insights",
+    title: "Understand What Is Happening Across Your Pipeline",
+    accent: "#B69A79",
+    glow: "rgba(170,132,91,0.12)",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-      >
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
         <path
+          d="M5 19V11M12 19V6M19 19V9"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M4 5.5 9 8l4-3 6 2"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75M9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25M16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25"
         />
       </svg>
     ),
-    label: 'Recruitment Insights',
-    headline: 'Understand What Is Happening Across Your Pipeline',
-    accent: '#9A7D58',
-    soft: '#F6F1EA',
     bullets: [
-      'Track candidates across recruitment stages',
-      'Monitor activity and turnaround times',
-      'Understand pipeline movement through clear reporting',
-      'Use recruitment data to improve future decisions',
+      "Track candidates across recruitment stages",
+      "Monitor activity and turnaround times",
+      "Understand pipeline movement clearly",
+      "Use recruitment data to improve decisions",
     ],
   },
   {
-    id: 'support',
+    id: "support",
+    label: "Workflow",
+    title: "Give Recruiters More Time to Focus on People",
+    accent: "#A88CA0",
+    glow: "rgba(158,116,144,0.12)",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.8}
-      >
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+        <circle cx="7" cy="7" r="2" strokeWidth="1.6" />
+        <circle cx="17" cy="7" r="2" strokeWidth="1.6" />
+        <circle cx="12" cy="17" r="2" strokeWidth="1.6" />
         <path
+          d="M9 7h6M8 9l3 6m5-6-3 6"
+          strokeWidth="1.5"
           strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
     ),
-    label: 'Workflow',
-    headline: 'Give Recruiters More Time to Focus on People',
-    accent: '#8D6E79',
-    soft: '#F6F0F2',
     bullets: [
-      'Reduce repetitive recruitment administration',
-      'Create more consistent hiring workflows',
-      'Improve collaboration across recruitment teams',
-      'Keep candidate activity organised in one place',
+      "Reduce repetitive recruitment administration",
+      "Create more consistent hiring workflows",
+      "Improve collaboration across recruitment teams",
+      "Keep candidate activity organised",
     ],
   },
 ];
@@ -145,193 +133,358 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="relative overflow-hidden bg-white pt-5 pb-12 sm:pt-6 sm:pb-14 lg:pt-7 lg:pb-16"
+      className="
+        relative overflow-hidden
+        bg-[#050505]
+        pb-11 pt-5
+        sm:pb-12 sm:pt-6
+        lg:pb-14 lg:pt-7
+      "
     >
-      {/* soft background depth */}
-      <div className="absolute left-[-100px] top-[120px] h-[300px] w-[300px] rounded-full bg-[#DCE5F2]/25 blur-[100px]" />
-      <div className="absolute right-[-80px] bottom-[80px] h-[280px] w-[280px] rounded-full bg-[#E8DDCB]/15 blur-[100px]" />
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-40 top-[10%] h-[360px] w-[360px] rounded-full bg-[#506FAE]/[0.045] blur-[130px]" />
+
+        <div className="absolute -right-40 bottom-[5%] h-[380px] w-[380px] rounded-full bg-[#8D69B5]/[0.045] blur-[140px]" />
+
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0)",
+            backgroundSize: "34px 34px",
+            maskImage:
+              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+          }}
+        />
+      </div>
+
+      {/* Previous section transition */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-8 max-w-3xl text-center lg:mb-9">
-          <span className="mb-3 inline-flex items-center rounded-full border border-[#DCE5F0] bg-[#F7F9FC] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-[#60728E]">
-            Platform Capabilities
-          </span>
+        <div className="mx-auto mb-8 max-w-3xl text-center">
+          <div
+            className="
+              inline-flex items-center gap-2.5
+              rounded-full
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3.5 py-1.5
+              backdrop-blur-xl
+            "
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9C84DD] opacity-20" />
+              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9C84DD]" />
+            </span>
 
-          <h2 className="text-3xl font-extrabold leading-tight tracking-[-0.035em] text-[#16263F] sm:text-4xl lg:text-[46px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
+              Platform Capabilities
+            </span>
+          </div>
+
+          <h2
+            className="
+              mt-4
+              text-3xl font-extrabold
+              tracking-[-0.045em]
+              text-[#F2F2F4]
+              sm:text-4xl
+              lg:text-[45px]
+              lg:leading-[1.05]
+            "
+          >
             One intelligent workspace for your
-            <span className="block bg-gradient-to-r from-[#315B98] via-[#687BAE] to-[#947E9E] bg-clip-text text-transparent">
+
+            <span
+              className="
+                mt-1 block
+                bg-gradient-to-r
+                from-[#FFFFFF]
+                via-[#B8B0D8]
+                to-[#9379C9]
+                bg-clip-text
+                text-transparent
+              "
+            >
               recruitment workflow
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#68778C] sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#777781]">
             Bring sourcing, screening, collaboration and recruitment insights
             into one connected environment built around how recruiters work.
           </p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((feature, idx) => (
+        {/* Feature grid */}
+        <div className="grid gap-3.5 md:grid-cols-2 lg:grid-cols-6">
+          {FEATURES.map((feature, index) => (
             <article
               key={feature.id}
               id={feature.id}
               className={`
-                group
-                relative
-                isolate
-                min-h-[360px]
-                overflow-hidden
-                rounded-[24px]
-                border
-                border-[#E4EAF1]
-                bg-white
-                p-6
-                shadow-[0_8px_26px_rgba(31,50,78,0.04)]
-                transition-all
-                duration-500
-                ease-out
-                hover:-translate-y-2
-                hover:border-[#CBD8E8]
-                hover:shadow-[0_26px_70px_rgba(29,49,80,0.13)]
-                ${idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''}
+                feature-card
+                group relative overflow-hidden
+                rounded-[22px]
+                border border-white/[0.065]
+                bg-[#0D0D10]
+                p-5
+                shadow-[0_14px_40px_rgba(0,0,0,0.22)]
+                transition-all duration-500 ease-out
+                hover:-translate-y-[5px]
+                hover:border-white/[0.13]
+                hover:bg-[#111115]
+                hover:shadow-[0_28px_70px_rgba(0,0,0,0.52)]
+                ${index < 3 ? "lg:col-span-2" : ""}
+                ${index === 3 ? "lg:col-span-2 lg:col-start-2" : ""}
+                ${
+                  index === 4
+                    ? "md:col-span-2 lg:col-span-2 lg:col-start-4"
+                    : ""
+                }
               `}
+              style={{
+                animationDelay: `${index * 80}ms`,
+              }}
             >
-              {/* premium hover wash */}
+              {/* Accent atmosphere */}
               <div
                 className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  -z-10
-                  opacity-0
-                  transition-opacity
-                  duration-500
+                  pointer-events-none absolute -right-16 -top-16
+                  h-44 w-44 rounded-full
+                  opacity-0 blur-[55px]
+                  transition-all duration-700
+                  group-hover:scale-125
                   group-hover:opacity-100
                 "
-                style={{
-                  background: `linear-gradient(145deg, ${feature.soft} 0%, rgba(255,255,255,0.96) 45%, #ffffff 100%)`,
-                }}
+                style={{ backgroundColor: feature.glow }}
               />
 
-              {/* top-right glow */}
+              {/* Large ambient accent */}
               <div
                 className="
-                  pointer-events-none
-                  absolute
-                  -right-12
-                  -top-12
-                  h-36
-                  w-36
-                  rounded-full
-                  opacity-0
-                  blur-3xl
-                  transition-all
-                  duration-500
-                  group-hover:opacity-25
-                  group-hover:scale-125
+                  pointer-events-none absolute
+                  -bottom-20 -left-20
+                  h-40 w-40 rounded-full
+                  opacity-0 blur-[60px]
+                  transition-opacity duration-700
+                  group-hover:opacity-40
                 "
-                style={{ backgroundColor: feature.accent }}
+                style={{ backgroundColor: feature.glow }}
               />
 
-              {/* fine line detail */}
-              <div className="absolute left-6 right-6 top-0 h-px bg-gradient-to-r from-transparent via-[#D7E1EC] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-              {/* Icon */}
+              {/* Top reflection */}
               <div
                 className="
-                  mb-5
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  border
-                  transition-all
-                  duration-500
-                  group-hover:-translate-y-1
-                  group-hover:scale-[1.06]
-                  group-hover:shadow-[0_12px_24px_rgba(30,50,80,0.10)]
+                  pointer-events-none absolute
+                  left-[15%] right-[15%] top-0
+                  h-px
+                  bg-gradient-to-r
+                  from-transparent via-white/[0.16] to-transparent
                 "
-                style={{
-                  backgroundColor: feature.soft,
-                  borderColor: `${feature.accent}22`,
-                  color: feature.accent,
-                }}
-              >
-                {feature.icon}
-              </div>
+              />
 
-              {/* Label */}
+              {/* Moving glass reflection */}
               <div
-                className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em]"
-                style={{ color: feature.accent }}
-              >
-                {feature.label}
-              </div>
+                className="
+                  pointer-events-none absolute inset-0
+                  -translate-x-[130%]
+                  bg-gradient-to-r
+                  from-transparent
+                  via-white/[0.018]
+                  to-transparent
+                  transition-transform
+                  duration-1000
+                  group-hover:translate-x-[130%]
+                "
+              />
 
-              {/* Headline */}
-              <h3 className="max-w-[320px] text-[20px] font-bold leading-[1.3] tracking-[-0.02em] text-[#1B2B44]">
-                {feature.headline}
-              </h3>
+              <div className="relative">
+                {/* Icon */}
+                <div
+                  className="
+                    mb-4 flex h-10 w-10
+                    items-center justify-center
+                    rounded-[12px]
+                    border border-white/[0.07]
+                    bg-[#151519]
+                    transition-all duration-500
+                    group-hover:-translate-y-1
+                    group-hover:scale-[1.08]
+                    group-hover:border-white/[0.12]
+                  "
+                  style={{ color: feature.accent }}
+                >
+                  <div
+                    className="absolute h-8 w-8 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20"
+                    style={{ backgroundColor: feature.accent }}
+                  />
 
-              {/* Divider */}
-              <div className="my-5 h-px w-full bg-[#EEF2F6]" />
+                  <div className="relative">{feature.icon}</div>
+                </div>
 
-              {/* Bullets */}
-              <ul className="space-y-3">
-                {feature.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="flex items-start gap-3 text-[13px] leading-5 text-[#68778A]"
-                  >
-                    <div
-                      className="mt-[3px] flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full"
-                      style={{ backgroundColor: feature.soft }}
+                {/* Label */}
+                <div
+                  className="
+                    mb-2.5
+                    text-[9px] font-bold
+                    uppercase tracking-[0.19em]
+                    opacity-80
+                  "
+                  style={{ color: feature.accent }}
+                >
+                  {feature.label}
+                </div>
+
+                {/* Title */}
+                <h3
+                  className="
+                    min-h-[48px]
+                    text-[18px] font-bold
+                    leading-[1.32]
+                    tracking-[-0.025em]
+                    text-[#ECECEF]
+                    transition-colors duration-300
+                    group-hover:text-white
+                  "
+                >
+                  {feature.title}
+                </h3>
+
+                {/* Divider */}
+                <div className="my-4 h-px bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent" />
+
+                {/* Features */}
+                <ul className="space-y-2.5">
+                  {feature.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="
+                        flex items-start gap-2.5
+                        text-[11.5px]
+                        leading-5
+                        text-[#777781]
+                        transition-colors duration-300
+                        group-hover:text-[#92929C]
+                      "
                     >
-                      <svg
-                        className="h-2.5 w-2.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke={feature.accent}
+                      <span
+                        className="
+                          mt-[3px] flex h-4 w-4
+                          shrink-0 items-center justify-center
+                          rounded-full
+                          border border-white/[0.055]
+                          bg-white/[0.025]
+                        "
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-2.5 w-2.5"
+                          fill="none"
+                          stroke={feature.accent}
+                        >
+                          <path
+                            d="m6 12 4 4 8-8"
+                            strokeWidth="2.4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
 
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              {/* Bottom accent */}
+              {/* Bottom luminous line */}
               <div
                 className="
-                  absolute
-                  bottom-0
-                  left-0
-                  h-[3px]
-                  w-0
-                  transition-all
-                  duration-500
-                  ease-out
-                  group-hover:w-full
+                  pointer-events-none absolute
+                  bottom-0 left-1/2
+                  h-px w-0
+                  -translate-x-1/2
+                  opacity-0
+                  transition-all duration-700
+                  group-hover:w-[58%]
+                  group-hover:opacity-70
                 "
                 style={{
-                  background: `linear-gradient(90deg, ${feature.accent}, transparent)`,
+                  background: `linear-gradient(
+                    90deg,
+                    transparent,
+                    ${feature.accent},
+                    transparent
+                  )`,
                 }}
               />
             </article>
           ))}
         </div>
+
+        {/* Small platform statement */}
+        <div className="mt-7 flex justify-center">
+          <div
+            className="
+              inline-flex items-center gap-2
+              rounded-full
+              border border-white/[0.055]
+              bg-[#0A0A0D]/70
+              px-4 py-2
+              backdrop-blur-xl
+            "
+          >
+            <svg
+              className="h-3 w-3 text-[#9982D5]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M5 12l4 4L19 6"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            <span className="text-[10px] font-medium text-[#686872]">
+              Designed to keep recruiters in control from discovery to decision
+            </span>
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes featureReveal {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .feature-card {
+          animation: featureReveal
+            650ms cubic-bezier(.22,1,.36,1) both;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .feature-card {
+            animation: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }

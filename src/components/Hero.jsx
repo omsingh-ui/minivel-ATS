@@ -1,386 +1,561 @@
-const DashboardMockup = () => {
-  const stats = [
-    {
-      label: "Open Roles",
-      value: "12",
-      meta: "Active pipeline",
-    },
-    {
-      label: "Candidates",
-      value: "284",
-      meta: "In workspace",
-    },
-    {
-      label: "Interviews",
-      value: "38",
-      meta: "Scheduled",
-    },
-  ];
+import { useRef } from "react";
 
-  const candidates = [
-    {
-      name: "Aarav Mehta",
-      role: "Frontend Developer",
-      status: "Technical Review",
-      initials: "AM",
-      score: 88,
-    },
-    {
-      name: "Neha Kapoor",
-      role: "Product Designer",
-      status: "Interview",
-      initials: "NK",
-      score: 82,
-    },
-    {
-      name: "Rohan Shah",
-      role: "Cloud Engineer",
-      status: "Screening",
-      initials: "RS",
-      score: 76,
-    },
-  ];
+const STATS = [
+  { value: "12", label: "Open Roles", meta: "Active pipeline" },
+  { value: "284", label: "Candidates", meta: "In workspace" },
+  { value: "38", label: "Interviews", meta: "Scheduled" },
+];
+
+const CANDIDATES = [
+  {
+    name: "Aarav Mehta",
+    role: "Frontend Developer",
+    initials: "AM",
+    status: "Technical Review",
+    score: 88,
+  },
+  {
+    name: "Neha Kapoor",
+    role: "Product Designer",
+    initials: "NK",
+    status: "Interview",
+    score: 82,
+  },
+  {
+    name: "Rohan Shah",
+    role: "Cloud Engineer",
+    initials: "RS",
+    status: "Screening",
+    score: 76,
+  },
+];
+
+const FLOATING_CARDS = [
+  {
+    className: "right-[1%] top-[5%]",
+    reveal: "hero-card-one",
+    float: "hero-float-one",
+    title: "Strong candidate match",
+    text: "Profile relevance · 88%",
+    tone: "blue",
+    icon: (
+      <path
+        d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8z"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  {
+    className: "left-[0%] top-[30%]",
+    reveal: "hero-card-two",
+    float: "hero-float-two",
+    title: "AI-assisted screening",
+    text: "Recruiter-led decisions",
+    tone: "violet",
+    icon: (
+      <path
+        d="M7 12.5 10.2 16 17 8.5"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  {
+    className: "right-[1%] bottom-[7%]",
+    reveal: "hero-card-three",
+    float: "hero-float-three",
+    title: "Pipeline visibility",
+    text: "One connected workspace",
+    tone: "gold",
+    icon: (
+      <>
+        <path d="M5 18V12" strokeWidth="1.7" strokeLinecap="round" />
+        <path d="M12 18V7" strokeWidth="1.7" strokeLinecap="round" />
+        <path d="M19 18V10" strokeWidth="1.7" strokeLinecap="round" />
+      </>
+    ),
+  },
+];
+
+const tones = {
+  blue: {
+    icon: "border-[#7697D0]/20 bg-[#17243A] text-[#91ADE0]",
+    glow: "bg-[#668FE0]/10",
+  },
+  violet: {
+    icon: "border-[#9A83C7]/20 bg-[#211D2E] text-[#B19BDD]",
+    glow: "bg-[#A183D7]/10",
+  },
+  gold: {
+    icon: "border-[#C19A70]/20 bg-[#28221E] text-[#D0AB80]",
+    glow: "bg-[#C79A6B]/10",
+  },
+};
+
+function FloatingCard({ card }) {
+  const tone = tones[card.tone];
 
   return (
-    <div className="relative w-full max-w-[610px] mx-auto">
-      {/* Ambient depth */}
-      <div className="absolute left-1/2 top-1/2 h-[72%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#718BC3]/22 blur-[90px]" />
+    <div
+      className={`
+        ${card.reveal}
+        absolute ${card.className}
+        z-30 hidden xl:block
+      `}
+    >
+      <div className={card.float}>
+        <div
+          className="
+            group relative flex min-w-[184px] items-center gap-3
+            overflow-hidden rounded-[18px]
+            border border-white/[0.09]
+            bg-[#101014]/90
+            px-3.5 py-3
+            shadow-[0_22px_60px_rgba(0,0,0,0.58)]
+            backdrop-blur-2xl
+            transition-all duration-500
+            hover:-translate-y-1
+            hover:border-white/[0.15]
+            hover:bg-[#15151B]
+            hover:shadow-[0_30px_80px_rgba(0,0,0,0.72)]
+          "
+        >
+          <div
+            className={`
+              pointer-events-none absolute -right-8 -top-8
+              h-20 w-20 rounded-full blur-2xl
+              opacity-0 transition-opacity duration-500
+              group-hover:opacity-100
+              ${tone.glow}
+            `}
+          />
 
-      <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7790BB]/12" />
+          <div className="pointer-events-none absolute inset-x-[18%] top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-      <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40" />
-
-      {/* Main floating dashboard */}
-      <div className="relative animate-dashboard-float">
-        <div className="relative rotate-[0.5deg] overflow-hidden rounded-[28px] border border-white/80 bg-white/95 backdrop-blur-2xl shadow-[0_36px_90px_rgba(25,44,78,0.24),0_10px_30px_rgba(48,72,112,0.10)]">
-          {/* Top bar */}
-          <div className="flex items-center justify-between border-b border-slate-200/80 bg-[#F7F9FC] px-5 py-3">
-            <div className="flex items-center gap-1.5">
-              <div className="h-2.5 w-2.5 rounded-full bg-[#BEC8D7]" />
-              <div className="h-2.5 w-2.5 rounded-full bg-[#D0D7E1]" />
-              <div className="h-2.5 w-2.5 rounded-full bg-[#E0E4EA]" />
-            </div>
-
-            <div className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[10px] font-semibold tracking-wide text-slate-500 shadow-sm">
-              Minivel ATS · Talent Workspace
-            </div>
-
-            <div className="w-10" />
-          </div>
-
-          {/* Dashboard */}
-          <div className="bg-[#F7F9FC] p-5">
-            {/* Header */}
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                  Recruitment Overview
-                </p>
-
-                <h3 className="text-[17px] font-bold tracking-tight text-[#152640]">
-                  Talent Intelligence
-                </h3>
-              </div>
-
-              <div className="flex items-center gap-2 rounded-full border border-[#D9E4F6] bg-[#EDF4FF] px-3 py-1.5">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#5D7DB4]" />
-
-                <span className="text-[9px] font-semibold text-[#48699D]">
-                  Live workspace
-                </span>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="mb-4 grid grid-cols-3 gap-3">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-2xl border border-slate-200/80 bg-white px-3.5 py-3 shadow-[0_5px_18px_rgba(27,48,83,0.04)] transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <div className="mb-1 text-xl font-bold tracking-tight text-[#152640]">
-                    {stat.value}
-                  </div>
-
-                  <div className="text-[10px] font-bold text-slate-600">
-                    {stat.label}
-                  </div>
-
-                  <div className="mt-1 text-[9px] text-slate-400">
-                    {stat.meta}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Main content */}
-            <div className="grid gap-3 sm:grid-cols-[1.55fr_0.8fr]">
-              {/* Candidate pipeline */}
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-[0_5px_18px_rgba(27,48,83,0.04)]">
-                <div className="mb-3 flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-bold text-[#1B2D49]">
-                      Candidate Pipeline
-                    </div>
-
-                    <div className="mt-0.5 text-[9px] text-slate-400">
-                      Recent candidate activity
-                    </div>
-                  </div>
-
-                  <span className="rounded-full bg-[#EEF3FB] px-2.5 py-1 text-[9px] font-semibold text-[#506F9E]">
-                    View all
-                  </span>
-                </div>
-
-                {candidates.map((candidate) => (
-                  <div
-                    key={candidate.name}
-                    className="flex items-center gap-3 border-b border-slate-100 py-2.5 last:border-0"
-                  >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#D9E4F6] bg-gradient-to-br from-[#DFE9FA] to-[#F2F5FA] text-[10px] font-bold text-[#3A5987]">
-                      {candidate.initials}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-[11px] font-bold text-slate-800">
-                        {candidate.name}
-                      </div>
-
-                      <div className="mt-0.5 truncate text-[9px] text-slate-400">
-                        {candidate.role}
-                      </div>
-                    </div>
-
-                    <div className="text-right">
-                      <div className="text-[9px] font-semibold text-slate-500">
-                        {candidate.status}
-                      </div>
-
-                      <div className="mt-1 text-[10px] font-bold text-[#5677AA]">
-                        {candidate.score}% match
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* AI insight */}
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#20385E] via-[#29466F] to-[#36577F] p-4 text-white shadow-[0_12px_30px_rgba(32,56,94,0.18)]">
-                <div className="absolute -right-10 -top-12 h-28 w-28 rounded-full bg-[#AFC7F4]/15 blur-2xl" />
-
-                <div className="absolute -bottom-14 -left-10 h-24 w-24 rounded-full bg-[#E8D4B0]/10 blur-2xl" />
-
-                <div className="relative">
-                  <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/10">
-                    <svg
-                      className="h-4 w-4 text-[#D9E6FF]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.8}
-                        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12"
-                      />
-                    </svg>
-                  </div>
-
-                  <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#BFD1ED]">
-                    AI Insight
-                  </div>
-
-                  <h4 className="mb-3 text-sm font-bold leading-snug">
-                    Relevant profile identified
-                  </h4>
-
-                  <p className="mb-5 text-[10px] leading-relaxed text-white/60">
-                    Skills and experience align closely with the current role
-                    requirements.
-                  </p>
-
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <div className="text-3xl font-bold tracking-tight">
-                        88%
-                      </div>
-
-                      <div className="mt-1 text-[9px] text-[#C6D6ED]">
-                        Match indication
-                      </div>
-                    </div>
-
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5">
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating left card */}
-      <div className="absolute -left-4 top-[26%] hidden animate-float-card-one items-center gap-3 rounded-2xl border border-white/80 bg-white/92 px-4 py-3 shadow-[0_16px_40px_rgba(22,42,76,0.14)] backdrop-blur-xl xl:flex">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EEF3FB]">
-          <svg
-            className="h-4 w-4 text-[#496A9D]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          <div
+            className={`
+              relative flex h-9 w-9 shrink-0
+              items-center justify-center rounded-xl border
+              ${tone.icon}
+            `}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.8}
-              d="M9 12.75L11.25 15 15 9.75"
-            />
-          </svg>
-        </div>
-
-        <div>
-          <div className="text-[11px] font-bold text-[#1D304E]">
-            AI-Assisted Screening
+            <svg
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              {card.icon}
+            </svg>
           </div>
 
-          <div className="mt-0.5 text-[9px] text-slate-400">
-            Recruiter-led decisions
-          </div>
-        </div>
-      </div>
+          <div className="relative">
+            <p className="text-[10px] font-bold text-[#F0F0F3]">
+              {card.title}
+            </p>
 
-      {/* Floating right card */}
-      <div className="absolute right-2 bottom-[8%] hidden animate-float-card-two items-center gap-3 rounded-2xl border border-white/80 bg-white/92 px-4 py-3 shadow-[0_16px_40px_rgba(22,42,76,0.14)] backdrop-blur-xl xl:flex">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F5F0E8]">
-          <svg
-            className="h-4 w-4 text-[#92754B]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.8}
-              d="M3 13.125h4.5V21H3v-7.875zm6.75-4.5h4.5V21h-4.5V8.625zm6.75-4.5H21V21h-4.5V4.125z"
-            />
-          </svg>
-        </div>
-
-        <div>
-          <div className="text-[11px] font-bold text-[#1D304E]">
-            Pipeline Visibility
-          </div>
-
-          <div className="mt-0.5 text-[9px] text-slate-400">
-            One connected workspace
+            <p className="mt-1 text-[9px] text-[#777782]">
+              {card.text}
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
+
+function DashboardMockup() {
+  return (
+    <div className="relative mx-auto h-[510px] w-full max-w-[650px]">
+      {/* Atmosphere */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[76%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#755BB8]/10 blur-[110px]" />
+
+      <div className="pointer-events-none absolute left-[65%] top-[48%] h-[54%] w-[48%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5274C7]/10 blur-[100px]" />
+
+      {/* Main dashboard safe zone */}
+      <div className="absolute inset-x-[8%] top-[12%] z-20">
+        <div className="hero-dashboard-reveal">
+          <div className="hero-dashboard-float">
+            <div
+              className="
+                relative overflow-hidden
+                rounded-[28px]
+                border border-white/[0.085]
+                bg-[#0D0D10]/95
+                shadow-[0_55px_150px_rgba(0,0,0,0.72)]
+                backdrop-blur-2xl
+              "
+            >
+              <div className="pointer-events-none absolute inset-x-[12%] top-0 z-30 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+
+              {/* Browser bar */}
+              <div className="flex items-center justify-between border-b border-white/[0.06] bg-[#101013] px-5 py-3">
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#39393E]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#2E2E33]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#242429]" />
+                </div>
+
+                <div className="rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5 text-[9px] font-semibold tracking-wide text-[#777781]">
+                  Minivel ATS · Talent Workspace
+                </div>
+
+                <div className="w-9" />
+              </div>
+
+              <div className="relative bg-[#09090B] p-5">
+                {/* Internal glow */}
+                <div className="pointer-events-none absolute -right-20 -top-24 h-60 w-60 rounded-full bg-[#7661BD]/[0.07] blur-[90px]" />
+
+                <div className="relative mb-4 flex items-center justify-between">
+                  <div>
+                    <p className="mb-1 text-[8px] font-bold uppercase tracking-[0.22em] text-[#5E5E69]">
+                      Recruitment Overview
+                    </p>
+
+                    <h3 className="text-[16px] font-bold tracking-tight text-[#F4F4F6]">
+                      Talent Intelligence
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-2 rounded-full border border-[#9077D1]/15 bg-[#8E71D0]/[0.07] px-3 py-1.5">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A68CE8] opacity-30" />
+                      <span className="relative h-1.5 w-1.5 rounded-full bg-[#A68CE8]" />
+                    </span>
+
+                    <span className="text-[8px] font-semibold text-[#A58EDB]">
+                      Live workspace
+                    </span>
+                  </div>
+                </div>
+
+                {/* Stats */}
+                <div className="relative mb-3 grid grid-cols-3 gap-2.5">
+                  {STATS.map((stat, index) => (
+                    <div
+                      key={stat.label}
+                      className="
+                        dashboard-stat group relative overflow-hidden
+                        rounded-[15px] border border-white/[0.055]
+                        bg-[#121216] px-3 py-3
+                        transition-all duration-500
+                        hover:-translate-y-0.5
+                        hover:border-[#9B84D5]/15
+                        hover:bg-[#16161C]
+                      "
+                      style={{
+                        animationDelay: `${0.65 + index * 0.11}s`,
+                      }}
+                    >
+                      <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-[#8066C4]/0 blur-2xl transition-all duration-500 group-hover:bg-[#8066C4]/10" />
+
+                      <div className="relative text-lg font-bold tracking-tight text-[#F4F4F6]">
+                        {stat.value}
+                      </div>
+
+                      <div className="relative mt-0.5 text-[9px] font-semibold text-[#A2A2AB]">
+                        {stat.label}
+                      </div>
+
+                      <div className="relative mt-1 text-[8px] text-[#5F5F69]">
+                        {stat.meta}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Lower dashboard */}
+                <div className="relative grid gap-2.5 sm:grid-cols-[1.55fr_.82fr]">
+                  <div className="rounded-[17px] border border-white/[0.055] bg-[#111115] p-3.5">
+                    <div className="mb-2.5 flex items-center justify-between">
+                      <div>
+                        <p className="text-[10px] font-bold text-[#ECECF0]">
+                          Candidate Pipeline
+                        </p>
+
+                        <p className="mt-0.5 text-[8px] text-[#60606A]">
+                          Recent candidate activity
+                        </p>
+                      </div>
+
+                      <span className="rounded-full border border-white/[0.05] bg-white/[0.025] px-2 py-1 text-[8px] text-[#777781]">
+                        View all
+                      </span>
+                    </div>
+
+                    {CANDIDATES.map((candidate, index) => (
+                      <div
+                        key={candidate.name}
+                        className="
+                          candidate-row group flex items-center gap-2.5
+                          border-b border-white/[0.045]
+                          py-2 last:border-none
+                        "
+                        style={{
+                          animationDelay: `${0.98 + index * 0.12}s`,
+                        }}
+                      >
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-[#846FC0]/15 bg-[#191621] text-[9px] font-bold text-[#A995D8] transition-all duration-300 group-hover:bg-[#211C2D]">
+                          {candidate.initials}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-[9px] font-bold text-[#DCDCE1]">
+                            {candidate.name}
+                          </p>
+
+                          <p className="mt-0.5 truncate text-[8px] text-[#62626C]">
+                            {candidate.role}
+                          </p>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="text-[7px] font-medium text-[#777781]">
+                            {candidate.status}
+                          </p>
+
+                          <p className="mt-1 text-[8px] font-bold text-[#A68DDE]">
+                            {candidate.score}% match
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* AI insight */}
+                  <div
+                    className="
+                      ai-panel group relative overflow-hidden
+                      rounded-[17px]
+                      border border-[#A18BDA]/10
+                      bg-gradient-to-br
+                      from-[#191523]
+                      via-[#211A30]
+                      to-[#15141D]
+                      p-3.5
+                      shadow-[0_16px_40px_rgba(0,0,0,0.28)]
+                    "
+                  >
+                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#9A78E1]/10 blur-3xl transition-all duration-500 group-hover:bg-[#9A78E1]/15" />
+
+                    <div className="absolute inset-x-[18%] top-0 h-px bg-gradient-to-r from-transparent via-[#C2ACF1]/25 to-transparent" />
+
+                    <div className="relative">
+                      <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04]">
+                        <svg
+                          className="h-4 w-4 text-[#B69DEB]"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8z"
+                            strokeWidth="1.5"
+                          />
+                        </svg>
+                      </div>
+
+                      <p className="text-[8px] font-bold uppercase tracking-[0.18em] text-[#8F79C0]">
+                        AI Insight
+                      </p>
+
+                      <h4 className="mt-2 text-[11px] font-bold leading-snug text-[#F1F1F4]">
+                        Relevant profile identified
+                      </h4>
+
+                      <p className="mt-2 text-[8px] leading-relaxed text-[#777781]">
+                        Skills and experience align closely with the current
+                        role requirements.
+                      </p>
+
+                      <div className="mt-4">
+                        <div className="text-[27px] font-bold tracking-tight text-white">
+                          88%
+                        </div>
+
+                        <div className="text-[8px] text-[#7C6C9F]">
+                          Match indication
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Cards stay inside this visual container */}
+      {FLOATING_CARDS.map((card) => (
+        <FloatingCard key={card.title} card={card} />
+      ))}
+
+      {/* Small live notification */}
+      <div className="hero-card-four absolute bottom-[18%] left-[3%] z-30 hidden xl:block">
+        <div className="hero-float-four">
+          <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#101014]/90 px-3 py-2 shadow-[0_18px_50px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A48BE4] opacity-30" />
+              <span className="relative h-1.5 w-1.5 rounded-full bg-[#A48BE4]" />
+            </span>
+
+            <span className="text-[8px] font-semibold text-[#84848E]">
+              Candidate activity updated
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
-  const points = [
-    "AI-assisted",
-    "Recruiter-led",
-    "Connected hiring workflow",
-  ];
+  const visualRef = useRef(null);
+
+  const handleMouseMove = (event) => {
+    const element = visualRef.current;
+
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    element.style.setProperty("--x", `${x * 7}px`);
+    element.style.setProperty("--y", `${y * 5}px`);
+    element.style.setProperty("--rx", `${y * -1.1}deg`);
+    element.style.setProperty("--ry", `${x * 1.4}deg`);
+  };
+
+  const resetParallax = () => {
+    const element = visualRef.current;
+
+    if (!element) return;
+
+    element.style.setProperty("--x", "0px");
+    element.style.setProperty("--y", "0px");
+    element.style.setProperty("--rx", "0deg");
+    element.style.setProperty("--ry", "0deg");
+  };
 
   return (
     <>
       <section
         id="overview"
-        className="relative overflow-hidden bg-[#E9EEF6]"
+        className="relative overflow-hidden bg-[#050505]"
       >
-        {/* Premium background */}
-        <div className="absolute inset-0 bg-[linear-gradient(125deg,#E0E7F2_0%,#EDF1F7_43%,#E6EBF3_100%)]" />
-
-        <div className="absolute -left-32 -top-44 h-[500px] w-[500px] rounded-full bg-[#9EB6DF]/28 blur-[125px]" />
-
-        <div className="absolute right-[-180px] top-[-170px] h-[600px] w-[600px] rounded-full bg-[#B8C8E5]/34 blur-[140px]" />
-
-        <div className="absolute bottom-[-220px] left-[35%] h-[430px] w-[430px] rounded-full bg-[#D8C8A9]/10 blur-[120px]" />
-
-        {/* Fine grid */}
+        {/* Black enterprise background */}
         <div
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(41,67,107,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(41,67,107,0.07) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+            background: `
+              radial-gradient(
+                ellipse 55% 52% at 77% 25%,
+                rgba(116, 83, 184, 0.17),
+                transparent 68%
+              ),
+              radial-gradient(
+                ellipse 38% 40% at 89% 67%,
+                rgba(71, 94, 174, 0.10),
+                transparent 72%
+              ),
+              radial-gradient(
+                ellipse 36% 32% at 12% 28%,
+                rgba(255,255,255,0.025),
+                transparent 72%
+              ),
+              linear-gradient(
+                180deg,
+                #050505 0%,
+                #070707 50%,
+                #050505 100%
+              )
+            `,
           }}
         />
 
-        {/* Decorative arcs */}
-        <div className="absolute -right-52 top-[-170px] h-[700px] w-[700px] rounded-full border border-white/40" />
+        {/* Right product glow */}
+        <div className="pointer-events-none absolute right-[-12%] top-[0%] h-[680px] w-[800px] rounded-full bg-[#7557BA]/[0.065] blur-[160px]" />
 
-        <div className="absolute -right-28 top-[-90px] h-[560px] w-[560px] rounded-full border border-[#7189B5]/12" />
+        {/* Very subtle texture */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)
+            `,
+            backgroundSize: "58px 58px",
+            maskImage:
+              "linear-gradient(to bottom, black, rgba(0,0,0,.4) 65%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black, rgba(0,0,0,.4) 65%, transparent)",
+          }}
+        />
 
-        {/* Hero content */}
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-<div className="grid min-h-[600px] items-center gap-10 pt-12 pb-7 sm:pt-14 sm:pb-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:pt-16 lg:pb-8 xl:gap-14">
-            {/* Left */}
-            <div className="relative z-10 max-w-[570px]">
-              {/* Eyebrow */}
-              <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-white/80 bg-white/60 px-3.5 py-2 shadow-[0_8px_28px_rgba(28,50,84,0.07)] backdrop-blur-xl">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#29466F]">
+          <div
+            className="
+              grid min-h-[620px] items-center
+              gap-8 pb-8 pt-14
+              sm:pt-16
+              lg:grid-cols-[0.88fr_1.12fr]
+              lg:gap-10 lg:pb-10 lg:pt-16
+              xl:gap-12
+            "
+          >
+            {/* LEFT */}
+            <div className="relative z-20 max-w-[570px]">
+              <div className="hero-copy hero-delay-1 mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.035] px-3.5 py-2 backdrop-blur-xl">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#18131F] text-[#B498ED]">
                   <svg
-                    className="h-3 w-3 text-white"
-                    fill="none"
+                    className="h-3.5 w-3.5"
                     viewBox="0 0 24 24"
+                    fill="none"
                     stroke="currentColor"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813"
+                      d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8z"
+                      strokeWidth="1.5"
                     />
                   </svg>
                 </div>
 
-                <span className="text-[12px] font-semibold tracking-wide text-[#435571] sm:text-[13px]">
+                <span className="text-[12px] font-semibold tracking-wide text-[#A0A0AA]">
                   Minivel Talent Intelligence
                 </span>
               </div>
 
-              {/* Headline */}
-              <h1 className="text-[40px] font-extrabold leading-[1.01] tracking-[-0.045em] text-[#142640] sm:text-[49px] lg:text-[51px] xl:text-[59px]">
+              <h1 className="hero-copy hero-delay-2 text-[42px] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#F5F5F7] sm:text-[52px] lg:text-[55px] xl:text-[62px]">
                 Recruitment,
-                <span className="mt-1 block bg-gradient-to-r from-[#315B98] via-[#6679AD] to-[#947E9E] bg-clip-text text-transparent">
+                <span className="mt-1 block bg-gradient-to-r from-white via-[#C1B5EC] to-[#9874D6] bg-clip-text text-transparent">
                   intelligently connected.
                 </span>
               </h1>
 
-              {/* Description */}
-              <p className="mt-5 max-w-[530px] text-[15px] leading-7 text-[#596A82] sm:text-[16px] sm:leading-8">
-                Minivel ATS connects candidate discovery, intelligent
-                screening, pipeline management and hiring collaboration in
-                one focused recruitment workspace.
+              <p className="hero-copy hero-delay-3 mt-5 max-w-[525px] text-[15px] leading-7 text-[#9999A3] sm:text-[16px] sm:leading-8">
+                Minivel ATS connects candidate discovery, intelligent screening,
+                pipeline management and hiring collaboration in one focused
+                recruitment workspace.
               </p>
 
-              {/* Buttons */}
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="hero-copy hero-delay-4 mt-7 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="#features"
-                  className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#1D385F] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(29,56,95,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#294970]"
+                  href="#sourcing"
+                  className="
+                    group inline-flex items-center justify-center gap-2.5
+                    rounded-xl bg-[#F3F3F5]
+                    px-7 py-3.5 text-sm font-bold text-[#080808]
+                    shadow-[0_12px_35px_rgba(255,255,255,0.07)]
+                    transition-all duration-300
+                    hover:-translate-y-0.5
+                    hover:bg-white
+                    hover:shadow-[0_18px_45px_rgba(255,255,255,0.12)]
+                  "
                 >
                   Explore Minivel ATS
 
@@ -401,104 +576,257 @@ export default function Hero() {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/90 bg-white/65 px-7 py-3.5 text-sm font-semibold text-[#2C4365] shadow-[0_8px_25px_rgba(30,50,80,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+                  className="
+                    inline-flex items-center justify-center gap-2
+                    rounded-xl border border-white/[0.10]
+                    bg-white/[0.035]
+                    px-7 py-3.5 text-sm font-semibold text-[#D1D1D7]
+                    backdrop-blur-xl
+                    transition-all duration-300
+                    hover:-translate-y-0.5
+                    hover:border-white/[0.18]
+                    hover:bg-white/[0.07]
+                    hover:text-white
+                  "
                 >
-                  <svg
-                    className="h-4 w-4 text-[#5976A3]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
-                    />
-                  </svg>
-
                   Book a Demo
                 </a>
               </div>
 
-              {/* Supporting points */}
-              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2.5">
-                {points.map((item) => (
+              <div className="hero-copy hero-delay-5 mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                {[
+                  "AI-assisted",
+                  "Recruiter-led",
+                  "Connected workflow",
+                ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-[12px] font-medium text-[#6B7890]"
+                    className="flex items-center gap-2 text-[11px] font-medium text-[#73737D]"
                   >
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#7E97C0]" />
+                    <span className="h-1 w-1 rounded-full bg-[#A184DD]" />
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right */}
-            <div className="relative hidden lg:block lg:translate-x-1 lg:translate-y-7 xl:translate-x-3 xl:translate-y-8">
-              <div className="origin-center scale-[0.91] xl:scale-[0.94]">
-                <DashboardMockup />
-              </div>
+            {/* RIGHT */}
+            <div
+              ref={visualRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={resetParallax}
+              className="hero-parallax relative hidden lg:block"
+            >
+              <DashboardMockup />
             </div>
           </div>
         </div>
 
-        {/* Bottom transition */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-white/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
       </section>
 
       <style>{`
+        @keyframes copyReveal {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+            filter: blur(5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+          }
+        }
+
+        .hero-copy {
+          opacity: 0;
+          animation: copyReveal 700ms cubic-bezier(.22,1,.36,1) forwards;
+        }
+
+        .hero-delay-1 { animation-delay: .05s; }
+        .hero-delay-2 { animation-delay: .14s; }
+        .hero-delay-3 { animation-delay: .23s; }
+        .hero-delay-4 { animation-delay: .32s; }
+        .hero-delay-5 { animation-delay: .41s; }
+
+        @keyframes dashboardReveal {
+          from {
+            opacity: 0;
+            transform: translateY(25px) scale(.97);
+            filter: blur(9px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+          }
+        }
+
+        .hero-dashboard-reveal {
+          opacity: 0;
+          animation: dashboardReveal
+            900ms cubic-bezier(.22,1,.36,1) .28s forwards;
+        }
+
         @keyframes dashboardFloat {
-          0%, 100% {
-            transform: translateY(0px) rotate(-0.3deg);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-7px); }
+        }
 
-          50% {
-            transform: translateY(-11px) rotate(0.3deg);
+        .hero-dashboard-float {
+          animation: dashboardFloat 7s ease-in-out 1.4s infinite;
+        }
+
+        @keyframes itemReveal {
+          from {
+            opacity: 0;
+            transform: translateY(9px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
 
-        @keyframes floatCardOne {
-          0%, 100% {
-            transform: translate3d(0, 0, 0);
-          }
+        .dashboard-stat,
+        .candidate-row,
+        .ai-panel {
+          opacity: 0;
+          animation: itemReveal
+            550ms cubic-bezier(.22,1,.36,1) forwards;
+        }
 
-          50% {
-            transform: translate3d(3px, -8px, 0);
+        .ai-panel {
+          animation-delay: 1.12s;
+        }
+
+        @keyframes cardRight {
+          from {
+            opacity: 0;
+            transform: translate(18px, 12px) scale(.92);
+            filter: blur(7px);
+          }
+          to {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+            filter: blur(0);
           }
         }
 
-        @keyframes floatCardTwo {
-          0%, 100% {
-            transform: translate3d(0, 0, 0);
+        @keyframes cardLeft {
+          from {
+            opacity: 0;
+            transform: translate(-18px, 12px) scale(.92);
+            filter: blur(7px);
           }
-
-          50% {
-            transform: translate3d(-2px, 8px, 0);
+          to {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+            filter: blur(0);
           }
         }
 
-        .animate-dashboard-float {
-          animation: dashboardFloat 6.5s ease-in-out infinite;
-          will-change: transform;
+        .hero-card-one {
+          opacity: 0;
+          animation: cardRight
+            650ms cubic-bezier(.22,1,.36,1) 1.15s forwards;
         }
 
-        .animate-float-card-one {
-          animation: floatCardOne 5.2s ease-in-out infinite;
-          will-change: transform;
+        .hero-card-two {
+          opacity: 0;
+          animation: cardLeft
+            650ms cubic-bezier(.22,1,.36,1) 1.48s forwards;
         }
 
-        .animate-float-card-two {
-          animation: floatCardTwo 5.8s ease-in-out infinite;
+        .hero-card-three {
+          opacity: 0;
+          animation: cardRight
+            650ms cubic-bezier(.22,1,.36,1) 1.81s forwards;
+        }
+
+        .hero-card-four {
+          opacity: 0;
+          animation: cardLeft
+            650ms cubic-bezier(.22,1,.36,1) 2.14s forwards;
+        }
+
+        @keyframes floatOne {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-3px, -7px); }
+        }
+
+        @keyframes floatTwo {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(4px, 6px); }
+        }
+
+        @keyframes floatThree {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-4px, 7px); }
+        }
+
+        @keyframes floatFour {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(3px, -5px); }
+        }
+
+        .hero-float-one {
+          animation: floatOne 5.8s ease-in-out 2s infinite;
+        }
+
+        .hero-float-two {
+          animation: floatTwo 6.4s ease-in-out 2.2s infinite;
+        }
+
+        .hero-float-three {
+          animation: floatThree 6.8s ease-in-out 2.4s infinite;
+        }
+
+        .hero-float-four {
+          animation: floatFour 5.5s ease-in-out 2.6s infinite;
+        }
+
+        .hero-parallax {
+          --x: 0px;
+          --y: 0px;
+          --rx: 0deg;
+          --ry: 0deg;
+
+          transform:
+            translate3d(var(--x), var(--y), 0)
+            perspective(1300px)
+            rotateX(var(--rx))
+            rotateY(var(--ry));
+
+          transform-style: preserve-3d;
+          transition: transform 180ms ease-out;
           will-change: transform;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .animate-dashboard-float,
-          .animate-float-card-one,
-          .animate-float-card-two {
+          .hero-copy,
+          .hero-dashboard-reveal,
+          .hero-dashboard-float,
+          .dashboard-stat,
+          .candidate-row,
+          .ai-panel,
+          .hero-card-one,
+          .hero-card-two,
+          .hero-card-three,
+          .hero-card-four,
+          .hero-float-one,
+          .hero-float-two,
+          .hero-float-three,
+          .hero-float-four {
             animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+          }
+
+          .hero-parallax {
+            transform: none !important;
           }
         }
       `}</style>

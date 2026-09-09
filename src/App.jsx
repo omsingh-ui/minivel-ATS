@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SocialProof from './components/SocialProof';
 import Features from './components/Features';
+import WorkflowExperience from './components/WorkflowExperience';
 import Integrations from './components/Integrations';
 import Stats from './components/Stats';
 import FAQ from './components/FAQ';
@@ -13,16 +14,19 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Navbar />
+
       <main>
         <Hero />
         <SocialProof />
         <Features />
+        <WorkflowExperience />
         <Integrations />
         <Stats />
         <FAQ />
         <TrustCompliance />
         <CTA />
       </main>
+
       <Footer />
     </div>
   );

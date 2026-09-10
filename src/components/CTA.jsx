@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function CTA() {
   return (
     <section
@@ -195,48 +197,48 @@ export default function CTA() {
               </a>
 
               {/* Secondary */}
-              <a
-                href="#contact"
-                className="
-                  group/demo
-                  inline-flex min-w-[165px]
-                  items-center justify-center gap-2
-                  rounded-[12px]
-                  border border-white/[0.10]
-                  bg-white/[0.035]
-                  px-7 py-3.5
-                  text-[12px] font-semibold
-                  text-[#D8D8DD]
-                  backdrop-blur-xl
-                  transition-all duration-300
-                  hover:-translate-y-1
-                  hover:border-white/[0.18]
-                  hover:bg-white/[0.07]
-                  hover:text-white
-                "
-              >
-                Request a Demo
+              <Link
+  to="/request-demo"
+  className="
+    group/demo
+    inline-flex min-w-[165px]
+    items-center justify-center gap-2
+    rounded-[12px]
+    border border-white/[0.10]
+    bg-white/[0.035]
+    px-7 py-3.5
+    text-[12px] font-semibold
+    text-[#D8D8DD]
+    backdrop-blur-xl
+    transition-all duration-300
+    hover:-translate-y-1
+    hover:border-white/[0.18]
+    hover:bg-white/[0.07]
+    hover:text-white
+  "
+>
+  Request a Demo
 
-                <svg
-                  className="
-                    h-4 w-4
-                    text-[#85858F]
-                    transition-all duration-300
-                    group-hover/demo:translate-x-1
-                    group-hover/demo:text-[#B6A5E2]
-                  "
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 18l6-6-6-6"
-                  />
-                </svg>
-              </a>
+  <svg
+    className="
+      h-4 w-4
+      text-[#85858F]
+      transition-all duration-300
+      group-hover/demo:translate-x-1
+      group-hover/demo:text-[#B6A5E2]
+    "
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 18l6-6-6-6"
+    />
+  </svg>
+</Link>
             </div>
 
             {/* Confidence row */}

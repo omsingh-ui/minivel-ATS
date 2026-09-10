@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import minivelLogo from "../assets/minivel-logo.png";
 
 const NAV_LINKS = [
@@ -465,11 +466,10 @@ export default function Navbar() {
               {/* =================================================
                   PRIMARY CTA
               ================================================= */}
-
-              <a
-                href="#"
-                className="
-                  group/cta
+<Link
+  to="/request-demo"
+  className="
+    group/cta
                   relative
                   ml-1
 
@@ -573,7 +573,7 @@ export default function Navbar() {
                     group-hover/cta:w-full
                   "
                 />
-              </a>
+              </Link>
             </div>
 
             {/* =================================================
@@ -903,10 +903,11 @@ export default function Navbar() {
               />
             </a>
 
-            <a
-              href="#"
-              className="
-                group/mobile-cta
+           <Link
+  to="/request-demo"
+  onClick={() => setMenuOpen(false)}
+  className="
+    group/mobile-cta
 
                 relative mt-3
 
@@ -953,7 +954,7 @@ export default function Navbar() {
                   group-hover/mobile-cta:translate-x-1
                 "
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

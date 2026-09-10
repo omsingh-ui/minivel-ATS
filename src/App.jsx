@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
@@ -10,7 +12,9 @@ import TrustCompliance from "./components/TrustCompliance";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 
-export default function App() {
+import RequestDemo from "./pages/RequestDemo";
+
+function LandingPage() {
   return (
     <div className="min-h-screen bg-[#050505]">
       <Navbar />
@@ -29,5 +33,19 @@ export default function App() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Main ATS landing page */}
+        <Route path="/" element={<LandingPage />} />
+
+        {/* Demo page */}
+        <Route path="/request-demo" element={<RequestDemo />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

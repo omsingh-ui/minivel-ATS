@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const STATS = [
   { value: "12", label: "Open Roles", meta: "Active pipeline" },
@@ -560,23 +561,23 @@ export default function Hero() {
                   </svg>
                 </a>
 
-                <a
-                  href="#contact"
-                  className="
-                    inline-flex items-center justify-center gap-2
-                    rounded-xl border border-white/[0.10]
-                    bg-white/[0.035]
-                    px-7 py-3.5 text-sm font-semibold text-[#D1D1D7]
-                    backdrop-blur-xl
-                    transition-all duration-300
-                    hover:-translate-y-0.5
-                    hover:border-white/[0.18]
-                    hover:bg-white/[0.07]
-                    hover:text-white
-                  "
-                >
-                  Book a Demo
-                </a>
+                <Link
+  to="/request-demo"
+  className="
+    inline-flex items-center justify-center gap-2
+    rounded-xl border border-white/[0.10]
+    bg-white/[0.035]
+    px-7 py-3.5 text-sm font-semibold text-[#D1D1D7]
+    backdrop-blur-xl
+    transition-all duration-300
+    hover:-translate-y-0.5
+    hover:border-white/[0.18]
+    hover:bg-white/[0.07]
+    hover:text-white
+  "
+>
+  Book a Demo
+</Link>
               </div>
 
               <div className="hero-copy hero-delay-5 mt-6 flex flex-wrap gap-x-6 gap-y-2">

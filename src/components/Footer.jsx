@@ -1,3 +1,4 @@
+import minivelLogo from "../assets/minivel-logo.png";
 const FOOTER_LINKS = {
   Platform: [
     { label: "Talent Discovery", href: "#sourcing" },
@@ -420,39 +421,63 @@ export default function Footer() {
         >
           {/* BRAND */}
           <div>
-            <a
-              href="#overview"
-              className="
-                group/brand
-                inline-flex items-baseline gap-2
-              "
-            >
-              <span
-                className="
-                  text-[29px]
-                  font-black
-                  tracking-[-0.055em]
-                  text-white
-                  transition-all duration-300
-                  group-hover/brand:tracking-[-0.045em]
-                "
-              >
-                Minivel
-              </span>
+           <a
+  href="#overview"
+  aria-label="Minivel Services"
+  className="
+    group/brand
+    relative
+    inline-flex
+    items-center
+  "
+>
+  {/* soft brand glow */}
+  <span
+    className="
+      pointer-events-none
+      absolute left-1/2 top-1/2
+      h-[60px] w-[220px]
+      -translate-x-1/2 -translate-y-1/2
+      rounded-full
+      bg-[#9BCF4D]/0
+      blur-[35px]
+      transition-all duration-700
+      group-hover/brand:bg-[#9BCF4D]/[0.09]
+      group-hover/brand:scale-110
+    "
+  />
 
-              <span
-                className="
-                  text-[9px]
-                  font-extrabold uppercase
-                  tracking-[0.2em]
-                  text-[#A5D14B]
-                  transition-all duration-300
-                  group-hover/brand:text-[#B8DE5C]
-                "
-              >
-                ATS
-              </span>
-            </a>
+  <img
+    src={minivelLogo}
+    alt="Minivel Services"
+    className="
+      relative
+      h-[72px] w-[250px]
+      object-contain object-left
+      transition-all duration-500
+      group-hover/brand:scale-[1.035]
+      group-hover/brand:brightness-110
+      sm:h-[78px] sm:w-[275px]
+    "
+  />
+
+  {/* premium reveal line */}
+  <span
+    className="
+      absolute bottom-0 left-0
+      h-px w-0
+      bg-gradient-to-r
+      from-[#76C84F]
+      via-[#B5DD4C]
+      to-transparent
+      opacity-0
+      shadow-[0_0_12px_rgba(169,216,76,.45)]
+      transition-all duration-700
+      group-hover/brand:w-[72%]
+      group-hover/brand:opacity-100
+    "
+  />
+</a>
 
             <p
               className="

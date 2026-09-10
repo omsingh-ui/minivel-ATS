@@ -9,10 +9,12 @@ import FAQ from './components/FAQ';
 import TrustCompliance from './components/TrustCompliance';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import AmbientBackground from "./components/AmbientBackground";
 
 export default function App() {
   return (
     <div className="min-h-screen">
+       <AmbientBackground />
       <Navbar />
 
       <main>

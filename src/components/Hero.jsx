@@ -444,10 +444,10 @@ export default function Hero() {
 
   return (
     <>
-      <section
-        id="overview"
-        className="relative overflow-hidden bg-[#050505]"
-      >
+     <section
+  id="overview"
+  className="relative overflow-hidden bg-[#050505] pt-7 lg:pt-8"
+>
         {/* Black enterprise background */}
         <div
           className="absolute inset-0"

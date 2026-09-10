@@ -1,33 +1,33 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const FAQS = [
   {
-    q: 'What makes Minivel ATS different from other applicant tracking systems?',
+    q: "What makes Minivel ATS different from other applicant tracking systems?",
     a: "Minivel ATS is built specifically for recruitment agencies and staffing teams — not internal HR departments. This means every feature is designed around your client relationships, candidate pipelines, and placement workflows. Our AI layer doesn't just parse resumes; it reasons about candidate fit, predicts placement success, and automates repetitive recruitment tasks.",
   },
   {
-    q: 'How does the AI screening work?',
-    a: 'Our AI engine analyzes resumes across skills, experience trajectory, role progression, and contextual information. It generates a fit score with a human-readable explanation so recruiters can understand the reasoning behind a shortlist rather than simply accepting an automated recommendation.',
+    q: "How does the AI screening work?",
+    a: "Our AI engine analyzes resumes across skills, experience trajectory, role progression, and contextual information. It generates a fit score with a human-readable explanation so recruiters can understand the reasoning behind a shortlist rather than simply accepting an automated recommendation.",
   },
   {
-    q: 'Is my candidate and client data secure?',
-    a: 'Minivel ATS is designed around secure handling of candidate and client information, including protected access, encryption, and responsible data management. Specific certifications and compliance commitments should reflect Minivel’s currently verified security policies.',
+    q: "Is my candidate and client data secure?",
+    a: "Minivel ATS is designed around secure handling of candidate and client information, including protected access, encryption, and responsible data management. Specific certifications and compliance commitments should reflect Minivel’s currently verified security policies.",
   },
   {
-    q: 'What does the onboarding process look like?',
-    a: 'Onboarding is designed to help teams configure their recruitment workflows, organise existing candidate information, connect relevant tools, and understand how to use the platform effectively.',
+    q: "What does the onboarding process look like?",
+    a: "Onboarding is designed to help teams configure their recruitment workflows, organise existing candidate information, connect relevant tools, and understand how to use the platform effectively.",
   },
   {
-    q: 'How does pricing work? Are there hidden fees?',
-    a: 'Pricing can be structured around the size and requirements of your recruitment team. Final plans, included features, billing terms, and any enterprise requirements should reflect Minivel’s current commercial offering.',
+    q: "How does pricing work? Are there hidden fees?",
+    a: "Pricing can be structured around the size and requirements of your recruitment team. Final plans, included features, billing terms, and any enterprise requirements should reflect Minivel’s current commercial offering.",
   },
   {
-    q: 'Can I import my existing candidate database?',
-    a: 'Minivel ATS is designed to support the transition of existing candidate information into a more organised recruitment environment. Available migration methods and supported platforms depend on the final product configuration.',
+    q: "Can I import my existing candidate database?",
+    a: "Minivel ATS is designed to support the transition of existing candidate information into a more organised recruitment environment. Available migration methods and supported platforms depend on the final product configuration.",
   },
   {
-    q: 'Does Minivel ATS integrate with job boards and LinkedIn?',
-    a: 'The platform is designed around connected recruitment workflows, allowing relevant sourcing, communication, productivity, and hiring tools to work alongside the ATS. Specific integrations should reflect those currently supported by Minivel.',
+    q: "Does Minivel ATS integrate with job boards and LinkedIn?",
+    a: "The platform is designed around connected recruitment workflows, allowing relevant sourcing, communication, productivity, and hiring tools to work alongside the ATS. Specific integrations should reflect those currently supported by Minivel.",
   },
 ];
 
@@ -35,32 +35,36 @@ function FAQItem({ faq, isOpen, onClick, index }) {
   return (
     <div
       className={`
-        group relative overflow-hidden
-        rounded-[20px]
-        border
+        group relative overflow-hidden rounded-[20px] border
         transition-all duration-500 ease-out
         ${
           isOpen
-            ? 'border-[#CBD6E4] bg-white shadow-[0_18px_50px_rgba(37,52,73,0.08)]'
-            : 'border-[#E4E8ED] bg-white/65 hover:border-[#D4DCE6] hover:bg-white hover:shadow-[0_12px_35px_rgba(37,52,73,0.055)]'
+            ? "border-white/[0.11] bg-[#0D0D10] shadow-[0_22px_60px_rgba(0,0,0,0.42)]"
+            : "border-white/[0.055] bg-[#09090B] hover:border-white/[0.10] hover:bg-[#0C0C0F]"
         }
       `}
     >
-      {/* Soft active atmosphere */}
+      {/* Active atmosphere */}
       <div
         className={`
-          pointer-events-none absolute
-          -right-20 -top-20
-          h-44 w-44
-          rounded-full
-          bg-[#9FB2CF]
-          blur-[65px]
-          transition-all duration-700
+          pointer-events-none absolute -right-20 -top-20
+          h-44 w-44 rounded-full bg-[#8973C5]
+          blur-[70px] transition-all duration-700
           ${
             isOpen
-              ? 'scale-100 opacity-[0.10]'
-              : 'scale-75 opacity-0 group-hover:opacity-[0.05]'
+              ? "scale-100 opacity-[0.10]"
+              : "scale-75 opacity-0 group-hover:opacity-[0.04]"
           }
+        `}
+      />
+
+      {/* Top reflection */}
+      <div
+        className={`
+          pointer-events-none absolute left-[16%] right-[16%] top-0
+          h-px bg-gradient-to-r from-transparent via-white/[0.14] to-transparent
+          transition-opacity duration-500
+          ${isOpen ? "opacity-100" : "opacity-30"}
         `}
       />
 
@@ -69,42 +73,32 @@ function FAQItem({ faq, isOpen, onClick, index }) {
         onClick={onClick}
         aria-expanded={isOpen}
         className="
-          relative z-10
-          flex w-full
-          items-center
-          justify-between
-          gap-5
-          px-5 py-[18px]
-          text-left
-          sm:px-6
+          relative z-10 flex w-full
+          items-center justify-between gap-5
+          px-5 py-[18px] text-left sm:px-6
         "
       >
         <div className="flex min-w-0 items-center gap-4">
           <span
             className={`
               hidden w-6 shrink-0
-              text-[9px] font-bold
-              tracking-[0.16em]
-              transition-colors duration-300
-              sm:block
-              ${isOpen ? 'text-[#6C83A5]' : 'text-[#B1BAC5]'}
+              text-[8px] font-bold tracking-[0.18em]
+              transition-colors duration-300 sm:block
+              ${isOpen ? "text-[#9984D6]" : "text-[#42424A]"}
             `}
           >
-            {String(index + 1).padStart(2, '0')}
+            {String(index + 1).padStart(2, "0")}
           </span>
 
           <span
             className={`
-              text-[14px]
-              font-bold
-              leading-[1.5]
+              text-[14px] font-bold leading-[1.5]
               tracking-[-0.012em]
-              transition-colors duration-300
-              sm:text-[15px]
+              transition-colors duration-300 sm:text-[15px]
               ${
                 isOpen
-                  ? 'text-[#20334F]'
-                  : 'text-[#33445A] group-hover:text-[#20334F]'
+                  ? "text-[#F0F0F2]"
+                  : "text-[#A3A3AC] group-hover:text-[#D7D7DC]"
               }
             `}
           >
@@ -112,21 +106,16 @@ function FAQItem({ faq, isOpen, onClick, index }) {
           </span>
         </div>
 
-        {/* Plus / close control */}
+        {/* Plus control */}
         <div
           className={`
-            relative flex
-            h-9 w-9
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            border
+            relative flex h-9 w-9 shrink-0
+            items-center justify-center rounded-full border
             transition-all duration-500
             ${
               isOpen
-                ? 'rotate-45 border-[#304B70] bg-[#304B70] text-white shadow-[0_7px_18px_rgba(48,75,112,0.20)]'
-                : 'border-[#DCE3EB] bg-[#F6F8FA] text-[#6F7F93] group-hover:border-[#CAD5E2] group-hover:bg-white'
+                ? "rotate-45 border-[#917DCE]/40 bg-[#917DCE]/15 text-[#B4A3E6] shadow-[0_0_25px_rgba(145,125,206,.12)]"
+                : "border-white/[0.07] bg-white/[0.025] text-[#666670] group-hover:border-white/[0.12] group-hover:bg-white/[0.045] group-hover:text-[#AAAAB3]"
             }
           `}
         >
@@ -149,24 +138,40 @@ function FAQItem({ faq, isOpen, onClick, index }) {
       {/* Answer */}
       <div
         className={`
-          relative z-10
-          grid
+          relative z-10 grid
           transition-all duration-500 ease-out
           ${
             isOpen
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0"
           }
         `}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 sm:pl-16 sm:pr-16 sm:pb-6">
-            <p className="max-w-2xl text-[12px] leading-[1.85] text-[#6F7D8F] sm:text-[13px]">
+          <div className="px-5 pb-5 sm:pb-6 sm:pl-16 sm:pr-16">
+            <div className="mb-4 h-px bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent" />
+
+            <p className="max-w-2xl text-[12px] leading-[1.85] text-[#74747E] sm:text-[13px]">
               {faq.a}
             </p>
           </div>
         </div>
       </div>
+
+      {/* Active bottom glow */}
+      <div
+        className={`
+          pointer-events-none absolute bottom-0 left-1/2
+          h-px -translate-x-1/2
+          bg-gradient-to-r from-transparent via-[#9882D4] to-transparent
+          transition-all duration-700
+          ${
+            isOpen
+              ? "w-[42%] opacity-60"
+              : "w-0 opacity-0"
+          }
+        `}
+      />
     </div>
   );
 }
@@ -178,70 +183,75 @@ export default function FAQ() {
     <section
       id="faq"
       className="
-        relative overflow-hidden
-        bg-[#FAFAF8]
-        pt-8 pb-9
-        sm:pt-9 sm:pb-10
-        lg:pt-10 lg:pb-11
+        relative overflow-hidden bg-[#050505]
+        pb-11 pt-7
+        sm:pb-12 sm:pt-8
+        lg:pb-13 lg:pt-9
       "
     >
+      {/* Section boundary */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+
       {/* Background atmosphere */}
-      <div className="pointer-events-none absolute -left-40 top-[-120px] h-[360px] w-[360px] rounded-full bg-[#AFC2DA]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-44 top-[-110px] h-[400px] w-[400px] rounded-full bg-[#526EAE]/[0.035] blur-[145px]" />
 
-      <div className="pointer-events-none absolute -right-40 bottom-[-130px] h-[380px] w-[380px] rounded-full bg-[#C7B8A2]/10 blur-[130px]" />
+        <div className="absolute -right-44 bottom-[-130px] h-[410px] w-[410px] rounded-full bg-[#896FB5]/[0.035] blur-[145px]" />
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.13]"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(58,76,100,0.12) 0.7px, transparent 0.7px)',
-          backgroundSize: '30px 30px',
-        }}
-      />
+        <div
+          className="absolute inset-0 opacity-[0.09]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,.055) 1px, transparent 0)",
+            backgroundSize: "34px 34px",
+            maskImage:
+              "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+          }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        {/* Desktop editorial layout */}
         <div className="grid items-start gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
 
-          {/* Left content */}
+          {/* Left */}
           <div className="text-center lg:sticky lg:top-28 lg:text-left">
-            <span
+            <div
               className="
-                mb-3 inline-flex
-                rounded-full
-                border border-[#DDE4EC]
-                bg-white/75
+                inline-flex items-center gap-2.5
+                rounded-full border border-white/[0.07]
+                bg-white/[0.025]
                 px-3.5 py-1.5
-                text-[10px]
-                font-bold uppercase
-                tracking-[0.22em]
-                text-[#657B99]
-                shadow-[0_5px_18px_rgba(37,53,75,0.025)]
-                backdrop-blur
+                backdrop-blur-xl
               "
             >
-              FAQ
-            </span>
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9881D5] opacity-20" />
+                <span className="relative h-1.5 w-1.5 rounded-full bg-[#9881D5]" />
+              </span>
+
+              <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
+                FAQ
+              </span>
+            </div>
 
             <h2
               className="
-                text-3xl
-                font-extrabold
-                leading-[1.08]
-                tracking-[-0.04em]
-                text-[#17283F]
-                sm:text-4xl
-                lg:text-[44px]
+                mt-4 text-3xl font-extrabold
+                leading-[1.07] tracking-[-0.045em]
+                text-[#F3F3F5]
+                sm:text-4xl lg:text-[44px]
               "
             >
               Questions before
-              <span className="block bg-gradient-to-r from-[#526E98] via-[#777A9C] to-[#A2886D] bg-clip-text text-transparent">
+
+              <span className="mt-1 block bg-gradient-to-r from-white via-[#BBB2DA] to-[#9279C9] bg-clip-text text-transparent">
                 you get started?
               </span>
             </h2>
 
-            <p className="mx-auto mt-4 max-w-md text-[14px] leading-7 text-[#718094] lg:mx-0">
+            <p className="mx-auto mt-4 max-w-md text-[14px] leading-7 text-[#74747E] lg:mx-0">
               Clear answers about the platform, AI, security, onboarding and
               how Minivel fits into your recruitment workflow.
             </p>
@@ -249,54 +259,60 @@ export default function FAQ() {
             {/* Contact card */}
             <div
               className="
-                mx-auto mt-6
-                max-w-md
-                rounded-[20px]
-                border border-[#E0E5EB]
-                bg-white/70
-                p-5
-                text-left
-                shadow-[0_10px_35px_rgba(38,53,74,0.035)]
-                backdrop-blur
+                group relative mx-auto mt-6 max-w-md
+                overflow-hidden rounded-[20px]
+                border border-white/[0.06]
+                bg-[#0A0A0D]
+                p-5 text-left
+                shadow-[0_18px_50px_rgba(0,0,0,.28)]
+                transition-all duration-500
+                hover:border-white/[0.10]
+                hover:bg-[#0D0D10]
                 lg:mx-0
               "
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#9AA5B2]">
-                Still have a question?
-              </p>
+              <div className="absolute left-[15%] right-[15%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
 
-              <p className="mt-2 text-[13px] leading-6 text-[#667588]">
-                Speak with the Minivel team about your recruitment workflow or
-                platform requirements.
-              </p>
+              <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#8871BD]/[0.07] blur-[50px] transition-opacity duration-500 group-hover:opacity-100" />
 
-              <a
-                href="#"
-                className="
-                  group mt-4
-                  inline-flex items-center gap-2
-                  text-[12px] font-bold
-                  text-[#45658F]
-                  transition-colors
-                  hover:text-[#263F62]
-                "
-              >
-                Chat with our team
+              <div className="relative">
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#575761]">
+                  Still have a question?
+                </p>
 
-                <svg
-                  className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <p className="mt-2 text-[12px] leading-6 text-[#74747E]">
+                  Speak with the Minivel team about your recruitment workflow
+                  or platform requirements.
+                </p>
+
+                <a
+                  href="#"
+                  className="
+                    group/link mt-4 inline-flex
+                    items-center gap-2
+                    text-[11px] font-bold
+                    text-[#A08BD9]
+                    transition-colors
+                    hover:text-[#C1B2E8]
+                  "
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
+                  Chat with our team
+
+                  <svg
+                    className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
 

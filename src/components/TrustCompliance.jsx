@@ -2,10 +2,15 @@ const TRUST_BADGES = [
   {
     label: "GDPR Compliant",
     subtext: "Responsible handling of candidate and client information.",
-    accent: "#5376A7",
-    soft: "#EDF3FA",
+    accent: "#7F9FE8",
+    glow: "rgba(92,126,205,0.15)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M12 3 19 6v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6z"
           strokeWidth="1.7"
@@ -20,28 +25,36 @@ const TRUST_BADGES = [
       </svg>
     ),
   },
-
   {
     label: "CCPA Compliant",
     subtext: "Privacy controls designed around modern data requirements.",
-    accent: "#7B70A4",
-    soft: "#F2EFF8",
+    accent: "#A18CE3",
+    glow: "rgba(135,105,210,0.15)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <circle cx="12" cy="12" r="8" strokeWidth="1.7" />
         <path d="M12 8v5" strokeWidth="1.7" strokeLinecap="round" />
         <circle cx="12" cy="16.5" r=".8" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
-
   {
     label: "99.9% Uptime",
     subtext: "Dependable availability for always-moving recruitment teams.",
-    accent: "#638992",
-    soft: "#EDF5F5",
+    accent: "#8EA8B4",
+    glow: "rgba(110,145,160,0.13)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M4 14h4l2-6 3 10 2-6h5"
           strokeWidth="1.7"
@@ -51,51 +64,73 @@ const TRUST_BADGES = [
       </svg>
     ),
   },
-
   {
     label: "< 2hr Response",
-    subtext: "Responsive support when your recruitment workflow needs attention.",
-    accent: "#AA875D",
-    soft: "#F7F2EA",
+    subtext:
+      "Responsive support when your recruitment workflow needs attention.",
+    accent: "#B69A79",
+    glow: "rgba(170,132,91,0.12)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M5 6h14v10H9l-4 3z"
           strokeWidth="1.7"
           strokeLinejoin="round"
         />
-        <path d="M8 10h8M8 13h5" strokeWidth="1.6" strokeLinecap="round" />
+        <path
+          d="M8 10h8M8 13h5"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
       </svg>
     ),
   },
-
   {
     label: "SOC 2 Type II",
-    subtext: "Independent security controls supporting enterprise requirements.",
-    accent: "#956E80",
-    soft: "#F6EFF2",
+    subtext:
+      "Independent security controls supporting enterprise requirements.",
+    accent: "#A88CA0",
+    glow: "rgba(158,116,144,0.12)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <rect x="6" y="10" width="12" height="10" rx="2" strokeWidth="1.7" />
         <path d="M8.5 10V7.5a3.5 3.5 0 017 0V10" strokeWidth="1.7" />
         <circle cx="12" cy="15" r="1.4" strokeWidth="1.5" />
       </svg>
     ),
   },
-
   {
     label: "AES-256 Encryption",
     subtext: "Strong encryption designed to protect sensitive recruitment data.",
-    accent: "#66779D",
-    soft: "#EEF1F7",
+    accent: "#8893C8",
+    glow: "rgba(118,126,190,0.13)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M12 3 5 6v5c0 4.2 2.5 7.6 7 10 4.5-2.4 7-5.8 7-10V6z"
           strokeWidth="1.7"
           strokeLinejoin="round"
         />
-        <path d="M9.5 12h5M12 9.5v5" strokeWidth="1.6" strokeLinecap="round" />
+        <path
+          d="M9.5 12h5M12 9.5v5"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
       </svg>
     ),
   },
@@ -108,96 +143,123 @@ const ASSURANCE_STATS = [
   { value: "5 min", label: "Average live chat response" },
 ];
 
-function SecurityCard({ badge }) {
+function SecurityCard({ badge, index }) {
   return (
     <div
       className="
+        security-card
         group relative overflow-hidden
-        rounded-[21px]
-        border border-[#E1E7EE]
-        bg-white/88
+        rounded-[20px]
+        border border-white/[0.06]
+        bg-[#0B0B0E]
         p-5
-        shadow-[0_8px_28px_rgba(31,49,74,0.04)]
-        backdrop-blur-xl
+        shadow-[0_12px_38px_rgba(0,0,0,0.28)]
         transition-all duration-500 ease-out
         hover:-translate-y-1.5
-        hover:border-[#CBD6E3]
-        hover:bg-white
-        hover:shadow-[0_22px_55px_rgba(31,49,74,0.11)]
+        hover:border-white/[0.12]
+        hover:bg-[#0F0F13]
+        hover:shadow-[0_24px_60px_rgba(0,0,0,0.52)]
       "
+      style={{ animationDelay: `${index * 70}ms` }}
     >
-      {/* hover surface */}
-      <div
-        className="
-          pointer-events-none absolute inset-0
-          opacity-0 transition-opacity duration-500
-          group-hover:opacity-100
-        "
-        style={{
-          background: `linear-gradient(
-            145deg,
-            ${badge.soft},
-            rgba(255,255,255,.98) 62%
-          )`,
-        }}
-      />
-
-      {/* glow */}
+      {/* ambient glow */}
       <div
         className="
           pointer-events-none absolute -right-14 -top-14
           h-36 w-36 rounded-full
-          opacity-0 blur-[45px]
+          opacity-0 blur-[50px]
           transition-all duration-700
           group-hover:scale-125
-          group-hover:opacity-20
+          group-hover:opacity-100
         "
-        style={{ backgroundColor: badge.accent }}
+        style={{ backgroundColor: badge.glow }}
       />
 
-      {/* light sweep */}
+      {/* scan line */}
       <div
         className="
-          pointer-events-none absolute -left-[90%] top-0
-          h-full w-[45%] rotate-[12deg]
-          bg-gradient-to-r from-transparent via-white/50 to-transparent
-          opacity-0 transition-all duration-[850ms]
-          group-hover:left-[140%]
-          group-hover:opacity-60
+          security-scan
+          pointer-events-none absolute left-0 right-0
+          top-[-20%] h-[18%]
+          bg-gradient-to-b
+          from-transparent
+          via-white/[0.025]
+          to-transparent
+          opacity-0
+          group-hover:opacity-100
         "
       />
 
+      {/* top reflection */}
+      <div className="pointer-events-none absolute left-[16%] right-[16%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
+
       <div className="relative flex items-start gap-4">
+        {/* icon */}
         <div
           className="
-            flex h-11 w-11 shrink-0
+            relative flex h-11 w-11 shrink-0
             items-center justify-center
-            rounded-[14px] border
-            shadow-[0_6px_16px_rgba(30,50,80,0.05)]
+            rounded-[13px]
+            border border-white/[0.07]
+            bg-[#151519]
             transition-all duration-500
             group-hover:-translate-y-0.5
-            group-hover:scale-110
-            group-hover:-rotate-2
+            group-hover:scale-[1.08]
+            group-hover:border-white/[0.12]
           "
-          style={{
-            color: badge.accent,
-            backgroundColor: badge.soft,
-            borderColor: `${badge.accent}22`,
-          }}
+          style={{ color: badge.accent }}
         >
-          {badge.icon}
+          <div
+            className="absolute h-8 w-8 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-25"
+            style={{ backgroundColor: badge.accent }}
+          />
+
+          <div className="relative">{badge.icon}</div>
         </div>
 
         <div className="pt-0.5">
-          <h3 className="text-[14px] font-bold tracking-[-0.015em] text-[#20324B]">
+          <div className="mb-1 flex items-center gap-2">
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{
+                backgroundColor: badge.accent,
+                boxShadow: `0 0 8px ${badge.accent}`,
+              }}
+            />
+
+            <span className="text-[8px] font-bold uppercase tracking-[0.17em] text-[#555560]">
+              Control active
+            </span>
+          </div>
+
+          <h3 className="text-[13px] font-bold tracking-[-0.015em] text-[#EDEDF0] transition-colors duration-300 group-hover:text-white">
             {badge.label}
           </h3>
 
-          <p className="mt-1.5 text-[11px] leading-[1.7] text-[#778599]">
+          <p className="mt-1.5 text-[10.5px] leading-[1.7] text-[#686872] transition-colors duration-300 group-hover:text-[#85858F]">
             {badge.subtext}
           </p>
         </div>
       </div>
+
+      {/* bottom accent */}
+      <div
+        className="
+          pointer-events-none absolute bottom-0 left-1/2
+          h-px w-0 -translate-x-1/2
+          opacity-0 transition-all duration-700
+          group-hover:w-[50%]
+          group-hover:opacity-70
+        "
+        style={{
+          background: `linear-gradient(
+            90deg,
+            transparent,
+            ${badge.accent},
+            transparent
+          )`,
+        }}
+      />
     </div>
   );
 }
@@ -208,152 +270,137 @@ export default function TrustCompliance() {
       id="security"
       className="
         relative overflow-hidden
-        bg-[#F7F8FA]
-        pt-7 pb-9
-        sm:pt-8 sm:pb-10
-        lg:pt-9 lg:pb-11
+        bg-[#050505]
+        pb-11 pt-7
+        sm:pb-12 sm:pt-8
+        lg:pb-13 lg:pt-9
       "
     >
+      {/* section boundary */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+
       {/* ambient background */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-[360px] w-[360px] rounded-full bg-[#AEC0D9]/16 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-44 top-[-120px] h-[400px] w-[400px] rounded-full bg-[#5876BB]/[0.035] blur-[145px]" />
 
-      <div className="pointer-events-none absolute -right-40 bottom-[-80px] h-[380px] w-[380px] rounded-full bg-[#D3C2AC]/10 blur-[130px]" />
+        <div className="absolute -right-44 bottom-[-120px] h-[410px] w-[410px] rounded-full bg-[#8B6FB7]/[0.035] blur-[145px]" />
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.16]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(54,73,99,.11) .7px, transparent .7px)",
-          backgroundSize: "29px 29px",
-        }}
-      />
+        <div
+          className="absolute inset-0 opacity-[0.09]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,.055) 1px, transparent 0)",
+            backgroundSize: "31px 31px",
+            maskImage:
+              "linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
+          }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* heading */}
-        <div className="mx-auto mb-7 max-w-3xl text-center">
-          <span
+        <div className="mx-auto mb-8 max-w-3xl text-center">
+          <div
             className="
-              inline-flex items-center gap-2
+              inline-flex items-center gap-2.5
               rounded-full
-              border border-[#DCE4ED]
-              bg-white/75
+              border border-white/[0.07]
+              bg-white/[0.025]
               px-3.5 py-1.5
-              text-[10px] font-bold
-              uppercase tracking-[0.22em]
-              text-[#667A97]
-              shadow-[0_6px_20px_rgba(37,53,75,0.03)]
               backdrop-blur-xl
             "
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-3.5 w-3.5"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M12 3 19 6v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6z"
-                strokeWidth="1.7"
-              />
-              <path
-                d="m9 12 2 2 4-4"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
+              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
+            </span>
 
-            Security & Compliance
-          </span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
+              Security & Compliance
+            </span>
+          </div>
 
-          <h2
-            className="
-              mt-3
-              text-3xl font-extrabold
-              leading-[1.08]
-              tracking-[-0.04em]
-              text-[#17283F]
-              sm:text-4xl
-              lg:text-[44px]
-            "
-          >
+          <h2 className="mt-4 text-3xl font-extrabold leading-[1.07] tracking-[-0.045em] text-[#F3F3F5] sm:text-4xl lg:text-[44px]">
             Trust is built into
-            <span className="block bg-gradient-to-r from-[#526E98] via-[#7B789C] to-[#A48769] bg-clip-text text-transparent">
+
+            <span className="mt-1 block bg-gradient-to-r from-white via-[#BAB2D9] to-[#9279C9] bg-clip-text text-transparent">
               every layer.
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#718094]">
+          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#74747E]">
             Candidate information is sensitive by nature. Minivel is designed
             around secure access, responsible data handling and dependable
             platform operations.
           </p>
         </div>
 
-        {/* Security cards */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {TRUST_BADGES.map((badge) => (
-            <SecurityCard key={badge.label} badge={badge} />
+        {/* security nodes */}
+        <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+          {TRUST_BADGES.map((badge, index) => (
+            <SecurityCard
+              key={badge.label}
+              badge={badge}
+              index={index}
+            />
           ))}
         </div>
 
-        {/* Assurance control panel */}
+        {/* assurance console */}
         <div
           className="
             group relative mt-6 overflow-hidden
-            rounded-[26px]
-            border border-[#2A3C57]
-            bg-[#16243A]
-            shadow-[0_28px_75px_rgba(31,45,67,0.17)]
+            rounded-[25px]
+            border border-white/[0.07]
+            bg-[#09090C]
+            shadow-[0_30px_85px_rgba(0,0,0,0.50)]
           "
         >
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,#15243A_0%,#1B2D47_52%,#273149_100%)]" />
+          {/* panel atmosphere */}
+          <div className="absolute -left-24 -top-32 h-[300px] w-[300px] rounded-full bg-[#607CC0]/[0.055] blur-[105px]" />
 
-          {/* panel glows */}
-          <div className="absolute -left-24 -top-36 h-[320px] w-[320px] rounded-full bg-[#6F8FB9]/13 blur-[100px]" />
+          <div className="absolute -right-28 bottom-[-150px] h-[330px] w-[330px] rounded-full bg-[#8B73B5]/[0.045] blur-[115px]" />
 
-          <div className="absolute -right-28 bottom-[-160px] h-[340px] w-[340px] rounded-full bg-[#B49B79]/10 blur-[110px]" />
-
-          {/* subtle grid */}
           <div
-            className="absolute inset-0 opacity-[0.045]"
+            className="absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)",
+                "linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)",
               backgroundSize: "42px 42px",
             }}
           />
 
-          {/* top reflection */}
-          <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.16] to-transparent" />
 
           <div className="relative">
-            {/* panel heading */}
-            <div className="border-b border-white/[0.07] px-6 py-5 sm:px-8 lg:flex lg:items-center lg:justify-between">
+            {/* panel header */}
+            <div className="border-b border-white/[0.06] px-6 py-5 sm:px-8 lg:flex lg:items-center lg:justify-between">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8EA4C3] opacity-30" />
-                    <span className="relative h-1.5 w-1.5 rounded-full bg-[#8EA4C3]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
+                    <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
                   </span>
 
-                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#8EA4C3]">
+                  <p className="text-[8.5px] font-bold uppercase tracking-[0.21em] text-[#7D6BA8]">
                     Operational assurance
                   </p>
                 </div>
 
-                <h3 className="mt-2 text-[18px] font-bold tracking-[-0.02em] text-white">
+                <h3 className="mt-2 text-[17px] font-bold tracking-[-0.02em] text-[#EFEFF2]">
                   Security that extends beyond compliance.
                 </h3>
               </div>
 
-              <p className="mt-2 max-w-md text-[11px] leading-5 text-[#8796AA] lg:mt-0 lg:text-right">
+              <p className="mt-2 max-w-md text-[10.5px] leading-5 text-[#676771] lg:mt-0 lg:text-right">
                 Reliability, support and protection designed around the
                 day-to-day reality of recruitment teams.
               </p>
             </div>
 
-            {/* Metrics */}
+            {/* metrics */}
             <div className="grid grid-cols-2 lg:grid-cols-4">
               {ASSURANCE_STATS.map((stat, index) => (
                 <div
@@ -362,56 +409,45 @@ export default function TrustCompliance() {
                     group/stat relative overflow-hidden
                     px-6 py-6 sm:px-8
                     transition-all duration-500
-                    hover:bg-white/[0.025]
+                    hover:bg-white/[0.018]
 
                     ${
                       index % 2 === 0
-                        ? "border-r border-white/[0.07]"
+                        ? "border-r border-white/[0.055]"
                         : ""
                     }
 
                     ${
                       index < 2
-                        ? "border-b border-white/[0.07] lg:border-b-0"
+                        ? "border-b border-white/[0.055] lg:border-b-0"
                         : ""
                     }
 
                     ${
                       index === 1 || index === 2
-                        ? "lg:border-r lg:border-white/[0.07]"
+                        ? "lg:border-r lg:border-white/[0.055]"
                         : ""
                     }
                   `}
                 >
-                  {/* hover glow */}
-                  <div
-                    className="
-                      absolute left-1/2 top-1/2
-                      h-32 w-32
-                      -translate-x-1/2 -translate-y-1/2
-                      rounded-full bg-[#8EA4C3]/10
-                      opacity-0 blur-3xl
-                      transition-opacity duration-500
-                      group-hover/stat:opacity-100
-                    "
-                  />
+                  <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#927BD0]/[0.06] opacity-0 blur-3xl transition-opacity duration-500 group-hover/stat:opacity-100" />
 
                   <div className="relative">
                     <div
                       className="
-                        text-[27px] font-black
+                        text-[26px] font-black
                         tracking-[-0.045em]
-                        text-[#D5DFEB]
+                        text-[#D7D7DD]
                         transition-all duration-500
                         group-hover/stat:-translate-y-0.5
                         group-hover/stat:text-white
-                        sm:text-[30px]
+                        sm:text-[29px]
                       "
                     >
                       {stat.value}
                     </div>
 
-                    <div className="mt-1.5 text-[10px] font-medium text-[#8291A7]">
+                    <div className="mt-1.5 text-[9.5px] font-medium text-[#666671]">
                       {stat.label}
                     </div>
                   </div>
@@ -421,12 +457,53 @@ export default function TrustCompliance() {
           </div>
         </div>
 
-        {/* production note */}
-        <p className="mx-auto mt-4 max-w-2xl text-center text-[9px] leading-5 text-[#9AA4B1]">
+        {/* verification note */}
+        <p className="mx-auto mt-4 max-w-2xl text-center text-[8.5px] leading-5 text-[#4F4F58]">
           Security certifications, service levels and operational metrics should
-          reflect Minivel's currently verified policies before publication.
+          reflect Minivel&apos;s currently verified policies before publication.
         </p>
       </div>
+
+      <style>{`
+        @keyframes securityReveal {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes securityScan {
+          from {
+            transform: translateY(-120%);
+          }
+
+          to {
+            transform: translateY(700%);
+          }
+        }
+
+        .security-card {
+          animation:
+            securityReveal 650ms cubic-bezier(.22,1,.36,1) both;
+        }
+
+        .security-card:hover .security-scan {
+          animation:
+            securityScan 1.45s ease-in-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .security-card,
+          .security-card:hover .security-scan {
+            animation: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

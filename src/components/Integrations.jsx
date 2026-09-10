@@ -185,74 +185,126 @@ function IntegrationCard({ integration }) {
   return (
     <div
       className="
-        integration-card group relative w-[180px]
-        rounded-[24px] border border-white/90
-        bg-white/90 px-4 py-4
-        shadow-[0_18px_50px_rgba(41,57,84,0.09)]
+        integration-card group relative w-[174px]
+        overflow-hidden rounded-[20px]
+        border border-white/[0.075]
+        bg-[#0D0D10]/92
+        px-3.5 py-3.5
+        shadow-[0_18px_55px_rgba(0,0,0,0.36)]
         backdrop-blur-2xl
-        transition-[transform,box-shadow,border-color]
-        duration-500
-        hover:-translate-y-2
-        hover:scale-[1.035]
-        hover:border-[#B9C8DD]
-        hover:shadow-[0_30px_75px_rgba(40,57,86,0.17)]
+        transition-all duration-500 ease-out
+        hover:-translate-y-[6px]
+        hover:scale-[1.025]
+        hover:border-white/[0.15]
+        hover:bg-[#121216]
+        hover:shadow-[0_30px_75px_rgba(0,0,0,0.58)]
       "
     >
+      {/* glass reflection */}
       <div
         className="
-          pointer-events-none absolute inset-[1px]
-          rounded-[23px]
-          bg-gradient-to-br from-white/80 via-transparent to-[#E9EEF7]/50
-          opacity-60 transition-opacity duration-500
+          pointer-events-none absolute inset-0
+          -translate-x-[130%]
+          bg-gradient-to-r
+          from-transparent via-white/[0.025] to-transparent
+          transition-transform duration-1000
+          group-hover:translate-x-[130%]
+        "
+      />
+
+      {/* top reflection */}
+      <div className="pointer-events-none absolute left-[18%] right-[18%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.18] to-transparent" />
+
+      {/* hover atmosphere */}
+      <div
+        className="
+          pointer-events-none absolute -left-10 -top-10
+          h-24 w-24 rounded-full
+          bg-[#8372C4]/10 blur-[35px]
+          opacity-0 transition-opacity duration-500
           group-hover:opacity-100
         "
       />
 
-      <div
-        className="
-          pointer-events-none absolute left-6 right-6 top-0 h-px
-          bg-gradient-to-r from-transparent via-white to-transparent
-        "
-      />
-
       <div className="relative flex items-center gap-3">
+        {/* Real logo */}
         <div
           className="
-            flex h-[50px] w-[50px] flex-shrink-0
-            items-center justify-center rounded-[16px]
-            border border-[#E4EAF2]
-            bg-white
-            shadow-[0_9px_25px_rgba(40,55,80,0.09)]
+            flex h-[47px] w-[47px] shrink-0
+            items-center justify-center
+            rounded-[14px]
+            border border-white/[0.07]
+            bg-[#151519]
+            shadow-[0_8px_25px_rgba(0,0,0,0.30)]
             transition-all duration-500
             group-hover:-rotate-2
-            group-hover:scale-110
-            group-hover:shadow-[0_13px_30px_rgba(40,55,80,0.14)]
+            group-hover:scale-[1.08]
+            group-hover:border-white/[0.12]
+            group-hover:bg-[#18181D]
           "
         >
           {integration.icon}
         </div>
 
         <div className="min-w-0">
-          <div className="truncate text-[14px] font-extrabold tracking-[-0.015em] text-[#172A47]">
+          <div className="truncate text-[12px] font-bold tracking-[-0.01em] text-[#E7E7EA]">
             {integration.name}
           </div>
 
-          <div className="mt-0.5 truncate text-[11px] font-medium text-[#8794A7]">
+          <div className="mt-1 truncate text-[9px] font-medium text-[#666671]">
             {integration.desc}
           </div>
         </div>
       </div>
 
-      <div className="relative mt-3.5 flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#718EB7] opacity-20" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#718EB7]" />
-        </span>
+      {/* Connection state */}
+      <div className="relative mt-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8C83D9] opacity-20" />
+            <span className="relative h-1.5 w-1.5 rounded-full bg-[#8C83D9] shadow-[0_0_8px_rgba(140,131,217,0.6)]" />
+          </span>
 
-        <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#8A97A8]">
-          Connected
-        </span>
+          <span className="text-[8px] font-bold uppercase tracking-[0.15em] text-[#5F5F69]">
+            Connected
+          </span>
+        </div>
+
+        <svg
+          className="
+            h-3 w-3 translate-x-1
+            text-[#4D4D57] opacity-0
+            transition-all duration-300
+            group-hover:translate-x-0
+            group-hover:text-[#8E84C8]
+            group-hover:opacity-100
+          "
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <path
+            d="M8 12h8m-3-3 3 3-3 3"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
+
+      {/* bottom illumination */}
+      <div
+        className="
+          pointer-events-none absolute bottom-0 left-1/2
+          h-px w-0 -translate-x-1/2
+          bg-gradient-to-r
+          from-transparent via-[#9786D5] to-transparent
+          opacity-0
+          transition-all duration-700
+          group-hover:w-[52%]
+          group-hover:opacity-70
+        "
+      />
     </div>
   );
 }
@@ -260,49 +312,49 @@ function IntegrationCard({ integration }) {
 function MinivelCore() {
   return (
     <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+      {/* outer energy field */}
+      <div className="absolute left-1/2 top-1/2 h-[245px] w-[245px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.025]" />
+
+      <div className="absolute left-1/2 top-1/2 h-[215px] w-[215px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#917DD0]/[0.07]" />
+
       <div
         className="
-          core-card relative flex h-[190px] w-[190px]
+          core-card relative flex h-[178px] w-[178px]
           flex-col items-center justify-center
-          rounded-full border border-white
-          bg-white/90
-          shadow-[0_32px_95px_rgba(37,58,91,0.18)]
+          overflow-hidden rounded-full
+          border border-white/[0.10]
+          bg-[#0C0C10]/95
+          shadow-[0_35px_100px_rgba(0,0,0,0.65)]
           backdrop-blur-2xl
         "
       >
-        <div className="absolute -inset-[23px] rounded-full border border-[#BCCADD]/20" />
+        {/* internal atmosphere */}
+        <div className="absolute inset-[8px] rounded-full border border-white/[0.045] bg-gradient-to-br from-white/[0.025] via-transparent to-[#856CB8]/[0.045]" />
 
-        <div className="absolute -inset-[11px] rounded-full border border-[#C5D2E2]/35" />
+        <div className="absolute left-1/2 top-[35%] h-24 w-24 -translate-x-1/2 rounded-full bg-[#806CC1]/[0.12] blur-[35px]" />
 
-        <div
-          className="
-            absolute inset-[10px] rounded-full
-            border border-[#DCE5F0]/80
-            bg-gradient-to-br
-            from-[#E9F0FA]
-            via-white
-            to-[#F2EDF5]
-          "
-        />
-
-        <div className="absolute inset-[29px] rounded-full bg-white/75 blur-xl" />
+        <div className="absolute left-[20%] right-[20%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.25] to-transparent" />
 
         <div className="relative flex flex-col items-center">
+          {/* Minivel symbol */}
           <div
             className="
-              mb-3 flex h-[52px] w-[52px]
+              relative mb-3 flex h-[48px] w-[48px]
               items-center justify-center
-              rounded-[18px]
+              overflow-hidden rounded-[15px]
+              border border-white/[0.09]
               bg-gradient-to-br
-              from-[#29476F]
-              via-[#5C7195]
-              to-[#9A7D9F]
-              text-white
-              shadow-[0_13px_32px_rgba(41,71,111,0.30)]
+              from-[#22212A]
+              via-[#17171E]
+              to-[#111115]
+              text-[#B3A1E6]
+              shadow-[0_15px_35px_rgba(0,0,0,0.40)]
             "
           >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#8870C5]/15 to-[#5577C0]/5" />
+
             <svg
-              className="h-6 w-6"
+              className="relative h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -310,31 +362,33 @@ function MinivelCore() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={1.8}
-                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12"
+                strokeWidth={1.65}
+                d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12"
               />
             </svg>
           </div>
 
-          <div className="text-[18px] font-extrabold tracking-[-0.025em] text-[#172A47]">
+          <div className="text-[15px] font-extrabold tracking-[-0.025em] text-[#F0F0F2]">
             Minivel ATS
           </div>
 
-          <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-[#7E8DA2]">
+          <div className="mt-1.5 text-[8px] font-bold uppercase tracking-[0.2em] text-[#666671]">
             Connected Core
           </div>
         </div>
 
+        {/* live connection node */}
         <div
           className="
-            absolute -right-1 top-[39%]
-            flex h-7 w-7 items-center justify-center
-            rounded-full border-4 border-[#F6F8FC]
-            bg-white
-            shadow-[0_5px_15px_rgba(50,70,100,.12)]
+            absolute right-[2px] top-[39%]
+            flex h-6 w-6 items-center justify-center
+            rounded-full
+            border-[3px] border-[#0C0C10]
+            bg-[#15151A]
+            shadow-[0_5px_18px_rgba(0,0,0,.45)]
           "
         >
-          <div className="h-2 w-2 rounded-full bg-[#7894BD] animate-node-pulse" />
+          <div className="h-1.5 w-1.5 rounded-full bg-[#9B87DA] shadow-[0_0_10px_rgba(155,135,218,.8)] animate-node-pulse" />
         </div>
       </div>
     </div>
@@ -347,129 +401,104 @@ export default function Integrations() {
       id="integrations"
       className="
         relative overflow-hidden
-        bg-gradient-to-b
-        from-white
-        via-[#F9FAFD]
-        to-[#F3F6FA]
-        py-7 lg:py-9
+        bg-[#050505]
+        pb-11 pt-7
+        sm:pb-12 sm:pt-8
+        lg:pb-13 lg:pt-8
       "
     >
-      {/* Ambient background */}
-      <div
-        className="
-          pointer-events-none absolute left-1/2 top-[48%]
-          h-[520px] w-[900px]
-          -translate-x-1/2 -translate-y-1/2
-          rounded-full bg-[#A9B9D1]/10 blur-[125px]
-        "
-      />
+      {/* Previous section boundary */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
 
-      <div
-        className="
-          pointer-events-none absolute -left-40 top-0
-          h-[360px] w-[360px]
-          rounded-full bg-[#D7DFEC]/30 blur-[110px]
-        "
-      />
+      {/* Background atmosphere */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-[52%] h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7462A8]/[0.045] blur-[130px]" />
 
-      <div
-        className="
-          pointer-events-none absolute -right-40 bottom-0
-          h-[360px] w-[360px]
-          rounded-full bg-[#E4D9E9]/25 blur-[110px]
-        "
-      />
+        <div className="absolute -left-48 top-[15%] h-[380px] w-[380px] rounded-full bg-[#4F6BAE]/[0.035] blur-[145px]" />
+
+        <div className="absolute -right-48 bottom-[5%] h-[390px] w-[390px] rounded-full bg-[#8D67AD]/[0.035] blur-[145px]" />
+
+        <div
+          className="absolute inset-0 opacity-[0.11]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.065) 1px, transparent 0)",
+            backgroundSize: "36px 36px",
+            maskImage:
+              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+          }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <span
+          <div
             className="
-              inline-flex items-center gap-2
+              inline-flex items-center gap-2.5
               rounded-full
-              border border-[#D7DFEB]
-              bg-white/80
-              px-4 py-2
-              text-[10px] font-bold
-              uppercase tracking-[0.2em]
-              text-[#687B98]
-              shadow-[0_8px_25px_rgba(45,65,95,0.05)]
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3.5 py-1.5
               backdrop-blur-xl
             "
           >
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#718EB7] opacity-30" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#718EB7]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A85D8] opacity-20" />
+              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A85D8]" />
             </span>
 
-            Connected Ecosystem
-          </span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
+              Connected Ecosystem
+            </span>
+          </div>
 
           <h2
             className="
-              mt-4 text-3xl font-extrabold
-              tracking-[-0.04em]
-              text-[#172A47]
+              mt-4
+              text-3xl font-extrabold
+              tracking-[-0.045em]
+              text-[#F3F3F5]
               sm:text-4xl
               lg:text-[45px]
-              lg:leading-[1.08]
+              lg:leading-[1.06]
             "
           >
-            Your Entire Recruitment Stack
-            <span
-              className="
-                block
-                bg-gradient-to-r
-                from-[#35577E]
-                via-[#657CA0]
-                to-[#92799C]
-                bg-clip-text text-transparent
-              "
-            >
-              Working as One
+            Your recruitment stack.
+
+            <span className="mt-1 block bg-gradient-to-r from-white via-[#B9B1D8] to-[#9279C9] bg-clip-text text-transparent">
+              Working as one.
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#738197] sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#74747E]">
             Connect the platforms your team already uses and bring sourcing,
             communication, interviews, CRM and candidate workflows into one
-            intelligent Minivel ecosystem.
+            intelligent ecosystem.
           </p>
         </div>
 
-        {/* Desktop connected ecosystem */}
-        <div className="relative mx-auto mt-3 hidden h-[545px] max-w-[1180px] lg:block">
-          {/* Architecture rings */}
-          <div
-            className="
-              absolute left-1/2 top-1/2
-              h-[390px] w-[760px]
-              -translate-x-1/2 -translate-y-1/2
-              rounded-[50%]
-              border border-[#BCCADD]/28
-            "
-          />
+        {/* Desktop ecosystem */}
+        <div className="relative mx-auto mt-2 hidden h-[520px] max-w-[1180px] lg:block">
+          {/* architecture rings */}
+          <div className="absolute left-1/2 top-1/2 h-[370px] w-[745px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/[0.04]" />
 
-          <div
-            className="
-              absolute left-1/2 top-1/2
-              h-[280px] w-[535px]
-              -translate-x-1/2 -translate-y-1/2
-              rounded-[50%]
-              border border-dashed border-[#C5D1E0]/38
-            "
-          />
+          <div className="absolute left-1/2 top-1/2 h-[270px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-dashed border-white/[0.045]" />
+
+          <div className="absolute left-1/2 top-1/2 h-[155px] w-[310px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-[#907CD0]/[0.045]" />
 
           {/* Network */}
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full"
-            viewBox="0 0 1180 545"
+            viewBox="0 0 1180 520"
             fill="none"
             preserveAspectRatio="none"
           >
             <defs>
               <linearGradient
-                id="connectionLine"
+                id="darkConnectionLine"
                 x1="0"
                 y1="0"
                 x2="1"
@@ -477,73 +506,105 @@ export default function Integrations() {
               >
                 <stop
                   offset="0%"
-                  stopColor="#CBD6E5"
-                  stopOpacity="0.08"
+                  stopColor="#FFFFFF"
+                  stopOpacity="0.015"
                 />
+
                 <stop
-                  offset="50%"
-                  stopColor="#7895BD"
-                  stopOpacity="0.72"
+                  offset="48%"
+                  stopColor="#8D7AC7"
+                  stopOpacity="0.40"
                 />
+
+                <stop
+                  offset="52%"
+                  stopColor="#748FCB"
+                  stopOpacity="0.45"
+                />
+
                 <stop
                   offset="100%"
-                  stopColor="#CBD6E5"
-                  stopOpacity="0.08"
+                  stopColor="#FFFFFF"
+                  stopOpacity="0.015"
                 />
               </linearGradient>
 
-              <filter id="pulseGlow">
-                <feGaussianBlur stdDeviation="3" result="blur" />
+              <filter id="darkPulseGlow">
+                <feGaussianBlur stdDeviation="3.2" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
 
-              <path id="path1" d="M590 272 C480 180 350 125 185 110" />
-              <path id="path2" d="M590 272 C525 165 485 105 405 82" />
-              <path id="path3" d="M590 272 C655 165 695 105 775 82" />
-              <path id="path4" d="M590 272 C700 180 830 125 995 110" />
+              <path
+                id="darkPath1"
+                d="M590 260 C480 175 350 120 185 105"
+              />
+              <path
+                id="darkPath2"
+                d="M590 260 C525 160 485 100 405 78"
+              />
+              <path
+                id="darkPath3"
+                d="M590 260 C655 160 695 100 775 78"
+              />
+              <path
+                id="darkPath4"
+                d="M590 260 C700 175 830 120 995 105"
+              />
 
-              <path id="path5" d="M590 272 C480 360 350 415 185 435" />
-              <path id="path6" d="M590 272 C525 380 485 438 405 463" />
-              <path id="path7" d="M590 272 C655 380 695 438 775 463" />
-              <path id="path8" d="M590 272 C700 360 830 415 995 435" />
+              <path
+                id="darkPath5"
+                d="M590 260 C480 345 350 400 185 415"
+              />
+              <path
+                id="darkPath6"
+                d="M590 260 C525 360 485 420 405 442"
+              />
+              <path
+                id="darkPath7"
+                d="M590 260 C655 360 695 420 775 442"
+              />
+              <path
+                id="darkPath8"
+                d="M590 260 C700 345 830 400 995 415"
+              />
             </defs>
 
             {[
-              'M590 272 C480 180 350 125 185 110',
-              'M590 272 C525 165 485 105 405 82',
-              'M590 272 C655 165 695 105 775 82',
-              'M590 272 C700 180 830 125 995 110',
-              'M590 272 C480 360 350 415 185 435',
-              'M590 272 C525 380 485 438 405 463',
-              'M590 272 C655 380 695 438 775 463',
-              'M590 272 C700 360 830 415 995 435',
+              "M590 260 C480 175 350 120 185 105",
+              "M590 260 C525 160 485 100 405 78",
+              "M590 260 C655 160 695 100 775 78",
+              "M590 260 C700 175 830 120 995 105",
+              "M590 260 C480 345 350 400 185 415",
+              "M590 260 C525 360 485 420 405 442",
+              "M590 260 C655 360 695 420 775 442",
+              "M590 260 C700 345 830 400 995 415",
             ].map((d, index) => (
               <path
                 key={index}
                 d={d}
-                stroke="url(#connectionLine)"
-                strokeWidth="1.15"
+                stroke="url(#darkConnectionLine)"
+                strokeWidth="1"
               />
             ))}
 
-            {/* Moving data signals */}
+            {/* travelling signals */}
             {Array.from({ length: 8 }).map((_, index) => (
               <circle
                 key={index}
-                r="3"
-                fill="#7895BD"
-                filter="url(#pulseGlow)"
-                opacity="0.88"
+                r="2.6"
+                fill={index % 2 === 0 ? "#9A85D8" : "#7895D4"}
+                filter="url(#darkPulseGlow)"
+                opacity="0.9"
               >
                 <animateMotion
-                  dur={`${4.8 + index * 0.31}s`}
+                  dur={`${5 + index * 0.28}s`}
                   repeatCount="indefinite"
-                  begin={`${index * 0.4}s`}
+                  begin={`${index * 0.38}s`}
                 >
-                  <mpath href={`#path${index + 1}`} />
+                  <mpath href={`#darkPath${index + 1}`} />
                 </animateMotion>
               </circle>
             ))}
@@ -592,24 +653,27 @@ export default function Integrations() {
             <div
               key={integration.name}
               className="
-                group rounded-[20px]
-                border border-[#E2E8F0]
-                bg-white/90 p-4
-                shadow-[0_10px_30px_rgba(40,55,85,0.06)]
-                backdrop-blur-xl
-                transition-all duration-300
+                group relative overflow-hidden
+                rounded-[18px]
+                border border-white/[0.065]
+                bg-[#0D0D10]
+                p-3.5
+                shadow-[0_12px_35px_rgba(0,0,0,0.28)]
+                transition-all duration-400
                 hover:-translate-y-1
-                hover:border-[#C4D0DF]
-                hover:shadow-[0_18px_40px_rgba(40,55,85,0.12)]
+                hover:border-white/[0.12]
+                hover:bg-[#121216]
               "
             >
+              <div className="absolute left-[20%] right-[20%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.13] to-transparent" />
+
               <div
                 className="
-                  flex h-11 w-11 items-center justify-center
-                  rounded-[14px]
-                  border border-[#E5EAF1]
-                  bg-white
-                  shadow-sm
+                  flex h-11 w-11
+                  items-center justify-center
+                  rounded-[13px]
+                  border border-white/[0.07]
+                  bg-[#16161A]
                   transition-all duration-300
                   group-hover:scale-105
                 "
@@ -617,18 +681,18 @@ export default function Integrations() {
                 {integration.icon}
               </div>
 
-              <div className="mt-3 text-sm font-extrabold text-[#172A47]">
+              <div className="mt-3 text-[12px] font-bold text-[#E3E3E7]">
                 {integration.name}
               </div>
 
-              <div className="mt-1 text-[11px] text-[#8794A7]">
+              <div className="mt-1 text-[9px] text-[#666671]">
                 {integration.desc}
               </div>
 
               <div className="mt-3 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#7894BD]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#9383D2]" />
 
-                <span className="text-[9px] font-bold uppercase tracking-[0.13em] text-[#8996A8]">
+                <span className="text-[8px] font-bold uppercase tracking-[0.13em] text-[#5E5E68]">
                   Connected
                 </span>
               </div>
@@ -638,32 +702,34 @@ export default function Integrations() {
 
         {/* Bottom CTA */}
         <div className="mt-2 text-center lg:mt-0">
-          <p className="text-sm text-[#7A879A]">
+          <p className="text-[12px] text-[#666671]">
             And dozens more integrations across sourcing, communication,
             productivity and hiring.
           </p>
 
           <button
             className="
-              group mt-4 inline-flex items-center gap-2
-              rounded-xl
-              border border-[#CCD7E5]
-              bg-white/80
+              group mt-4 inline-flex
+              items-center gap-2
+              rounded-[12px]
+              border border-white/[0.075]
+              bg-[#0D0D10]
               px-5 py-2.5
-              text-sm font-bold text-[#405B80]
-              shadow-[0_8px_25px_rgba(40,55,85,0.05)]
-              backdrop-blur-xl
+              text-[11px] font-bold
+              text-[#B5B5BE]
+              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
               transition-all duration-300
               hover:-translate-y-0.5
-              hover:border-[#AEBFD4]
-              hover:bg-white
-              hover:shadow-[0_14px_35px_rgba(40,55,85,0.11)]
+              hover:border-white/[0.14]
+              hover:bg-[#141419]
+              hover:text-white
+              hover:shadow-[0_18px_45px_rgba(0,0,0,0.45)]
             "
           >
             Explore all integrations
 
             <svg
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -672,7 +738,7 @@ export default function Integrations() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                d="M17 8l4 4m0 0-4 4m4-4H3"
               />
             </svg>
           </button>
@@ -685,7 +751,7 @@ export default function Integrations() {
             transform: translate3d(0, 0, 0);
           }
           50% {
-            transform: translate3d(5px, -8px, 0);
+            transform: translate3d(5px, -7px, 0);
           }
         }
 
@@ -694,7 +760,7 @@ export default function Integrations() {
             transform: translate3d(0, 0, 0);
           }
           50% {
-            transform: translate3d(-5px, 7px, 0);
+            transform: translate3d(-5px, 6px, 0);
           }
         }
 
@@ -712,21 +778,21 @@ export default function Integrations() {
             transform: translate3d(0, 0, 0);
           }
           50% {
-            transform: translate3d(-5px, -7px, 0);
+            transform: translate3d(-5px, -6px, 0);
           }
         }
 
         @keyframes coreBreath {
           0%, 100% {
             box-shadow:
-              0 32px 95px rgba(37,58,91,.18),
-              0 0 0 0 rgba(94,122,164,0);
+              0 35px 100px rgba(0,0,0,.65),
+              0 0 0 0 rgba(145,125,208,0);
           }
 
           50% {
             box-shadow:
-              0 38px 105px rgba(37,58,91,.23),
-              0 0 0 16px rgba(94,122,164,.035);
+              0 40px 115px rgba(0,0,0,.75),
+              0 0 0 14px rgba(145,125,208,.025);
           }
         }
 
@@ -738,7 +804,7 @@ export default function Integrations() {
 
           50% {
             opacity: 1;
-            transform: scale(1.5);
+            transform: scale(1.55);
           }
         }
 

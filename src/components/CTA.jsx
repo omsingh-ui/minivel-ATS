@@ -1,112 +1,131 @@
 export default function CTA() {
   return (
-    <section className="relative bg-white pt-5 pb-8 sm:pt-6 sm:pb-9 lg:pt-7 lg:pb-10 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="
+        relative overflow-hidden
+        bg-[#050505]
+        pb-10 pt-7
+        sm:pb-11 sm:pt-8
+        lg:pb-12 lg:pt-9
+      "
+    >
+      {/* Section boundary */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div
           className="
             group relative overflow-hidden
-            rounded-[28px]
-            border border-[#DCE2EA]
-            bg-[#18263A]
+            rounded-[30px]
+            border border-white/[0.075]
+            bg-[#09090C]
             px-6 py-12
             text-center
-            shadow-[0_24px_70px_rgba(30,44,63,0.14)]
+            shadow-[0_35px_100px_rgba(0,0,0,0.55)]
             sm:px-10 sm:py-14
             lg:px-16 lg:py-16
           "
         >
-          {/* Premium background layers */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#172538] via-[#263A55] to-[#514A62]" />
+          {/* Base depth */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.025] via-transparent to-[#8E73C4]/[0.025]" />
 
+          {/* Left atmosphere */}
           <div
             className="
-              absolute
+              pointer-events-none absolute
               -left-32 -top-32
-              h-[340px] w-[340px]
+              h-[350px] w-[350px]
               rounded-full
-              bg-[#7794BC]/25
-              blur-[110px]
-              transition-all duration-1000
-              group-hover:scale-125
-              group-hover:bg-[#7794BC]/35
-            "
-          />
-
-          <div
-            className="
-              absolute
-              -bottom-40 -right-24
-              h-[380px] w-[380px]
-              rounded-full
-              bg-[#B29A7D]/20
+              bg-[#5575BE]/[0.10]
               blur-[120px]
               transition-all duration-1000
               group-hover:scale-125
-              group-hover:bg-[#B29A7D]/28
+              group-hover:bg-[#5575BE]/[0.14]
             "
           />
 
+          {/* Right atmosphere */}
           <div
             className="
-              absolute
-              left-1/2 top-1/2
-              h-[300px] w-[460px]
+              pointer-events-none absolute
+              -bottom-40 -right-28
+              h-[390px] w-[390px]
+              rounded-full
+              bg-[#9172C5]/[0.10]
+              blur-[125px]
+              transition-all duration-1000
+              group-hover:scale-125
+              group-hover:bg-[#9172C5]/[0.14]
+            "
+          />
+
+          {/* Central glow */}
+          <div
+            className="
+              pointer-events-none absolute
+              left-1/2 top-[45%]
+              h-[250px] w-[520px]
               -translate-x-1/2 -translate-y-1/2
               rounded-full
-              bg-[#817C9F]/15
-              blur-[120px]
+              bg-[#8974BC]/[0.055]
+              blur-[110px]
             "
           />
 
-          {/* Fine texture */}
+          {/* Dot matrix */}
           <div
-            className="absolute inset-0 opacity-[0.08]"
+            className="pointer-events-none absolute inset-0 opacity-[0.10]"
             style={{
               backgroundImage:
-                'radial-gradient(rgba(255,255,255,0.55) 0.7px, transparent 0.7px)',
-              backgroundSize: '27px 27px',
+                "radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0)",
+              backgroundSize: "30px 30px",
+              maskImage:
+                "radial-gradient(circle at center, black 0%, transparent 72%)",
+              WebkitMaskImage:
+                "radial-gradient(circle at center, black 0%, transparent 72%)",
             }}
           />
 
-          {/* Soft top light */}
+          {/* Top reflection */}
           <div
             className="
-              absolute
+              pointer-events-none absolute
               left-1/2 top-0
-              h-px w-[65%]
+              h-px w-[64%]
               -translate-x-1/2
               bg-gradient-to-r
               from-transparent
-              via-white/50
+              via-white/[0.20]
               to-transparent
             "
           />
 
+          {/* Side edge details */}
+          <div className="pointer-events-none absolute left-0 top-[28%] h-[44%] w-px bg-gradient-to-b from-transparent via-[#7694DB]/30 to-transparent" />
+
+          <div className="pointer-events-none absolute right-0 top-[28%] h-[44%] w-px bg-gradient-to-b from-transparent via-[#9D82D4]/30 to-transparent" />
+
           {/* Content */}
           <div className="relative z-10 mx-auto max-w-3xl">
-
             {/* Eyebrow */}
             <div
               className="
                 mb-5 inline-flex items-center gap-2.5
                 rounded-full
-                border border-white/15
-                bg-white/[0.07]
-                px-4 py-2
-                text-[10px]
-                font-bold uppercase
-                tracking-[0.2em]
-                text-[#D9E1EC]
-                shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-                backdrop-blur-md
+                border border-white/[0.08]
+                bg-white/[0.035]
+                px-4 py-1.5
+                backdrop-blur-xl
               "
             >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D6C1A3] opacity-40" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D6C1A3]" />
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
+                <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
               </span>
 
-              Built for modern recruitment teams
+              <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#85858F]">
+                Built for modern recruitment teams
+              </span>
             </div>
 
             {/* Heading */}
@@ -114,21 +133,22 @@ export default function CTA() {
               className="
                 text-[32px]
                 font-extrabold
-                leading-[1.05]
-                tracking-[-0.045em]
-                text-white
+                leading-[1.04]
+                tracking-[-0.05em]
+                text-[#F4F4F5]
                 sm:text-[42px]
                 lg:text-[52px]
               "
             >
               Turn better hiring into
+
               <span
                 className="
                   mt-1 block
                   bg-gradient-to-r
-                  from-[#DDE8F6]
-                  via-[#C9C3DB]
-                  to-[#E4CBAA]
+                  from-white
+                  via-[#BDB4DC]
+                  to-[#957ACB]
                   bg-clip-text
                   text-transparent
                 "
@@ -140,59 +160,53 @@ export default function CTA() {
             {/* Description */}
             <p
               className="
-                mx-auto mt-5
-                max-w-2xl
-                text-[14px]
-                leading-7
-                text-[#B9C4D2]
-                sm:text-[15px]
-                lg:text-[16px]
+                mx-auto mt-5 max-w-2xl
+                text-[13px] leading-7
+                text-[#74747E]
+                sm:text-[14px]
+                lg:text-[15px]
               "
             >
               Bring sourcing, screening, candidate management and recruitment
-              intelligence into one connected workspace built to help your
-              team move with greater clarity and speed.
+              intelligence into one connected workspace built to help your team
+              move with greater clarity and speed.
             </p>
 
             {/* Buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-
               {/* Primary */}
               <a
                 href="#"
                 className="
-                  group/button
-                  relative
+                  group/button relative
                   inline-flex min-w-[190px]
                   items-center justify-center gap-2
-                  overflow-hidden
-                  rounded-xl
-                  bg-white
+                  overflow-hidden rounded-[12px]
+                  bg-[#F3F3F5]
                   px-7 py-3.5
-                  text-[13px]
-                  font-bold
-                  text-[#243953]
-                  shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+                  text-[12px] font-bold
+                  text-[#111116]
+                  shadow-[0_12px_35px_rgba(0,0,0,0.30)]
                   transition-all duration-300
                   hover:-translate-y-1
-                  hover:shadow-[0_18px_45px_rgba(0,0,0,0.25)]
+                  hover:bg-white
+                  hover:shadow-[0_18px_50px_rgba(0,0,0,0.45)]
                 "
               >
+                {/* Button sheen */}
                 <span
                   className="
-                    absolute inset-0
-                    translate-y-full
+                    absolute -left-[80%] top-0
+                    h-full w-[45%]
+                    skew-x-[-20deg]
                     bg-gradient-to-r
-                    from-[#EAF0F7]
-                    to-[#F3ECE4]
-                    transition-transform duration-300
-                    group-hover/button:translate-y-0
+                    from-transparent via-white/70 to-transparent
+                    transition-all duration-700
+                    group-hover/button:left-[130%]
                   "
                 />
 
-                <span className="relative">
-                  Start Your Free Trial
-                </span>
+                <span className="relative">Start Your Free Trial</span>
 
                 <svg
                   className="
@@ -208,7 +222,7 @@ export default function CTA() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2.3}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    d="M17 8l4 4m0 0-4 4m4-4H3"
                   />
                 </svg>
               </a>
@@ -220,18 +234,18 @@ export default function CTA() {
                   group/demo
                   inline-flex min-w-[165px]
                   items-center justify-center gap-2
-                  rounded-xl
-                  border border-white/20
-                  bg-white/[0.07]
+                  rounded-[12px]
+                  border border-white/[0.10]
+                  bg-white/[0.035]
                   px-7 py-3.5
-                  text-[13px]
-                  font-semibold
-                  text-white
-                  backdrop-blur-md
+                  text-[12px] font-semibold
+                  text-[#D8D8DD]
+                  backdrop-blur-xl
                   transition-all duration-300
                   hover:-translate-y-1
-                  hover:border-white/35
-                  hover:bg-white/[0.12]
+                  hover:border-white/[0.18]
+                  hover:bg-white/[0.07]
+                  hover:text-white
                 "
               >
                 Book a Demo
@@ -239,9 +253,10 @@ export default function CTA() {
                 <svg
                   className="
                     h-4 w-4
-                    text-[#C6D2E1]
-                    transition-transform duration-300
+                    text-[#85858F]
+                    transition-all duration-300
                     group-hover/demo:translate-x-1
+                    group-hover/demo:text-[#B6A5E2]
                   "
                   fill="none"
                   viewBox="0 0 24 24"
@@ -257,80 +272,67 @@ export default function CTA() {
               </a>
             </div>
 
-            {/* Confidence line */}
-<div
-  className="
-    mt-7
-    flex flex-wrap
-    items-center justify-center
-    gap-x-6 gap-y-2.5
-    text-[11px]
-    font-medium
-    tracking-[0.01em]
-    text-[#AAB8C8]
-    sm:text-[12px]
-  "
->
-  <span className="flex items-center gap-2">
-    <svg
-      className="h-3.5 w-3.5 text-[#D2BB98]"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2.4}
-        d="M5 13l4 4L19 7"
-      />
-    </svg>
-    Guided onboarding
-  </span>
+            {/* Confidence row */}
+            <div
+              className="
+                mt-7 flex flex-wrap
+                items-center justify-center
+                gap-x-6 gap-y-2.5
+                text-[10px] font-medium
+                tracking-[0.01em]
+                text-[#696973]
+                sm:text-[11px]
+              "
+            >
+              {[
+                "Guided onboarding",
+                "Built around your workflow",
+                "Support when you need it",
+              ].map((item) => (
+                <span key={item} className="flex items-center gap-2">
+                  <span
+                    className="
+                      flex h-4 w-4
+                      items-center justify-center
+                      rounded-full
+                      border border-[#9B86D2]/20
+                      bg-[#9B86D2]/[0.07]
+                    "
+                  >
+                    <svg
+                      className="h-2.5 w-2.5 text-[#A58FDC]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.4}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </span>
 
-  <span className="flex items-center gap-2">
-    <svg
-      className="h-3.5 w-3.5 text-[#D2BB98]"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2.4}
-        d="M5 13l4 4L19 7"
-      />
-    </svg>
-    Built around your workflow
-  </span>
-
-  <span className="flex items-center gap-2">
-    <svg
-      className="h-3.5 w-3.5 text-[#D2BB98]"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2.4}
-        d="M5 13l4 4L19 7"
-      />
-    </svg>
-    Support when you need it
-  </span>
-</div>
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Corner detail */}
-          <div className="pointer-events-none absolute bottom-5 right-6 hidden items-center gap-2 lg:flex">
-            <span className="h-1 w-1 rounded-full bg-white/30" />
-            <span className="text-[8px] font-semibold uppercase tracking-[0.22em] text-white/25">
-              Minivel ATS
-            </span>
-          </div>
+          {/* Bottom light */}
+          <div
+            className="
+              pointer-events-none absolute
+              bottom-0 left-1/2
+              h-px w-[45%]
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#947BCB]/50
+              to-transparent
+            "
+          />
         </div>
       </div>
     </section>

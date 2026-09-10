@@ -6,10 +6,23 @@ const FEATURES = [
     accent: "#7F9FE8",
     glow: "rgba(92,126,205,0.14)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <circle cx="10.5" cy="10.5" r="5.5" strokeWidth="1.7" />
-        <path d="m15 15 4 4" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M8.5 10.5h4M10.5 8.5v4" strokeWidth="1.5" strokeLinecap="round" />
+        <path
+          d="m15 15 4 4"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M8.5 10.5h4M10.5 8.5v4"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     bullets: [
@@ -19,6 +32,7 @@ const FEATURES = [
       "Keep candidate information accessible across your team",
     ],
   },
+
   {
     id: "screening",
     label: "AI Screening",
@@ -26,12 +40,18 @@ const FEATURES = [
     accent: "#A18CE3",
     glow: "rgba(135,105,210,0.15)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8l2-4.5Z"
           strokeWidth="1.6"
           strokeLinejoin="round"
         />
+
         <path
           d="m16.5 16.5 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z"
           strokeWidth="1.4"
@@ -45,6 +65,7 @@ const FEATURES = [
       "Keep human judgement at the centre",
     ],
   },
+
   {
     id: "profile-sharing",
     label: "Candidate Sharing",
@@ -52,13 +73,20 @@ const FEATURES = [
     accent: "#8EA8B4",
     glow: "rgba(110,145,160,0.12)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <circle cx="9" cy="9" r="3" strokeWidth="1.7" />
+
         <path
           d="M4 18c.8-2.5 2.5-4 5-4s4.2 1.5 5 4"
           strokeWidth="1.7"
           strokeLinecap="round"
         />
+
         <path
           d="M15 8h5m-2-2 2 2-2 2"
           strokeWidth="1.6"
@@ -74,6 +102,7 @@ const FEATURES = [
       "Keep hiring discussions connected",
     ],
   },
+
   {
     id: "reports",
     label: "Recruitment Insights",
@@ -81,12 +110,18 @@ const FEATURES = [
     accent: "#B69A79",
     glow: "rgba(170,132,91,0.12)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <path
           d="M5 19V11M12 19V6M19 19V9"
           strokeWidth="1.7"
           strokeLinecap="round"
         />
+
         <path
           d="M4 5.5 9 8l4-3 6 2"
           strokeWidth="1.5"
@@ -102,6 +137,7 @@ const FEATURES = [
       "Use recruitment data to improve decisions",
     ],
   },
+
   {
     id: "support",
     label: "Workflow",
@@ -109,10 +145,16 @@ const FEATURES = [
     accent: "#A88CA0",
     glow: "rgba(158,116,144,0.12)",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+      >
         <circle cx="7" cy="7" r="2" strokeWidth="1.6" />
         <circle cx="17" cy="7" r="2" strokeWidth="1.6" />
         <circle cx="12" cy="17" r="2" strokeWidth="1.6" />
+
         <path
           d="M9 7h6M8 9l3 6m5-6-3 6"
           strokeWidth="1.5"
@@ -166,39 +208,15 @@ export default function Features() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-8 max-w-3xl text-center">
-          <div
-            className="
-              inline-flex items-center gap-2.5
-              rounded-full
-              border border-white/[0.07]
-              bg-white/[0.025]
-              px-3.5 py-1.5
-              backdrop-blur-xl
-            "
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9C84DD] opacity-20" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9C84DD]" />
-            </span>
-
-            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-              Platform Capabilities
-            </span>
+        <div className="mx-auto mb-8 max-w-4xl text-center">
+          <div>
+            <p className="section-label text-[#9186B3]">
+              What Minivel ATS Does
+            </p>
           </div>
 
-          <h2
-            className="
-              mt-4
-              text-3xl font-extrabold
-              tracking-[-0.045em]
-              text-[#F2F2F4]
-              sm:text-4xl
-              lg:text-[45px]
-              lg:leading-[1.05]
-            "
-          >
-            One intelligent workspace for your
+          <h2 className="section-title mt-2.5 text-[#F2F2F4]">
+            Everything your recruitment team needs,
 
             <span
               className="
@@ -211,13 +229,13 @@ export default function Features() {
                 text-transparent
               "
             >
-              recruitment workflow
+              in one place.
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#777781]">
-            Bring sourcing, screening, collaboration and recruitment insights
-            into one connected environment built around how recruiters work.
+          <p className="section-description mx-auto mt-4 max-w-2xl text-[#777781]">
+            Manage sourcing, screening, candidate sharing and recruitment
+            insights from one workspace built for your team.
           </p>
         </div>
 
@@ -341,7 +359,7 @@ export default function Features() {
                   {feature.label}
                 </div>
 
-                {/* Title */}
+                {/* Card title */}
                 <h3
                   className="
                     min-h-[48px]
@@ -430,33 +448,11 @@ export default function Features() {
 
         {/* Small platform statement */}
         <div className="mt-7 flex justify-center">
-          <div
-            className="
-              inline-flex items-center gap-2
-              rounded-full
-              border border-white/[0.055]
-              bg-[#0A0A0D]/70
-              px-4 py-2
-              backdrop-blur-xl
-            "
-          >
-            <svg
-              className="h-3 w-3 text-[#9982D5]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M5 12l4 4L19 6"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
-            <span className="text-[10px] font-medium text-[#686872]">
-              Designed to keep recruiters in control from discovery to decision
-            </span>
+          <div className="mt-6 text-center">
+            <p className="text-[10px] font-medium tracking-[0.02em] text-[#74747E] sm:text-[11px]">
+              Built to support recruiters from candidate discovery through
+              final decisions.
+            </p>
           </div>
         </div>
       </div>

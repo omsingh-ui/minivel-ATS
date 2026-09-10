@@ -302,38 +302,24 @@ export default function TrustCompliance() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* heading */}
         <div className="mx-auto mb-8 max-w-3xl text-center">
-          <div
-            className="
-              inline-flex items-center gap-2.5
-              rounded-full
-              border border-white/[0.07]
-              bg-white/[0.025]
-              px-3.5 py-1.5
-              backdrop-blur-xl
-            "
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
-            </span>
+         <div>
+  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9186B3] sm:text-[11px]">
+    Security & Data Protection
+  </p>
+</div>
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-              Security & Compliance
-            </span>
-          </div>
-
-          <h2 className="mt-4 text-3xl font-extrabold leading-[1.07] tracking-[-0.045em] text-[#F3F3F5] sm:text-4xl lg:text-[44px]">
-            Trust is built into
+          <h2 className="mt-2.5 text-3xl font-extrabold leading-[1.07] tracking-[-0.045em] text-[#F3F3F5] sm:text-4xl lg:text-[44px]">
+            Your recruitment data,
 
             <span className="mt-1 block bg-gradient-to-r from-white via-[#BAB2D9] to-[#9279C9] bg-clip-text text-transparent">
-              every layer.
+              protected at every step.
             </span>
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#74747E]">
-            Candidate information is sensitive by nature. Minivel is designed
-            around secure access, responsible data handling and dependable
-            platform operations.
+           Candidate and client information deserves careful protection. Minivel ATS
+is designed with secure access, responsible data handling and reliable
+platform operations in mind.
           </p>
         </div>
 
@@ -375,31 +361,30 @@ export default function TrustCompliance() {
           <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.16] to-transparent" />
 
           <div className="relative">
-            {/* panel header */}
-            <div className="border-b border-white/[0.06] px-6 py-5 sm:px-8 lg:flex lg:items-center lg:justify-between">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
-                    <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
-                  </span>
+            {/* Panel header */}
+<div className="border-b border-white/[0.06] px-6 py-5 sm:px-8 lg:flex lg:items-center lg:justify-between">
+  <div>
+    <div className="flex items-center gap-2">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
+        <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
+      </span>
 
-                  <p className="text-[8.5px] font-bold uppercase tracking-[0.21em] text-[#7D6BA8]">
-                    Operational assurance
-                  </p>
-                </div>
+      <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#7D6BA8]">
+        Operational Assurance
+      </p>
+    </div>
 
-                <h3 className="mt-2 text-[17px] font-bold tracking-[-0.02em] text-[#EFEFF2]">
-                  Security that extends beyond compliance.
-                </h3>
-              </div>
+    <h3 className="mt-2 text-[18px] font-bold leading-[1.35] tracking-[-0.02em] text-[#EFEFF2]">
+      Security built for everyday recruitment.
+    </h3>
+  </div>
 
-              <p className="mt-2 max-w-md text-[10.5px] leading-5 text-[#676771] lg:mt-0 lg:text-right">
-                Reliability, support and protection designed around the
-                day-to-day reality of recruitment teams.
-              </p>
-            </div>
-
+  <p className="mt-3 max-w-md text-[12px] leading-6 text-[#74747E] lg:mt-0 lg:text-right">
+    Reliable protection and responsive support for the teams
+    using Minivel ATS every day.
+  </p>
+</div>
             {/* metrics */}
             <div className="grid grid-cols-2 lg:grid-cols-4">
               {ASSURANCE_STATS.map((stat, index) => (
@@ -458,10 +443,7 @@ export default function TrustCompliance() {
         </div>
 
         {/* verification note */}
-        <p className="mx-auto mt-4 max-w-2xl text-center text-[8.5px] leading-5 text-[#4F4F58]">
-          Security certifications, service levels and operational metrics should
-          reflect Minivel&apos;s currently verified policies before publication.
-        </p>
+       
       </div>
 
       <style>{`

@@ -170,33 +170,6 @@ function TeamCard({ item }) {
         </div>
       </div>
 
-      {/* Hover arrow */}
-      <div
-        className="
-          relative flex h-7 w-7 translate-x-2 items-center justify-center
-          rounded-full border border-white/[0.06]
-          bg-white/[0.025]
-          opacity-0
-          transition-all duration-400
-          group-hover:translate-x-0
-          group-hover:opacity-100
-        "
-      >
-        <svg
-          className="h-3 w-3 text-[#92929D]"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8 12h8m-3-3 3 3-3 3"
-          />
-        </svg>
-      </div>
-
       {/* Bottom accent */}
       <div
         className="
@@ -275,21 +248,16 @@ export default function SocialProof() {
 
         <div className="relative">
           {/* Heading */}
-          <div className="mx-auto mb-6 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="mb-2.5 flex items-center justify-center gap-3">
-              <span className="h-px w-7 bg-gradient-to-r from-transparent to-white/[0.18]" />
-
-              <span className="text-[9px] font-bold uppercase tracking-[0.26em] text-[#73737E]">
-                Built for modern recruitment
-              </span>
-
-              <span className="h-px w-7 bg-gradient-to-l from-transparent to-white/[0.18]" />
+          <div className="mx-auto mb-7 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <div className="mb-3">
+              <p className="section-label text-[#9186B3]">
+                Built for Recruitment Teams
+              </p>
             </div>
 
-            <p className="mx-auto max-w-xl text-[12px] leading-6 text-[#5F5F69]">
-              One connected intelligence layer for the teams shaping modern
-              hiring.
-            </p>
+            <h2 className="section-title mx-auto max-w-4xl text-[#F3F3F5]">
+              Designed for the teams managing hiring every day.
+            </h2>
           </div>
 
           {/* Moving ecosystem */}
@@ -311,42 +279,10 @@ export default function SocialProof() {
           </div>
 
           {/* Bottom statement */}
-          <div className="mx-auto mt-6 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div
-              className="
-                group inline-flex items-center gap-2.5
-                rounded-full
-                border border-white/[0.065]
-                bg-[#0C0C0F]/80
-                px-4 py-2
-                shadow-[0_10px_35px_rgba(0,0,0,0.25)]
-                backdrop-blur-xl
-                transition-all duration-300
-                hover:border-white/[0.11]
-                hover:bg-[#111115]
-              "
-            >
-              <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#9B83DA]/15 bg-[#9B83DA]/[0.07]">
-                <svg
-                  className="h-2.5 w-2.5 text-[#A68DDF]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.3"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12l4 4L19 6"
-                  />
-                </svg>
-              </div>
-
-              <span className="text-[10px] font-medium text-[#73737D]">
-                Sourcing, screening, collaboration and hiring intelligence in
-                one workflow
-              </span>
-            </div>
+          <div className="mx-auto mt-5 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <p className="text-[10px] font-medium tracking-[0.02em] text-[#74747E] sm:text-[11px]">
+              Sourcing, screening, collaboration and reporting in one recruitment workflow.
+            </p>
           </div>
         </div>
 

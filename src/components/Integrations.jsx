@@ -258,7 +258,7 @@ function IntegrationCard({ integration }) {
       </div>
 
       {/* Connection state */}
-      <div className="relative mt-3 flex items-center justify-between">
+      <div className="relative mt-3 flex items-center">
         <div className="flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8C83D9] opacity-20" />
@@ -270,27 +270,7 @@ function IntegrationCard({ integration }) {
           </span>
         </div>
 
-        <svg
-          className="
-            h-3 w-3 translate-x-1
-            text-[#4D4D57] opacity-0
-            transition-all duration-300
-            group-hover:translate-x-0
-            group-hover:text-[#8E84C8]
-            group-hover:opacity-100
-          "
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M8 12h8m-3-3 3 3-3 3"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
+       </div>
 
       {/* bottom illumination */}
       <div
@@ -433,52 +413,28 @@ export default function Integrations() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div
-            className="
-              inline-flex items-center gap-2.5
-              rounded-full
-              border border-white/[0.07]
-              bg-white/[0.025]
-              px-3.5 py-1.5
-              backdrop-blur-xl
-            "
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A85D8] opacity-20" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A85D8]" />
-            </span>
+       {/* Header */}
+<div className="mx-auto max-w-4xl text-center">
+  <div>
+    <p className="section-label text-[#9186B3]">
+      Works With Your Existing Tools
+    </p>
+  </div>
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-              Connected Ecosystem
-            </span>
-          </div>
+  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+    The tools your team already uses,
 
-          <h2
-            className="
-              mt-4
-              text-3xl font-extrabold
-              tracking-[-0.045em]
-              text-[#F3F3F5]
-              sm:text-4xl
-              lg:text-[45px]
-              lg:leading-[1.06]
-            "
-          >
-            Your recruitment stack.
+    <span className="mt-1 block bg-gradient-to-r from-white via-[#B9B1D8] to-[#9279C9] bg-clip-text text-transparent">
+      all connected to Minivel ATS.
+    </span>
+  </h2>
 
-            <span className="mt-1 block bg-gradient-to-r from-white via-[#B9B1D8] to-[#9279C9] bg-clip-text text-transparent">
-              Working as one.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#74747E]">
-            Connect the platforms your team already uses and bring sourcing,
-            communication, interviews, CRM and candidate workflows into one
-            intelligent ecosystem.
-          </p>
-        </div>
+  <p className="section-description mx-auto mt-4 max-w-2xl text-[#74747E]">
+    Connect the tools your team relies on for sourcing, communication,
+    interviews and candidate management, without changing the way
+    your recruiters work.
+  </p>
+</div>
 
         {/* Desktop ecosystem */}
         <div className="relative mx-auto mt-2 hidden h-[520px] max-w-[1180px] lg:block">
@@ -703,45 +659,9 @@ export default function Integrations() {
         {/* Bottom CTA */}
         <div className="mt-2 text-center lg:mt-0">
           <p className="text-[12px] text-[#666671]">
-            And dozens more integrations across sourcing, communication,
-            productivity and hiring.
+           Connect more of the tools your recruitment team uses every day.
           </p>
 
-          <button
-            className="
-              group mt-4 inline-flex
-              items-center gap-2
-              rounded-[12px]
-              border border-white/[0.075]
-              bg-[#0D0D10]
-              px-5 py-2.5
-              text-[11px] font-bold
-              text-[#B5B5BE]
-              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
-              transition-all duration-300
-              hover:-translate-y-0.5
-              hover:border-white/[0.14]
-              hover:bg-[#141419]
-              hover:text-white
-              hover:shadow-[0_18px_45px_rgba(0,0,0,0.45)]
-            "
-          >
-            Explore all integrations
-
-            <svg
-              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0-4 4m4-4H3"
-              />
-            </svg>
-          </button>
         </div>
       </div>
 

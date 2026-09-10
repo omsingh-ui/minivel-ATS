@@ -148,8 +148,8 @@ function FAQItem({ faq, isOpen, onClick, index }) {
         `}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 sm:pb-6 sm:pl-16 sm:pr-16">
-            <div className="mb-4 h-px bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent" />
+          <div className="px-5 pb-5 pt-1 sm:pb-6 sm:pl-16 sm:pr-16">
+            
 
             <p className="max-w-2xl text-[12px] leading-[1.85] text-[#74747E] sm:text-[13px]">
               {faq.a}
@@ -214,47 +214,26 @@ export default function FAQ() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
+{/* Left */}
+<div className="text-center lg:sticky lg:top-28 lg:text-left">
+  <div>
+    <p className="section-label text-[#9186B3]">
+      Frequently Asked Questions
+    </p>
+  </div>
 
-          {/* Left */}
-          <div className="text-center lg:sticky lg:top-28 lg:text-left">
-            <div
-              className="
-                inline-flex items-center gap-2.5
-                rounded-full border border-white/[0.07]
-                bg-white/[0.025]
-                px-3.5 py-1.5
-                backdrop-blur-xl
-              "
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9881D5] opacity-20" />
-                <span className="relative h-1.5 w-1.5 rounded-full bg-[#9881D5]" />
-              </span>
+  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+    Have questions
 
-              <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-                FAQ
-              </span>
-            </div>
+    <span className="mt-1 block bg-gradient-to-r from-white via-[#BBB2DA] to-[#9279C9] bg-clip-text text-transparent">
+      before getting started?
+    </span>
+  </h2>
 
-            <h2
-              className="
-                mt-4 text-3xl font-extrabold
-                leading-[1.07] tracking-[-0.045em]
-                text-[#F3F3F5]
-                sm:text-4xl lg:text-[44px]
-              "
-            >
-              Questions before
-
-              <span className="mt-1 block bg-gradient-to-r from-white via-[#BBB2DA] to-[#9279C9] bg-clip-text text-transparent">
-                you get started?
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-md text-[14px] leading-7 text-[#74747E] lg:mx-0">
-              Clear answers about the platform, AI, security, onboarding and
-              how Minivel fits into your recruitment workflow.
-            </p>
+  <p className="section-description mx-auto mt-4 max-w-md text-[#74747E] lg:mx-0">
+    Find answers about Minivel ATS, from everyday use and onboarding
+    to integrations, data security and platform features.
+  </p>
 
             {/* Contact card */}
             <div
@@ -286,7 +265,7 @@ export default function FAQ() {
                 </p>
 
                 <a
-                  href="#"
+                  href="#contact"
                   className="
                     group/link mt-4 inline-flex
                     items-center gap-2
@@ -296,7 +275,7 @@ export default function FAQ() {
                     hover:text-[#C1B2E8]
                   "
                 >
-                  Chat with our team
+                  Talk to the Minivel team
 
                   <svg
                     className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1"

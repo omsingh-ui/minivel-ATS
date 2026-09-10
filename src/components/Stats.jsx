@@ -229,41 +229,27 @@ export default function Stats() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto mb-8 max-w-3xl text-center">
-          <div
-            className="
-              inline-flex items-center gap-2.5
-              rounded-full
-              border border-white/[0.07]
-              bg-white/[0.025]
-              px-3.5 py-1.5
-              backdrop-blur-xl
-            "
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
-            </span>
+       {/* Header */}
+<div className="mx-auto mb-8 max-w-4xl text-center">
+  <div>
+    <p className="section-label text-[#9186B3]">
+      Minivel in Numbers
+    </p>
+  </div>
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-              By the Numbers
-            </span>
-          </div>
+  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+    A clearer view of
 
-          <h2 className="mt-4 text-3xl font-extrabold leading-[1.07] tracking-[-0.045em] text-[#F3F3F5] sm:text-4xl lg:text-[45px]">
-            Recruitment performance,
+    <span className="mt-1 block bg-gradient-to-r from-white via-[#B8B0D8] to-[#9279C9] bg-clip-text text-transparent">
+      what Minivel supports.
+    </span>
+  </h2>
 
-            <span className="mt-1 block bg-gradient-to-r from-white via-[#B8B0D8] to-[#9279C9] bg-clip-text text-transparent">
-              made visible.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#74747E]">
-            A clearer view of the people, activity and outcomes moving through
-            your recruitment operation.
-          </p>
-        </div>
+  <p className="section-description mx-auto mt-4 max-w-2xl text-[#74747E]">
+    A snapshot of the scale, reach and recruitment activity
+    supported through Minivel.
+  </p>
+</div>
 
         {/* Stats board */}
         <div
@@ -307,15 +293,11 @@ export default function Stats() {
         </div>
 
         {/* Bottom line */}
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <span className="h-px w-8 bg-gradient-to-r from-transparent to-white/[0.10]" />
-
-          <p className="text-[8.5px] font-semibold uppercase tracking-[0.19em] text-white/25">
-            Intelligence across the hiring lifecycle
-          </p>
-
-          <span className="h-px w-8 bg-gradient-to-l from-transparent to-white/[0.10]" />
-        </div>
+        <div className="mt-5 text-center">
+  <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
+    Supporting recruitment from first contact to final hire
+  </p>
+</div>
       </div>
     </section>
   );

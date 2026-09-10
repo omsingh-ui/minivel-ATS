@@ -498,41 +498,27 @@ export default function WorkflowExperience() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mx-auto mb-9 max-w-3xl text-center">
-            <div
-              className="
-                inline-flex items-center gap-2.5
-                rounded-full
-                border border-white/[0.07]
-                bg-white/[0.025]
-                px-3.5 py-1.5
-                backdrop-blur-xl
-              "
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9880D6] opacity-20" />
-                <span className="relative h-1.5 w-1.5 rounded-full bg-[#9880D6]" />
-              </span>
+        {/* Header */}
+<div className="mx-auto mb-9 max-w-4xl text-center">
+  <div>
+    <p className="section-label text-[#9186B3]">
+      How Minivel ATS Works
+    </p>
+  </div>
 
-              <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#777781]">
-                How Minivel ATS Works
-              </span>
-            </div>
+  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+    Your hiring process,
 
-            <h2 className="mt-4 text-3xl font-extrabold leading-[1.07] tracking-[-0.045em] text-[#F3F3F5] sm:text-4xl lg:text-[46px]">
-              One workflow.
+    <span className="mt-1 block bg-gradient-to-r from-white via-[#BAB2D9] to-[#9279C9] bg-clip-text text-transparent">
+      clear from start to finish.
+    </span>
+  </h2>
 
-              <span className="mt-1 block bg-gradient-to-r from-white via-[#BAB2D9] to-[#9279C9] bg-clip-text text-transparent">
-                Every hiring stage connected.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-7 text-[#777781] sm:text-[14.5px]">
-              Move from candidate discovery to better hiring decisions without
-              losing context between tools, teams or recruitment stages.
-            </p>
-          </div>
+  <p className="section-description mx-auto mt-4 max-w-2xl text-[#777781]">
+    Manage every stage of recruitment in one place, so your team can
+    keep candidate information, feedback and decisions easy to follow.
+  </p>
+</div>
 
           <div className="grid items-center gap-10 lg:grid-cols-[0.84fr_1.16fr] lg:gap-14">
             {/* Steps */}

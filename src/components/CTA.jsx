@@ -107,76 +107,43 @@ export default function CTA() {
 
           {/* Content */}
           <div className="relative z-10 mx-auto max-w-3xl">
-            {/* Eyebrow */}
-            <div
-              className="
-                mb-5 inline-flex items-center gap-2.5
-                rounded-full
-                border border-white/[0.08]
-                bg-white/[0.035]
-                px-4 py-1.5
-                backdrop-blur-xl
-              "
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9A84D8] opacity-20" />
-                <span className="relative h-1.5 w-1.5 rounded-full bg-[#9A84D8]" />
-              </span>
+          
+          {/* Eyebrow */}
+<div className="mb-3">
+  <p className="section-label text-[#A08FD0]">
+    Built for Recruitment Teams
+  </p>
+</div>
 
-              <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#85858F]">
-                Built for modern recruitment teams
-              </span>
-            </div>
+{/* Heading */}
+<h2 className="section-title text-[#F4F4F5]">
+  Make hiring simpler,
 
-            {/* Heading */}
-            <h2
-              className="
-                text-[32px]
-                font-extrabold
-                leading-[1.04]
-                tracking-[-0.05em]
-                text-[#F4F4F5]
-                sm:text-[42px]
-                lg:text-[52px]
-              "
-            >
-              Turn better hiring into
+  <span
+    className="
+      mt-1 block
+      bg-gradient-to-r
+      from-white
+      via-[#BDB4DC]
+      to-[#957ACB]
+      bg-clip-text
+      text-transparent
+    "
+  >
+    from start to finish.
+  </span>
+</h2>
 
-              <span
-                className="
-                  mt-1 block
-                  bg-gradient-to-r
-                  from-white
-                  via-[#BDB4DC]
-                  to-[#957ACB]
-                  bg-clip-text
-                  text-transparent
-                "
-              >
-                your competitive advantage.
-              </span>
-            </h2>
-
-            {/* Description */}
-            <p
-              className="
-                mx-auto mt-5 max-w-2xl
-                text-[13px] leading-7
-                text-[#74747E]
-                sm:text-[14px]
-                lg:text-[15px]
-              "
-            >
-              Bring sourcing, screening, candidate management and recruitment
-              intelligence into one connected workspace built to help your team
-              move with greater clarity and speed.
-            </p>
-
+{/* Description */}
+<p className="section-description mx-auto mt-5 max-w-2xl text-[#74747E]">
+  Give your team one place to source candidates, review applications,
+  manage hiring and keep every step of the recruitment process organised.
+</p>
             {/* Buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               {/* Primary */}
               <a
-                href="#"
+                href="#contact"
                 className="
                   group/button relative
                   inline-flex min-w-[190px]
@@ -206,7 +173,7 @@ export default function CTA() {
                   "
                 />
 
-                <span className="relative">Start Your Free Trial</span>
+                <span className="relative">Get Started</span>
 
                 <svg
                   className="
@@ -229,7 +196,7 @@ export default function CTA() {
 
               {/* Secondary */}
               <a
-                href="#"
+                href="#contact"
                 className="
                   group/demo
                   inline-flex min-w-[165px]
@@ -248,7 +215,7 @@ export default function CTA() {
                   hover:text-white
                 "
               >
-                Book a Demo
+                Request a Demo
 
                 <svg
                   className="
@@ -285,8 +252,8 @@ export default function CTA() {
               "
             >
               {[
-                "Guided onboarding",
-                "Built around your workflow",
+                "Simple onboarding",
+                "Fits your recruitment process",
                 "Support when you need it",
               ].map((item) => (
                 <span key={item} className="flex items-center gap-2">

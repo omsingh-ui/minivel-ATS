@@ -1,24 +1,24 @@
 import minivelLogo from "../assets/minivel-logo.png";
 const FOOTER_LINKS = {
   Platform: [
-    { label: "Talent Discovery", href: "#sourcing" },
-    { label: "Intelligent Screening", href: "#screening" },
-    { label: "Candidate Collaboration", href: "#profile-sharing" },
-    { label: "Recruitment Intelligence", href: "#reports" },
+    { label: "Candidate Sourcing", href: "#sourcing" },
+    { label: "Candidate Screening", href: "#screening" },
+    { label: "Profile Sharing", href: "#profile-sharing" },
+    { label: "Recruitment Insights", href: "#reports" },
   ],
 
   Explore: [
-    { label: "How Minivel Works", href: "#workflow" },
-    { label: "Connected Integrations", href: "#integrations" },
-    { label: "Security & Trust", href: "#security" },
-    { label: "Questions & Answers", href: "#faq" },
+    { label: "How It Works", href: "#workflow" },
+    { label: "Integrations", href: "#integrations" },
+    { label: "Security", href: "#security" },
+    { label: "FAQs", href: "#faq" },
   ],
 
   Company: [
     { label: "About Minivel", href: "#" },
-    { label: "Careers at Minivel", href: "#" },
-    { label: "Insights & Ideas", href: "#" },
-    { label: "Connect With Us", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "News & Insights", href: "#" },
+    { label: "Contact", href: "#contact" },
   ],
 };
 
@@ -176,8 +176,9 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="
+  <footer
+  id="contact"
+  className="
         relative z-20
         overflow-hidden
         bg-[#030303]
@@ -307,7 +308,7 @@ export default function Footer() {
                     text-[#72727C]
                   "
                 >
-                  Minivel Recruitment Intelligence
+                  Minivel ATS
                 </span>
               </div>
 
@@ -324,7 +325,7 @@ export default function Footer() {
                   lg:text-[48px]
                 "
               >
-                Better hiring starts with
+                Recruitment works better
 
                 <span
                   className="
@@ -337,7 +338,7 @@ export default function Footer() {
                     text-transparent
                   "
                 >
-                  better recruitment intelligence.
+                  when everything works together.
                 </span>
               </h2>
             </div>
@@ -352,8 +353,8 @@ export default function Footer() {
                   lg:ml-auto
                 "
               >
-                Connect talent, teams and hiring decisions in one intelligent
-                workspace designed to keep recruitment moving forward.
+              Bring candidates, recruiters and hiring decisions together
+in one place, with a process your team can easily follow.
               </p>
 
               <a
@@ -487,58 +488,11 @@ export default function Footer() {
                 text-[#61616B]
               "
             >
-              An intelligent recruitment workspace connecting talent
-              discovery, screening, collaboration and hiring insight.
+             A recruitment platform that brings candidate discovery,
+screening, collaboration and hiring decisions into one place.
             </p>
 
-            <div
-              className="
-                group/status
-                mt-6 inline-flex
-                items-center gap-2.5
-                rounded-full
-                border border-white/[0.07]
-                bg-white/[0.02]
-                px-3.5 py-2
-                transition-all duration-400
-
-                hover:border-[#A7D44C]/20
-                hover:bg-[#A7D44C]/[0.035]
-              "
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span
-                  className="
-                    absolute inline-flex
-                    h-full w-full
-                    animate-ping
-                    rounded-full
-                    bg-[#A7D44C]
-                    opacity-20
-                  "
-                />
-
-                <span
-                  className="
-                    relative h-1.5 w-1.5
-                    rounded-full
-                    bg-[#A7D44C]
-                  "
-                />
-              </span>
-
-              <span
-                className="
-                  text-[9px]
-                  font-medium
-                  text-[#777781]
-                  transition-colors
-                  group-hover/status:text-[#A2A2AB]
-                "
-              >
-                Built for modern recruitment teams
-              </span>
-            </div>
+            
           </div>
 
           {/* ===================================================
@@ -635,16 +589,10 @@ export default function Footer() {
                     </h3>
                   </div>
 
-                  <div
-                    className="
-                      relative mt-4
-                      h-px w-full
-                      bg-white/[0.05]
-                    "
-                  />
+                 
 
                   {/* LINKS */}
-                  <ul className="relative mt-4 space-y-3.5">
+                  <ul className="relative mt-3 space-y-3.5">
                     {links.map((link) => (
                       <li key={link.label}>
                         <a
@@ -709,187 +657,234 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* =====================================================
-            ACTION STRIP
-        ===================================================== */}
+     {/* =====================================================
+    ACTION STRIP
+===================================================== */}
+
+<div
+  className="
+    relative overflow-hidden
+    rounded-[20px]
+    border border-white/[0.06]
+    bg-[#070708]/80
+  "
+>
+  <div className="grid sm:grid-cols-3">
+    {/* CARD 1 */}
+    <ActionCard
+      eyebrow="Start a conversation"
+      title="Talk with the Minivel team"
+      description="Discuss your recruitment workflow."
+    />
+
+    {/* CARD 2 */}
+    <div
+      className="
+        border-t border-white/[0.06]
+        sm:border-l sm:border-t-0
+      "
+    >
+      <ActionCard
+        eyebrow="Explore the platform"
+        title="Experience Minivel ATS"
+        description="See connected hiring in action."
+      />
+    </div>
+
+    {/* CARD 3 */}
+    <div
+      className="
+        group/lifecycle
+        relative flex min-h-[118px]
+        items-center
+        overflow-hidden
+        border-t border-white/[0.06]
+        px-6 py-6
+        transition-all duration-500
+        hover:bg-white/[0.035]
+        sm:border-l sm:border-t-0
+        lg:px-7
+      "
+    >
+      {/* Hover glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute -bottom-20 -left-10
+          h-40 w-52
+          rounded-full
+          bg-[#9B83D5]/0
+          blur-[55px]
+          transition-all duration-700
+          group-hover/lifecycle:translate-x-8
+          group-hover/lifecycle:bg-[#9B83D5]/[0.10]
+        "
+      />
+
+      {/* Top animated line */}
+      <div
+        className="
+          pointer-events-none
+          absolute left-0 top-0
+          h-px w-0
+          bg-gradient-to-r
+          from-[#9FCF4A]
+          via-[#A48ADF]
+          to-transparent
+          opacity-0
+          transition-all duration-700
+          group-hover/lifecycle:w-[75%]
+          group-hover/lifecycle:opacity-100
+        "
+      />
+
+      {/* Light sweep */}
+      <div
+        className="
+          pointer-events-none
+          absolute -left-[80%] top-0
+          h-full w-[35%]
+          skew-x-[-20deg]
+          bg-gradient-to-r
+          from-transparent
+          via-white/[0.035]
+          to-transparent
+          transition-all duration-[900ms]
+          group-hover/lifecycle:left-[125%]
+        "
+      />
+
+      {/* Content */}
+      <div
+        className="
+          relative z-10
+          transition-transform duration-500
+          group-hover/lifecycle:translate-x-1
+        "
+      >
+        <p
+          className="
+            text-[8px]
+            font-bold uppercase
+            tracking-[0.22em]
+            text-[#65656E]
+            transition-colors duration-300
+            group-hover/lifecycle:text-[#8D8D97]
+          "
+        >
+          Recruitment workflow
+        </p>
 
         <div
           className="
-            relative overflow-hidden
-            rounded-[20px]
-            border border-white/[0.06]
-            bg-[#070708]/80
+            mt-2.5 flex
+            items-center gap-2.5
+            text-[11px]
+            font-semibold
+            text-[#85858F]
+            transition-colors duration-300
+            group-hover/lifecycle:text-white
           "
         >
-          <div className="grid sm:grid-cols-3">
-            <ActionCard
-              eyebrow="Start a conversation"
-              title="Talk with the Minivel team"
-              description="Discuss your recruitment workflow."
+          <span className="relative flex h-1.5 w-1.5">
+            <span
+              className="
+                absolute inline-flex
+                h-full w-full
+                animate-ping
+                rounded-full
+                bg-[#A7D44C]
+                opacity-20
+              "
             />
 
-            <div
+            <span
               className="
-                border-t border-white/[0.06]
-                sm:border-l sm:border-t-0
+                relative h-1.5 w-1.5
+                rounded-full
+                bg-[#A7D44C]
               "
-            >
-              <ActionCard
-                eyebrow="Explore the platform"
-                title="Experience Minivel ATS"
-                description="See connected hiring in action."
-              />
-            </div>
+            />
+          </span>
 
-            <div
-              className="
-                group/lifecycle
-                relative flex min-h-[118px]
-                items-center
-                overflow-hidden
-                border-t border-white/[0.06]
-                px-6 py-6
-                transition-all duration-500
-
-                hover:bg-white/[0.025]
-
-                sm:border-l sm:border-t-0
-                lg:px-7
-              "
-            >
-              <div
-                className="
-                  pointer-events-none
-                  absolute -bottom-16 -right-12
-                  h-36 w-44
-                  rounded-full
-                  bg-[#A7D44C]/0
-                  blur-[50px]
-                  transition-all duration-700
-                  group-hover/lifecycle:bg-[#A7D44C]/[0.07]
-                "
-              />
-
-              <div className="relative">
-                <p
-                  className="
-                    text-[8px]
-                    font-bold uppercase
-                    tracking-[0.22em]
-                    text-[#65656E]
-                  "
-                >
-                  Intelligence layer
-                </p>
-
-                <div
-                  className="
-                    mt-2.5 flex
-                    items-center gap-2.5
-                    text-[11px]
-                    font-semibold
-                    text-[#85858F]
-                    transition-colors duration-300
-                    group-hover/lifecycle:text-white
-                  "
-                >
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span
-                      className="
-                        absolute inline-flex
-                        h-full w-full
-                        animate-ping
-                        rounded-full
-                        bg-[#A7D44C]
-                        opacity-20
-                      "
-                    />
-
-                    <span
-                      className="
-                        relative h-1.5 w-1.5
-                        rounded-full
-                        bg-[#A7D44C]
-                      "
-                    />
-                  </span>
-
-                  Connected from discovery to decision
-                </div>
-
-                <p
-                  className="
-                    mt-1.5
-                    text-[9.5px]
-                    leading-5
-                    text-[#55555E]
-                  "
-                >
-                  Intelligence across the hiring lifecycle.
-                </p>
-              </div>
-            </div>
-          </div>
+          From candidate discovery to final hire
         </div>
 
-        {/* =====================================================
-            BOTTOM BAR
-        ===================================================== */}
-
-        <div
+        <p
           className="
-            flex flex-col gap-4
-            py-7
-            sm:flex-row
-            sm:items-center
-            sm:justify-between
+            mt-1.5
+            text-[9.5px]
+            leading-5
+            text-[#55555E]
+            transition-colors duration-300
+            group-hover/lifecycle:text-[#777780]
           "
         >
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[9px] text-[#4D4D55]">
-              © {year} Minivel
-            </span>
+          Supporting every stage of the recruitment process.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <span className="hidden h-3 w-px bg-white/[0.07] sm:block" />
+{/* =====================================================
+    BOTTOM BAR
+===================================================== */}
 
-            <span className="text-[9px] text-[#4D4D55]">
-              Recruitment intelligence, connected.
-            </span>
-          </div>
+<div
+  className="
+    flex flex-col gap-4
+    py-7
+    sm:flex-row
+    sm:items-center
+    sm:justify-between
+  "
+>
+  <div className="flex flex-wrap items-center gap-3">
+    <span className="text-[9px] text-[#4D4D55]">
+      © {year} Minivel
+    </span>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {["Privacy", "Terms", "Cookies", "Accessibility"].map(
-              (item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="
-                    relative
-                    text-[9px]
-                    text-[#55555D]
+    <span className="hidden h-3 w-px bg-white/[0.07] sm:block" />
 
-                    transition-colors
-                    duration-300
+    <span className="text-[9px] text-[#4D4D55]">
+      Built for better recruitment.
+    </span>
+  </div>
 
-                    after:absolute
-                    after:-bottom-1
-                    after:left-0
-                    after:h-px
-                    after:w-0
-                    after:bg-[#A7D44C]
-                    after:transition-all
-                    after:duration-300
+  <div className="flex flex-wrap gap-x-5 gap-y-2">
+    {["Privacy", "Terms", "Cookies", "Accessibility"].map(
+      (item) => (
+        <a
+          key={item}
+          href="#"
+          className="
+            relative
+            text-[9px]
+            text-[#55555D]
 
-                    hover:text-[#B7B7BF]
-                    hover:after:w-full
-                  "
-                >
-                  {item}
-                </a>
-              )
-            )}
-          </div>
-        </div>
+            transition-colors
+            duration-300
+
+            after:absolute
+            after:-bottom-1
+            after:left-0
+            after:h-px
+            after:w-0
+            after:bg-[#A7D44C]
+            after:transition-all
+            after:duration-300
+
+            hover:text-[#B7B7BF]
+            hover:after:w-full
+          "
+        >
+          {item}
+        </a>
+      )
+    )}
+  </div>
+</div>
       </div>
     </footer>
   );

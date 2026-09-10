@@ -510,34 +510,20 @@ export default function Hero() {
           >
             {/* LEFT */}
             <div className="relative z-20 max-w-[570px]">
-              <div className="hero-copy hero-delay-1 mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.035] px-3.5 py-2 backdrop-blur-xl">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#18131F] text-[#B498ED]">
-                  <svg
-                    className="h-3.5 w-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8z"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                </div>
+              <div className="hero-copy hero-delay-1 mb-4">
+  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9B8CC2] sm:text-[11px]">
+    Recruitment Technology by Minivel
+  </p>
+</div>
 
-                <span className="text-[12px] font-semibold tracking-wide text-[#A0A0AA]">
-                  Minivel Talent Intelligence
-                </span>
-              </div>
-
-              <h1 className="hero-copy hero-delay-2 text-[42px] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#F5F5F7] sm:text-[52px] lg:text-[55px] xl:text-[62px]">
+            <h1 className="hero-copy hero-delay-2 section-title text-[#F5F5F7]">
                 Recruitment,
                 <span className="mt-1 block bg-gradient-to-r from-white via-[#C1B5EC] to-[#9874D6] bg-clip-text text-transparent">
                   intelligently connected.
                 </span>
               </h1>
 
-              <p className="hero-copy hero-delay-3 mt-5 max-w-[525px] text-[15px] leading-7 text-[#9999A3] sm:text-[16px] sm:leading-8">
+             <p className="hero-copy hero-delay-3 section-description mt-5 max-w-[525px] text-[#9999A3]">
                 Minivel ATS connects candidate discovery, intelligent screening,
                 pipeline management and hiring collaboration in one focused
                 recruitment workspace.

@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import useReveal from "../hooks/useReveal";
 
 export default function CTA() {
+  const revealRef = useReveal();
   return (
-    <section
-      className="
-        relative overflow-hidden
+  <section
+  ref={revealRef}
+  className="
+    reveal-section
+    relative overflow-hidden
         bg-[#050505]
         pb-10 pt-7
         sm:pb-11 sm:pt-8

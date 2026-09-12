@@ -1,3 +1,5 @@
+import useReveal from "../hooks/useReveal";
+
 const TEAMS = [
   {
     name: "Recruitment Agencies",
@@ -50,48 +52,147 @@ const TEAMS = [
 ];
 
 function TeamIcon({ item }) {
+  const icons = {
+    RA: (
+      <>
+        <circle cx="8" cy="8" r="3" />
+        <circle cx="16" cy="8" r="3" />
+        <path d="M3.5 18c.7-3 2.4-4.5 4.5-4.5s3.8 1.5 4.5 4.5" />
+        <path d="M11.5 18c.6-2.6 2.1-4 4.5-4 2.1 0 3.6 1.4 4.2 4" />
+      </>
+    ),
+
+    ST: (
+      <>
+        <rect x="4" y="5" width="16" height="14" rx="2.5" />
+        <path d="M8 9h8" />
+        <path d="M8 13h5" />
+        <path d="M8 17h3" />
+      </>
+    ),
+
+    TP: (
+      <>
+        <path d="M12 3 15 8l5 2-5 2-3 5-3-5-5-2 5-2z" />
+        <circle cx="12" cy="12" r="2.1" />
+      </>
+    ),
+
+    ES: (
+      <>
+        <circle cx="10" cy="9" r="3.5" />
+        <path d="M4 19c.7-3.2 2.7-5 6-5s5.3 1.8 6 5" />
+        <path d="M17 4h3v3" />
+        <path d="m20 4-4 4" />
+      </>
+    ),
+
+    HT: (
+      <>
+        <rect x="4" y="5" width="16" height="14" rx="2.5" />
+        <path d="M8 9h8" />
+        <path d="M8 13h5" />
+        <circle cx="17.5" cy="16.5" r="1.7" />
+      </>
+    ),
+
+    RO: (
+      <>
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v3" />
+        <path d="M12 19v3" />
+        <path d="M4.9 4.9 7 7" />
+        <path d="m17 17 2.1 2.1" />
+        <path d="M2 12h3" />
+        <path d="M19 12h3" />
+        <path d="m4.9 19.1 2.1-2.1" />
+        <path d="M17 7 19.1 4.9" />
+      </>
+    ),
+
+    TA: (
+      <>
+        <path d="M4 18V10" />
+        <path d="M10 18V6" />
+        <path d="M16 18v-5" />
+        <path d="M3 18h18" />
+        <path d="m5 9 4-3 4 3 6-6" />
+      </>
+    ),
+
+    PT: (
+      <>
+        <circle cx="9" cy="8" r="3" />
+        <circle cx="16.5" cy="9" r="2.5" />
+        <path d="M4 19c.7-3.4 2.6-5 5-5s4.3 1.6 5 5" />
+        <path d="M14 19c.5-2.6 1.8-4 4-4 1.7 0 3 1.2 3.5 3.5" />
+      </>
+    ),
+  };
+
   return (
     <div
       className="
-        relative flex h-10 w-10 shrink-0 items-center justify-center
-        overflow-hidden rounded-[12px]
+        relative flex h-11 w-11 shrink-0
+        items-center justify-center
+        overflow-hidden rounded-[13px]
         border border-white/[0.07]
         bg-[#151519]
-        transition-all duration-500
-        group-hover:scale-[1.07]
-        group-hover:border-white/[0.12]
+        transition-all duration-500 ease-out
+
+        group-hover:scale-[1.08]
+        group-hover:border-white/[0.15]
+        group-hover:bg-[#19191E]
+        group-hover:shadow-[0_10px_30px_rgba(0,0,0,.35)]
       "
     >
+      {/* Accent atmosphere */}
       <div
         className="
-          absolute inset-0 opacity-[0.08]
-          transition-opacity duration-500
-          group-hover:opacity-[0.16]
+          absolute inset-0
+          opacity-[0.07]
+          transition-all duration-500
+          group-hover:scale-125
+          group-hover:opacity-[0.20]
         "
         style={{
-          background: `radial-gradient(circle at 30% 20%, ${item.accent}, transparent 68%)`,
+          background: `radial-gradient(
+            circle at 30% 20%,
+            ${item.accent},
+            transparent 68%
+          )`,
         }}
       />
 
+      {/* Icon */}
       <svg
-        className="relative h-[18px] w-[18px]"
+        className="
+          relative h-[19px] w-[19px]
+          transition-all duration-500
+          group-hover:-translate-y-[1px]
+          group-hover:scale-[1.10]
+        "
         viewBox="0 0 24 24"
         fill="none"
         stroke={item.accent}
-        strokeWidth="1.65"
+        strokeWidth="1.55"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M19 8v6" />
-        <path d="M22 11h-6" />
+        {icons[item.abbr]}
       </svg>
 
+      {/* Bottom icon accent */}
       <div
         className="
-          absolute bottom-0 left-1/2 h-px w-5
-          -translate-x-1/2 opacity-50 blur-[1px]
+          absolute bottom-0 left-1/2
+          h-px w-5
+          -translate-x-1/2
+          opacity-45
+          blur-[1px]
+          transition-all duration-500
+          group-hover:w-7
+          group-hover:opacity-90
         "
         style={{ backgroundColor: item.accent }}
       />
@@ -103,68 +204,154 @@ function TeamCard({ item }) {
   return (
     <div
       className="
-        group relative flex min-w-[205px] items-center gap-3
-        overflow-hidden rounded-[16px]
+        group relative
+        flex min-w-[235px]
+        items-center gap-3.5
+        overflow-hidden
+        rounded-[18px]
         border border-white/[0.065]
-        bg-[#0E0E11]/90
-        px-3.5 py-3
-        shadow-[0_12px_35px_rgba(0,0,0,0.26)]
+        bg-[#0E0E11]/94
+        px-4 py-3.5
+        shadow-[0_14px_40px_rgba(0,0,0,0.28)]
         backdrop-blur-xl
+
         transition-all duration-500 ease-out
-        hover:-translate-y-[3px]
-        hover:border-white/[0.13]
-        hover:bg-[#131318]
-        hover:shadow-[0_22px_55px_rgba(0,0,0,0.48)]
+
+        hover:-translate-y-[4px]
+        hover:scale-[1.015]
+        hover:border-white/[0.15]
+        hover:bg-[#141419]
+        hover:shadow-[0_28px_70px_rgba(0,0,0,0.56)]
       "
     >
-      {/* Dynamic glow */}
+      {/* Accent glow */}
       <div
         className="
-          pointer-events-none absolute -left-8 top-1/2
-          h-24 w-24 -translate-y-1/2
-          rounded-full opacity-0 blur-[35px]
-          transition-opacity duration-500
-          group-hover:opacity-[0.12]
+          pointer-events-none
+          absolute -left-10 top-1/2
+          h-28 w-28
+          -translate-y-1/2
+          scale-75
+          rounded-full
+          opacity-0
+          blur-[40px]
+          transition-all duration-700
+
+          group-hover:scale-110
+          group-hover:opacity-[0.14]
         "
         style={{ backgroundColor: item.accent }}
       />
 
-      {/* Glass reflection */}
+      {/* Secondary depth glow */}
       <div
         className="
-          pointer-events-none absolute inset-0
-          translate-x-[-120%]
+          pointer-events-none
+          absolute -right-12 bottom-[-45px]
+          h-24 w-24
+          rounded-full
+          opacity-0
+          blur-[44px]
+          transition-all duration-700
+          group-hover:opacity-[0.06]
+        "
+        style={{ backgroundColor: item.accent }}
+      />
+
+      {/* Glass sweep */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+          translate-x-[-135%]
+          skew-x-[-18deg]
           bg-gradient-to-r
-          from-transparent via-white/[0.025] to-transparent
+          from-transparent
+          via-white/[0.04]
+          to-transparent
           transition-transform duration-700
-          group-hover:translate-x-[120%]
+          group-hover:translate-x-[135%]
         "
       />
 
-      {/* Top light */}
-      <div className="pointer-events-none absolute left-[18%] right-[18%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.16] to-transparent" />
+      {/* Top reflection */}
+      <div
+        className="
+          pointer-events-none
+          absolute left-[16%] right-[16%] top-0
+          h-px
+          bg-gradient-to-r
+          from-transparent
+          via-white/[0.18]
+          to-transparent
+          opacity-55
+          transition-opacity duration-500
+          group-hover:opacity-100
+        "
+      />
 
       <TeamIcon item={item} />
 
-      <div className="relative min-w-0 flex-1">
-        <p className="truncate text-[12px] font-bold tracking-[-0.01em] text-[#E8E8EC]">
+      <div
+        className="
+          relative min-w-0 flex-1
+          transition-transform duration-500
+          group-hover:translate-x-[2px]
+        "
+      >
+        <p
+          className="
+            truncate
+            text-[12.5px]
+            font-bold
+            tracking-[-0.012em]
+            text-[#E8E8EC]
+            transition-colors duration-300
+            group-hover:text-white
+          "
+        >
           {item.name}
         </p>
 
         <div className="mt-1.5 flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5">
             <span
-              className="absolute inline-flex h-full w-full rounded-full opacity-20 group-hover:animate-ping"
+              className="
+                absolute inline-flex
+                h-full w-full
+                rounded-full
+                opacity-0
+                group-hover:animate-ping
+                group-hover:opacity-20
+              "
               style={{ backgroundColor: item.accent }}
             />
 
             <span
-              className="relative h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: item.accent }}
+              className="
+                relative h-1.5 w-1.5
+                rounded-full
+                transition-all duration-300
+                group-hover:scale-110
+              "
+              style={{
+                backgroundColor: item.accent,
+                boxShadow: `0 0 8px ${item.accent}`,
+              }}
             />
           </span>
 
-          <span className="whitespace-nowrap text-[9px] font-medium tracking-[0.025em] text-[#686872]">
+          <span
+            className="
+              whitespace-nowrap
+              text-[9px]
+              font-medium
+              tracking-[0.025em]
+              text-[#686872]
+              transition-colors duration-300
+              group-hover:text-[#90909A]
+            "
+          >
             {item.desc}
           </span>
         </div>
@@ -173,12 +360,15 @@ function TeamCard({ item }) {
       {/* Bottom accent */}
       <div
         className="
-          pointer-events-none absolute bottom-0 left-1/2
-          h-px w-0 -translate-x-1/2
-          opacity-0 blur-[0.5px]
-          transition-all duration-500
-          group-hover:w-[42%]
-          group-hover:opacity-70
+          pointer-events-none
+          absolute bottom-0 left-1/2
+          h-px w-0
+          -translate-x-1/2
+          opacity-0
+          blur-[0.5px]
+          transition-all duration-700
+          group-hover:w-[54%]
+          group-hover:opacity-80
         "
         style={{
           background: `linear-gradient(
@@ -193,23 +383,23 @@ function TeamCard({ item }) {
   );
 }
 
-function MovingRow({ items, reverse = false, speed = "30s" }) {
+function MovingRow({ items, speed = "52s" }) {
   const repeated = [...items, ...items];
 
   return (
     <div className="relative">
       <div
-        className={`
-          flex w-max gap-3
-          ${reverse ? "social-row-reverse" : "social-row"}
-        `}
+        className="social-row flex w-max gap-3.5"
         style={{
           animationDuration: speed,
           willChange: "transform",
         }}
       >
         {repeated.map((item, index) => (
-          <TeamCard key={`${item.name}-${index}`} item={item} />
+          <TeamCard
+            key={`${item.name}-${index}`}
+            item={item}
+          />
         ))}
       </div>
     </div>
@@ -217,78 +407,273 @@ function MovingRow({ items, reverse = false, speed = "30s" }) {
 }
 
 export default function SocialProof() {
-  const firstRow = TEAMS;
-  const secondRow = [...TEAMS].reverse();
+  const sectionRef = useReveal();
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#050505] py-7 sm:py-8 lg:py-9">
-        {/* Seamless connection with Hero */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+      <section
+        ref={sectionRef}
+        className="
+          reveal-section
+          relative overflow-hidden
+          bg-[#050505]
+          py-9
+          sm:py-10
+          lg:py-11
+        "
+      >
+        {/* =====================================================
+            TOP TRANSITION
+        ===================================================== */}
 
-        {/* Atmospheric lighting */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-x-0 top-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-white/[0.07]
+            to-transparent
+          "
+        />
+
+        {/* =====================================================
+            BACKGROUND DEPTH
+        ===================================================== */}
+
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[8%] top-[-120px] h-[300px] w-[300px] rounded-full bg-[#765AB9]/[0.055] blur-[120px]" />
-
-          <div className="absolute bottom-[-130px] right-[6%] h-[320px] w-[320px] rounded-full bg-[#5579CB]/[0.045] blur-[130px]" />
-
+          {/* Left violet atmosphere */}
           <div
-            className="absolute inset-0 opacity-[0.15]"
+            className="
+              absolute
+              left-[5%] top-[-140px]
+              h-[330px] w-[330px]
+              rounded-full
+              bg-[#765AB9]/[0.048]
+              blur-[130px]
+            "
+          />
+
+          {/* Right blue atmosphere */}
+          <div
+            className="
+              absolute
+              bottom-[-150px] right-[5%]
+              h-[350px] w-[350px]
+              rounded-full
+              bg-[#5579CB]/[0.04]
+              blur-[140px]
+            "
+          />
+
+          {/* Center depth */}
+          <div
+            className="
+              absolute
+              left-1/2 top-[62%]
+              h-[220px] w-[720px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-[#846DB9]/[0.022]
+              blur-[125px]
+            "
+          />
+
+          {/* Texture */}
+          <div
+            className="absolute inset-0 opacity-[0.10]"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)",
+                "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0)",
               backgroundSize: "32px 32px",
               maskImage:
-                "linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)",
+                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
               WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)",
+                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
             }}
           />
         </div>
 
         <div className="relative">
-          {/* Heading */}
-          <div className="mx-auto mb-7 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="mb-3">
-              <p className="section-label text-[#9186B3]">
-                Built for Recruitment Teams
-              </p>
-            </div>
+          {/* =====================================================
+              HEADING
+          ===================================================== */}
 
-            <h2 className="section-title mx-auto max-w-4xl text-[#F3F3F5]">
+          <div
+            className="
+              mx-auto mb-8
+              max-w-7xl
+              px-4
+              text-center
+              sm:px-6
+              lg:px-8
+            "
+          >
+            <p className="section-label text-[#9186B3]">
+              Built for Recruitment Teams
+            </p>
+
+            <h2
+              className="
+                section-title
+                mx-auto mt-2.5
+                max-w-4xl
+                text-[#F3F3F5]
+              "
+            >
               Designed for the teams managing hiring every day.
             </h2>
+
+            <p
+              className="
+                section-description
+                mx-auto mt-4
+                max-w-2xl
+                text-[#74747E]
+              "
+            >
+              Built to support recruiters across sourcing, screening,
+              candidate management and everyday hiring work.
+            </p>
           </div>
 
-          {/* Moving ecosystem */}
-          <div className="relative space-y-3">
-            {/* Strong cinematic fades */}
-            <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-20 w-20 bg-gradient-to-r from-[#050505] via-[#050505]/95 to-transparent sm:w-32 lg:w-44" />
+          {/* =====================================================
+              SINGLE PREMIUM MARQUEE
+          ===================================================== */}
 
-            <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-20 w-20 bg-gradient-to-l from-[#050505] via-[#050505]/95 to-transparent sm:w-32 lg:w-44" />
+          <div className="relative py-2">
+            {/* Very subtle marquee base */}
+            <div
+              className="
+                pointer-events-none
+                absolute inset-x-[12%] top-1/2
+                h-24
+                -translate-y-1/2
+                rounded-full
+                bg-[#8873C0]/[0.018]
+                blur-[70px]
+              "
+            />
 
-            <MovingRow items={firstRow} speed="34s" />
+            {/* Left cinematic fade */}
+            <div
+              className="
+                pointer-events-none
+                absolute bottom-0 left-0 top-0
+                z-20
+                w-20
+                bg-gradient-to-r
+                from-[#050505]
+                via-[#050505]/98
+                to-transparent
+                sm:w-36
+                lg:w-52
+              "
+            />
 
-            <div className="-ml-24">
-              <MovingRow
-                items={secondRow}
-                reverse
-                speed="38s"
+            {/* Right cinematic fade */}
+            <div
+              className="
+                pointer-events-none
+                absolute bottom-0 right-0 top-0
+                z-20
+                w-20
+                bg-gradient-to-l
+                from-[#050505]
+                via-[#050505]/98
+                to-transparent
+                sm:w-36
+                lg:w-52
+              "
+            />
+
+            <MovingRow
+              items={TEAMS}
+              speed="52s"
+            />
+          </div>
+
+          {/* =====================================================
+              BOTTOM STATEMENT
+          ===================================================== */}
+
+          <div
+            className="
+              mx-auto mt-8
+              max-w-7xl
+              px-4
+              text-center
+              sm:px-6
+              lg:px-8
+            "
+          >
+            <div
+              className="
+                mx-auto flex
+                max-w-2xl
+                items-center
+                justify-center
+                gap-4
+              "
+            >
+              <span
+                className="
+                  hidden h-px w-12
+                  bg-gradient-to-r
+                  from-transparent
+                  to-white/[0.10]
+                  sm:block
+                "
+              />
+
+              <p
+                className="
+                  text-[10px]
+                  font-medium
+                  tracking-[0.025em]
+                  text-[#74747E]
+                  sm:text-[11px]
+                "
+              >
+                Everything your recruitment team needs to manage hiring in one
+                place.
+              </p>
+
+              <span
+                className="
+                  hidden h-px w-12
+                  bg-gradient-to-l
+                  from-transparent
+                  to-white/[0.10]
+                  sm:block
+                "
               />
             </div>
           </div>
-
-          {/* Bottom statement */}
-          <div className="mx-auto mt-5 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <p className="text-[10px] font-medium tracking-[0.02em] text-[#74747E] sm:text-[11px]">
-              Sourcing, screening, collaboration and reporting in one recruitment workflow.
-            </p>
-          </div>
         </div>
 
-        {/* Transition into next black section */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+        {/* =====================================================
+            BOTTOM TRANSITION
+        ===================================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute inset-x-0 bottom-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-white/[0.045]
+            to-transparent
+          "
+        />
       </section>
+
+      {/* =======================================================
+          MOTION
+      ======================================================= */}
 
       <style>{`
         @keyframes socialMove {
@@ -301,37 +686,20 @@ export default function SocialProof() {
           }
         }
 
-        @keyframes socialMoveReverse {
-          from {
-            transform: translateX(-50%);
-          }
-
-          to {
-            transform: translateX(0);
-          }
-        }
-
         .social-row {
           animation-name: socialMove;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
         }
 
-        .social-row-reverse {
-          animation-name: socialMoveReverse;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
-
-        .social-row:hover,
-        .social-row-reverse:hover {
+        .social-row:hover {
           animation-play-state: paused;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .social-row,
-          .social-row-reverse {
-            animation: none;
+          .social-row {
+            animation: none !important;
+            transform: none !important;
           }
         }
       `}</style>

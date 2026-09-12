@@ -228,3 +228,438 @@ select {
   background-size: 200% 100%;
   animation: shimmer 2.5s infinite;
 }
+/* =========================================
+   SMOOTH SECTION REVEAL
+========================================= */
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 700ms cubic-bezier(.22, 1, .36, 1),
+    transform 700ms cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+/* =========================================================
+   PREMIUM HERO
+========================================================= */
+
+/* -----------------------------------------
+   COPY ENTRANCE
+----------------------------------------- */
+
+@keyframes copyReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.hero-copy {
+  opacity: 0;
+  animation: copyReveal 700ms cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.hero-delay-1 {
+  animation-delay: 0.05s;
+}
+
+.hero-delay-2 {
+  animation-delay: 0.14s;
+}
+
+.hero-delay-3 {
+  animation-delay: 0.23s;
+}
+
+.hero-delay-4 {
+  animation-delay: 0.32s;
+}
+
+.hero-delay-5 {
+  animation-delay: 0.41s;
+}
+
+
+/* -----------------------------------------
+   DASHBOARD ENTRANCE
+----------------------------------------- */
+
+@keyframes dashboardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(.975);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hero-dashboard-reveal {
+  opacity: 0;
+  animation:
+    dashboardReveal
+    900ms cubic-bezier(.22, 1, .36, 1)
+    0.28s forwards;
+}
+
+
+/* -----------------------------------------
+   VERY CALM DASHBOARD FLOAT
+----------------------------------------- */
+
+@keyframes dashboardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.hero-dashboard-float {
+  animation:
+    dashboardFloat
+    9s ease-in-out
+    1.5s infinite;
+}
+
+
+/* -----------------------------------------
+   DASHBOARD CONTENT REVEAL
+----------------------------------------- */
+
+@keyframes itemReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-stat,
+.candidate-row,
+.ai-panel {
+  opacity: 0;
+  animation:
+    itemReveal
+    550ms cubic-bezier(.22, 1, .36, 1)
+    forwards;
+}
+
+.ai-panel {
+  animation-delay: 1.12s;
+}
+
+
+/* -----------------------------------------
+   FLOATING CARD ENTRANCE
+----------------------------------------- */
+
+@keyframes cardRight {
+  from {
+    opacity: 0;
+    transform: translate(14px, 10px) scale(.94);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardLeft {
+  from {
+    opacity: 0;
+    transform: translate(-14px, 10px) scale(.94);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hero-card-one {
+  opacity: 0;
+  animation:
+    cardRight
+    650ms cubic-bezier(.22, 1, .36, 1)
+    1.1s forwards;
+}
+
+.hero-card-two {
+  opacity: 0;
+  animation:
+    cardLeft
+    650ms cubic-bezier(.22, 1, .36, 1)
+    1.4s forwards;
+}
+
+.hero-card-three {
+  opacity: 0;
+  animation:
+    cardRight
+    650ms cubic-bezier(.22, 1, .36, 1)
+    1.7s forwards;
+}
+
+.hero-card-four {
+  opacity: 0;
+  animation:
+    cardLeft
+    650ms cubic-bezier(.22, 1, .36, 1)
+    2s forwards;
+}
+
+
+/* -----------------------------------------
+   CALM FLOATING MOTION
+----------------------------------------- */
+
+@keyframes floatOne {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-2px, -4px);
+  }
+}
+
+@keyframes floatTwo {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(3px, 3px);
+  }
+}
+
+@keyframes floatThree {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-2px, 4px);
+  }
+}
+
+@keyframes floatFour {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(2px, -3px);
+  }
+}
+
+.hero-float-one {
+  animation:
+    floatOne
+    8s ease-in-out
+    2s infinite;
+}
+
+.hero-float-two {
+  animation:
+    floatTwo
+    8.5s ease-in-out
+    2.2s infinite;
+}
+
+.hero-float-three {
+  animation:
+    floatThree
+    9s ease-in-out
+    2.4s infinite;
+}
+
+.hero-float-four {
+  animation:
+    floatFour
+    8.2s ease-in-out
+    2.6s infinite;
+}
+
+
+/* -----------------------------------------
+   PRODUCT PARALLAX
+----------------------------------------- */
+
+.hero-parallax {
+  --x: 0px;
+  --y: 0px;
+
+  --rx: 0deg;
+  --ry: 0deg;
+
+  --mx: 70%;
+  --my: 35%;
+
+  transform:
+    translate3d(var(--x), var(--y), 0)
+    perspective(1400px)
+    rotateX(var(--rx))
+    rotateY(var(--ry));
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 220ms ease-out;
+
+  will-change: transform;
+}
+
+
+/* -----------------------------------------
+   POINTER LIGHT
+----------------------------------------- */
+
+.hero-pointer-light {
+  background:
+    radial-gradient(
+      circle 150px at var(--mx) var(--my),
+      rgba(177, 155, 221, 0.105),
+      rgba(118, 144, 224, 0.038) 34%,
+      transparent 72%
+    );
+}
+
+
+/* -----------------------------------------
+   DASHBOARD GLASS REFLECTION
+----------------------------------------- */
+
+.hero-dashboard-reflection {
+  background:
+    radial-gradient(
+      circle 190px at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.05),
+      rgba(174, 150, 224, 0.022) 32%,
+      transparent 72%
+    );
+}
+
+
+/* =========================================================
+   FUTURISTIC SCANNING LIGHT
+
+   Only transform + opacity are animated.
+   No animated blur.
+========================================================= */
+
+@keyframes heroScan {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      skewX(-10deg);
+
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.75;
+  }
+
+  88% {
+    opacity: 0.75;
+  }
+
+  100% {
+    transform:
+      translate3d(600%, 0, 0)
+      skewX(-10deg);
+
+    opacity: 0;
+  }
+}
+
+.hero-scan {
+  animation:
+    heroScan
+    18s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* =========================================================
+   REDUCED MOTION / ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-dashboard-reveal,
+  .hero-dashboard-float,
+  .dashboard-stat,
+  .candidate-row,
+  .ai-panel,
+  .hero-card-one,
+  .hero-card-two,
+  .hero-card-three,
+  .hero-card-four,
+  .hero-float-one,
+  .hero-float-two,
+  .hero-float-three,
+  .hero-float-four,
+  .hero-scan {
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    filter: none !important;
+  }
+
+  .hero-parallax {
+    transform: none !important;
+  }
+
+  .hero-pointer-light,
+  .hero-dashboard-reflection {
+    background: none !important;
+  }
+}

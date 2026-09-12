@@ -1,3 +1,6 @@
+import { useEffect, useRef, useState } from "react";
+import useReveal from "../hooks/useReveal";
+
 const FEATURES = [
   {
     id: "sourcing",
@@ -13,11 +16,13 @@ const FEATURES = [
         stroke="currentColor"
       >
         <circle cx="10.5" cy="10.5" r="5.5" strokeWidth="1.7" />
+
         <path
           d="m15 15 4 4"
           strokeWidth="1.7"
           strokeLinecap="round"
         />
+
         <path
           d="M8.5 10.5h4M10.5 8.5v4"
           strokeWidth="1.5"
@@ -172,10 +177,56 @@ const FEATURES = [
 ];
 
 export default function Features() {
+  const sectionRef = useReveal();
+
+  const deckRef = useRef(null);
+
+  const [deckVisible, setDeckVisible] = useState(false);
+
+  useEffect(() => {
+    const element = deckRef.current;
+
+    if (!element) return;
+
+    let timer;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          /*
+            Small pause makes the deck state visible
+            before the cards spread into the grid.
+          */
+          timer = window.setTimeout(() => {
+            setDeckVisible(true);
+          }, 220);
+
+          observer.unobserve(element);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+
+      if (timer) {
+        window.clearTimeout(timer);
+      }
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="features"
       className="
+        reveal-section
         relative overflow-hidden
         bg-[#050505]
         pb-11 pt-5
@@ -183,37 +234,48 @@ export default function Features() {
         lg:pb-14 lg:pt-7
       "
     >
-      {/* Ambient background */}
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
+
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-40 top-[10%] h-[360px] w-[360px] rounded-full bg-[#506FAE]/[0.045] blur-[130px]" />
 
         <div className="absolute -right-40 bottom-[5%] h-[380px] w-[380px] rounded-full bg-[#8D69B5]/[0.045] blur-[140px]" />
 
+        {/* Middle atmosphere */}
+        <div className="absolute left-1/2 top-[58%] h-[320px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8068B3]/[0.018] blur-[125px]" />
+
+        {/* Dot texture */}
         <div
-          className="absolute inset-0 opacity-[0.12]"
+          className="absolute inset-0 opacity-[0.10]"
           style={{
             backgroundImage:
               "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0)",
+
             backgroundSize: "34px 34px",
+
             maskImage:
               "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+
             WebkitMaskImage:
               "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
           }}
         />
       </div>
 
-      {/* Previous section transition */}
+      {/* Section boundary */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto mb-8 max-w-4xl text-center">
-          <div>
-            <p className="section-label text-[#9186B3]">
-              What Minivel ATS Does
-            </p>
-          </div>
+        {/* =====================================================
+            HEADER
+        ===================================================== */}
+
+        <div className="mx-auto mb-9 max-w-4xl text-center">
+          <p className="section-label text-[#9186B3]">
+            What Minivel ATS Does
+          </p>
 
           <h2 className="section-title mt-2.5 text-[#F2F2F4]">
             Everything your recruitment team needs,
@@ -239,247 +301,785 @@ export default function Features() {
           </p>
         </div>
 
-        {/* Feature grid */}
-        <div className="grid gap-3.5 md:grid-cols-2 lg:grid-cols-6">
-          {FEATURES.map((feature, index) => (
-            <article
-              key={feature.id}
-              id={feature.id}
-              className={`
-                feature-card
-                group relative overflow-hidden
-                rounded-[22px]
-                border border-white/[0.065]
-                bg-[#0D0D10]
-                p-5
-                shadow-[0_14px_40px_rgba(0,0,0,0.22)]
-                transition-all duration-500 ease-out
-                hover:-translate-y-[5px]
-                hover:border-white/[0.13]
-                hover:bg-[#111115]
-                hover:shadow-[0_28px_70px_rgba(0,0,0,0.52)]
-                ${index < 3 ? "lg:col-span-2" : ""}
-                ${index === 3 ? "lg:col-span-2 lg:col-start-2" : ""}
-                ${
-                  index === 4
-                    ? "md:col-span-2 lg:col-span-2 lg:col-start-4"
-                    : ""
-                }
-              `}
-              style={{
-                animationDelay: `${index * 80}ms`,
-              }}
-            >
-              {/* Accent atmosphere */}
-              <div
-                className="
-                  pointer-events-none absolute -right-16 -top-16
-                  h-44 w-44 rounded-full
-                  opacity-0 blur-[55px]
-                  transition-all duration-700
-                  group-hover:scale-125
-                  group-hover:opacity-100
-                "
-                style={{ backgroundColor: feature.glow }}
-              />
+        {/* =====================================================
+            DECK → GRID
+        ===================================================== */}
 
-              {/* Large ambient accent */}
-              <div
-                className="
-                  pointer-events-none absolute
-                  -bottom-20 -left-20
-                  h-40 w-40 rounded-full
-                  opacity-0 blur-[60px]
-                  transition-opacity duration-700
-                  group-hover:opacity-40
-                "
-                style={{ backgroundColor: feature.glow }}
-              />
+        <div
+          ref={deckRef}
+          className={`
+            feature-deck-stage
+            relative
 
-              {/* Top reflection */}
-              <div
-                className="
-                  pointer-events-none absolute
-                  left-[15%] right-[15%] top-0
-                  h-px
-                  bg-gradient-to-r
-                  from-transparent via-white/[0.16] to-transparent
-                "
-              />
+            ${deckVisible ? "deck-visible" : ""}
+          `}
+        >
+          {/* Deck floor shadow */}
+          <div
+            className="
+              feature-deck-shadow
+              pointer-events-none
+              absolute
+              left-1/2 top-[44%]
+              h-[210px] w-[56%]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-[60px]
+              bg-black/45
+              blur-[70px]
+            "
+          />
 
-              {/* Moving glass reflection */}
-              <div
-                className="
-                  pointer-events-none absolute inset-0
-                  -translate-x-[130%]
-                  bg-gradient-to-r
-                  from-transparent
-                  via-white/[0.018]
-                  to-transparent
-                  transition-transform
-                  duration-1000
-                  group-hover:translate-x-[130%]
-                "
-              />
+          {/* Very subtle centre glow */}
+          <div
+            className="
+              feature-deck-core
+              pointer-events-none
+              absolute
+              left-1/2 top-[43%]
+              h-[180px] w-[360px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-[#8B72C3]/[0.035]
+              blur-[80px]
+            "
+          />
 
-              <div className="relative">
-                {/* Icon */}
+          <div className="relative grid gap-3.5 md:grid-cols-2 lg:grid-cols-6">
+            {FEATURES.map((feature, index) => (
+              <article
+                key={feature.id}
+                id={feature.id}
+                className={`
+                  feature-deck-card
+
+                  group relative
+                  overflow-hidden
+
+                  rounded-[22px]
+
+                  border border-white/[0.065]
+
+                  bg-[#0D0D10]
+
+                  p-5
+
+                  shadow-[0_14px_40px_rgba(0,0,0,0.22)]
+
+                  ${
+                    index < 3
+                      ? "lg:col-span-2"
+                      : ""
+                  }
+
+                  ${
+                    index === 3
+                      ? "lg:col-span-2 lg:col-start-2"
+                      : ""
+                  }
+
+                  ${
+                    index === 4
+                      ? "md:col-span-2 lg:col-span-2 lg:col-start-4"
+                      : ""
+                  }
+                `}
+                style={{
+                  "--feature-index": index,
+                  "--feature-accent": feature.accent,
+                  "--feature-glow": feature.glow,
+                }}
+              >
+                {/* =================================================
+                    PREMIUM CARD ATMOSPHERE
+                ================================================= */}
+
+                {/* Accent glow */}
                 <div
                   className="
-                    mb-4 flex h-10 w-10
-                    items-center justify-center
-                    rounded-[12px]
-                    border border-white/[0.07]
-                    bg-[#151519]
-                    transition-all duration-500
-                    group-hover:-translate-y-1
-                    group-hover:scale-[1.08]
-                    group-hover:border-white/[0.12]
+                    pointer-events-none
+                    absolute -right-16 -top-16
+
+                    h-44 w-44
+
+                    rounded-full
+
+                    opacity-0
+
+                    blur-[55px]
+
+                    transition-all duration-700
+
+                    group-hover:scale-125
+                    group-hover:opacity-100
                   "
-                  style={{ color: feature.accent }}
-                >
+                  style={{
+                    backgroundColor: feature.glow,
+                  }}
+                />
+
+                {/* Lower glow */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute -bottom-20 -left-20
+
+                    h-40 w-40
+
+                    rounded-full
+
+                    opacity-0
+
+                    blur-[60px]
+
+                    transition-opacity duration-700
+
+                    group-hover:opacity-40
+                  "
+                  style={{
+                    backgroundColor: feature.glow,
+                  }}
+                />
+
+                {/* Surface lighting */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute inset-0
+
+                    opacity-0
+
+                    transition-opacity duration-500
+
+                    group-hover:opacity-100
+                  "
+                  style={{
+                    background: `radial-gradient(
+                      circle at 24% 15%,
+                      ${feature.glow},
+                      transparent 48%
+                    )`,
+                  }}
+                />
+
+                {/* Top reflection */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute left-[15%] right-[15%] top-0
+
+                    h-px
+
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/[0.17]
+                    to-transparent
+
+                    opacity-60
+
+                    transition-opacity duration-500
+
+                    group-hover:opacity-100
+                  "
+                />
+
+                {/* Glass sweep */}
+                <div
+                  className="
+                    feature-card-sheen
+
+                    pointer-events-none
+                    absolute inset-0
+
+                    -translate-x-[140%]
+                    skew-x-[-18deg]
+
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/[0.03]
+                    to-transparent
+                  "
+                />
+
+                {/* =================================================
+                    CARD CONTENT
+                ================================================= */}
+
+                <div className="relative">
+                  {/* Icon */}
                   <div
-                    className="absolute h-8 w-8 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20"
-                    style={{ backgroundColor: feature.accent }}
+                    className="
+                      mb-4
+
+                      flex h-10 w-10
+                      items-center justify-center
+
+                      rounded-[12px]
+
+                      border border-white/[0.07]
+
+                      bg-[#151519]
+
+                      transition-all duration-500
+
+                      group-hover:-translate-y-1
+                      group-hover:scale-[1.08]
+                      group-hover:border-white/[0.13]
+                    "
+                    style={{
+                      color: feature.accent,
+                    }}
+                  >
+                    <div
+                      className="
+                        absolute
+
+                        h-8 w-8
+
+                        rounded-full
+
+                        opacity-0
+
+                        blur-xl
+
+                        transition-opacity duration-500
+
+                        group-hover:opacity-25
+                      "
+                      style={{
+                        backgroundColor: feature.accent,
+                      }}
+                    />
+
+                    <div className="relative">
+                      {feature.icon}
+                    </div>
+                  </div>
+
+                  {/* Label */}
+                  <div
+                    className="
+                      mb-2.5
+
+                      text-[9px]
+                      font-bold uppercase
+
+                      tracking-[0.19em]
+
+                      opacity-80
+                    "
+                    style={{
+                      color: feature.accent,
+                    }}
+                  >
+                    {feature.label}
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="
+                      min-h-[48px]
+
+                      text-[18px]
+                      font-bold
+
+                      leading-[1.32]
+
+                      tracking-[-0.025em]
+
+                      text-[#ECECEF]
+
+                      transition-all duration-300
+
+                      group-hover:-translate-y-[1px]
+                      group-hover:text-white
+                    "
+                  >
+                    {feature.title}
+                  </h3>
+
+                  {/* Divider */}
+                  <div
+                    className="
+                      my-4 h-px
+
+                      bg-gradient-to-r
+                      from-white/[0.07]
+                      via-white/[0.04]
+                      to-transparent
+                    "
                   />
 
-                  <div className="relative">{feature.icon}</div>
-                </div>
-
-                {/* Label */}
-                <div
-                  className="
-                    mb-2.5
-                    text-[9px] font-bold
-                    uppercase tracking-[0.19em]
-                    opacity-80
-                  "
-                  style={{ color: feature.accent }}
-                >
-                  {feature.label}
-                </div>
-
-                {/* Card title */}
-                <h3
-                  className="
-                    min-h-[48px]
-                    text-[18px] font-bold
-                    leading-[1.32]
-                    tracking-[-0.025em]
-                    text-[#ECECEF]
-                    transition-colors duration-300
-                    group-hover:text-white
-                  "
-                >
-                  {feature.title}
-                </h3>
-
-                {/* Divider */}
-                <div className="my-4 h-px bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent" />
-
-                {/* Features */}
-                <ul className="space-y-2.5">
-                  {feature.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="
-                        flex items-start gap-2.5
-                        text-[11.5px]
-                        leading-5
-                        text-[#777781]
-                        transition-colors duration-300
-                        group-hover:text-[#92929C]
-                      "
-                    >
-                      <span
+                  {/* Bullets */}
+                  <ul className="space-y-2.5">
+                    {feature.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
                         className="
-                          mt-[3px] flex h-4 w-4
-                          shrink-0 items-center justify-center
-                          rounded-full
-                          border border-white/[0.055]
-                          bg-white/[0.025]
+                          flex items-start gap-2.5
+
+                          text-[11.5px]
+
+                          leading-5
+
+                          text-[#777781]
+
+                          transition-colors duration-300
+
+                          group-hover:text-[#92929C]
                         "
                       >
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-2.5 w-2.5"
-                          fill="none"
-                          stroke={feature.accent}
+                        <span
+                          className="
+                            mt-[3px]
+
+                            flex h-4 w-4
+                            shrink-0
+                            items-center
+                            justify-center
+
+                            rounded-full
+
+                            border border-white/[0.055]
+
+                            bg-white/[0.025]
+
+                            transition-all duration-300
+
+                            group-hover:border-white/[0.09]
+                          "
                         >
-                          <path
-                            d="m6 12 4 4 8-8"
-                            strokeWidth="2.4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
+                          <svg
+                            viewBox="0 0 24 24"
+                            className="h-2.5 w-2.5"
+                            fill="none"
+                            stroke={feature.accent}
+                          >
+                            <path
+                              d="m6 12 4 4 8-8"
+                              strokeWidth="2.4"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
 
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              {/* Bottom luminous line */}
-              <div
-                className="
-                  pointer-events-none absolute
-                  bottom-0 left-1/2
-                  h-px w-0
-                  -translate-x-1/2
-                  opacity-0
-                  transition-all duration-700
-                  group-hover:w-[58%]
-                  group-hover:opacity-70
-                "
-                style={{
-                  background: `linear-gradient(
-                    90deg,
-                    transparent,
-                    ${feature.accent},
-                    transparent
-                  )`,
-                }}
-              />
-            </article>
-          ))}
+                {/* Bottom luminous line */}
+                <div
+                  className="
+                    pointer-events-none
+
+                    absolute bottom-0 left-1/2
+
+                    h-px w-0
+
+                    -translate-x-1/2
+
+                    opacity-0
+
+                    transition-all duration-700
+
+                    group-hover:w-[58%]
+                    group-hover:opacity-80
+                  "
+                  style={{
+                    background: `linear-gradient(
+                      90deg,
+                      transparent,
+                      ${feature.accent},
+                      transparent
+                    )`,
+                  }}
+                />
+              </article>
+            ))}
+          </div>
         </div>
 
-        {/* Small platform statement */}
-        <div className="mt-7 flex justify-center">
-          <div className="mt-6 text-center">
-            <p className="text-[10px] font-medium tracking-[0.02em] text-[#74747E] sm:text-[11px]">
-              Built to support recruiters from candidate discovery through
-              final decisions.
-            </p>
-          </div>
+        {/* =====================================================
+            BOTTOM COPY
+        ===================================================== */}
+
+        <div className="mt-9 flex justify-center">
+          <p className="text-center text-[10px] font-medium tracking-[0.02em] text-[#74747E] sm:text-[11px]">
+            Built to support recruiters from candidate discovery through final
+            decisions.
+          </p>
         </div>
       </div>
 
+      {/* =====================================================
+          DECK ANIMATION
+      ===================================================== */}
+
       <style>{`
-        @keyframes featureReveal {
+
+        /*
+        =========================================================
+        INITIAL DECK
+
+        On desktop the cards visually collapse toward
+        the middle of the section.
+
+        Their actual grid layout remains intact underneath,
+        so there is no layout shift.
+        =========================================================
+        */
+
+        .feature-deck-card {
+          opacity: 0;
+
+          transform-origin:
+            50% 80%;
+
+          transition:
+            opacity 620ms
+            cubic-bezier(.22,1,.36,1),
+
+            transform 900ms
+            cubic-bezier(.16,1,.3,1),
+
+            border-color 420ms ease,
+
+            background-color 420ms ease,
+
+            box-shadow 420ms ease;
+
+          will-change:
+            transform,
+            opacity;
+        }
+
+
+        /*
+        Individual deck positions.
+
+        Cards visually move toward the centre so
+        the entrance actually resembles a deck.
+        */
+
+        .feature-deck-card:nth-child(1) {
+          transform:
+            translate3d(225px, 82px, 0)
+            rotate(-7deg)
+            scale(.90);
+        }
+
+        .feature-deck-card:nth-child(2) {
+          transform:
+            translate3d(0px, 72px, 0)
+            rotate(-2deg)
+            scale(.92);
+        }
+
+        .feature-deck-card:nth-child(3) {
+          transform:
+            translate3d(-225px, 82px, 0)
+            rotate(6deg)
+            scale(.90);
+        }
+
+        .feature-deck-card:nth-child(4) {
+          transform:
+            translate3d(118px, -105px, 0)
+            rotate(-5deg)
+            scale(.91);
+        }
+
+        .feature-deck-card:nth-child(5) {
+          transform:
+            translate3d(-118px, -105px, 0)
+            rotate(5deg)
+            scale(.91);
+        }
+
+
+        /*
+        =========================================================
+        FAN INTO GRID
+        =========================================================
+        */
+
+        .deck-visible .feature-deck-card {
+          opacity: 1;
+
+          transform:
+            translate3d(0,0,0)
+            rotate(0deg)
+            scale(1);
+        }
+
+
+        /*
+        Sequential release from the deck.
+        */
+
+        .deck-visible .feature-deck-card:nth-child(1) {
+          transition-delay: 0ms;
+        }
+
+        .deck-visible .feature-deck-card:nth-child(2) {
+          transition-delay: 90ms;
+        }
+
+        .deck-visible .feature-deck-card:nth-child(3) {
+          transition-delay: 180ms;
+        }
+
+        .deck-visible .feature-deck-card:nth-child(4) {
+          transition-delay: 270ms;
+        }
+
+        .deck-visible .feature-deck-card:nth-child(5) {
+          transition-delay: 360ms;
+        }
+
+
+        /*
+        =========================================================
+        DECK FLOOR
+        =========================================================
+        */
+
+        .feature-deck-shadow {
+          opacity: .42;
+
+          transform:
+            translate(-50%,-50%)
+            scale(.72);
+
+          transition:
+            opacity 1000ms ease,
+            transform 1000ms
+            cubic-bezier(.22,1,.36,1);
+        }
+
+        .deck-visible .feature-deck-shadow {
+          opacity: .07;
+
+          transform:
+            translate(-50%,-50%)
+            scale(1.12);
+        }
+
+
+        /*
+        The centre glow also fades away as
+        the cards separate.
+        */
+
+        .feature-deck-core {
+          opacity: .8;
+
+          transform:
+            translate(-50%,-50%)
+            scale(.8);
+
+          transition:
+            opacity 1000ms ease,
+            transform 1000ms
+            cubic-bezier(.22,1,.36,1);
+        }
+
+        .deck-visible .feature-deck-core {
+          opacity: .15;
+
+          transform:
+            translate(-50%,-50%)
+            scale(1.15);
+        }
+
+
+        /*
+        =========================================================
+        PREMIUM HOVER
+        =========================================================
+        */
+
+        .deck-visible .feature-deck-card:hover {
+          transform:
+            translate3d(0,-7px,0)
+            perspective(1000px)
+            rotateX(1deg)
+            rotateY(-1deg)
+            scale(1.012);
+
+          border-color:
+            rgba(255,255,255,.135);
+
+          background-color:
+            #111115;
+
+          box-shadow:
+            0 30px 76px
+            rgba(0,0,0,.54);
+
+          transition-delay:
+            0ms;
+        }
+
+
+        /*
+        One-time sheen on hover.
+        */
+
+        .deck-visible
+        .feature-deck-card:hover
+        .feature-card-sheen {
+          animation:
+            featurePremiumSheen
+            850ms ease forwards;
+        }
+
+        @keyframes featurePremiumSheen {
           from {
-            opacity: 0;
-            transform: translateY(14px);
+            transform:
+              translateX(-140%)
+              skewX(-18deg);
           }
 
           to {
-            opacity: 1;
-            transform: translateY(0);
+            transform:
+              translateX(140%)
+              skewX(-18deg);
           }
         }
 
-        .feature-card {
-          animation: featureReveal
-            650ms cubic-bezier(.22,1,.36,1) both;
+
+        /*
+        =========================================================
+        TABLET
+
+        Use a smaller deck so cards cannot
+        overlap outside the viewport.
+        =========================================================
+        */
+
+        @media (max-width: 1023px) {
+
+          .feature-deck-card:nth-child(1) {
+            transform:
+              translate3d(70px, 40px, 0)
+              rotate(-3deg)
+              scale(.95);
+          }
+
+          .feature-deck-card:nth-child(2) {
+            transform:
+              translate3d(-70px, 40px, 0)
+              rotate(3deg)
+              scale(.95);
+          }
+
+          .feature-deck-card:nth-child(3) {
+            transform:
+              translate3d(70px, 20px, 0)
+              rotate(-2deg)
+              scale(.96);
+          }
+
+          .feature-deck-card:nth-child(4) {
+            transform:
+              translate3d(-70px, 20px, 0)
+              rotate(2deg)
+              scale(.96);
+          }
+
+          .feature-deck-card:nth-child(5) {
+            transform:
+              translate3d(0, -20px, 0)
+              rotate(0deg)
+              scale(.96);
+          }
+
+          .deck-visible .feature-deck-card {
+            transform:
+              translate3d(0,0,0)
+              rotate(0deg)
+              scale(1);
+          }
         }
+
+
+        /*
+        =========================================================
+        MOBILE
+
+        Cards rise in like a compact deck rather
+        than moving far horizontally.
+        =========================================================
+        */
+
+        @media (max-width: 767px) {
+
+          .feature-deck-card:nth-child(1),
+          .feature-deck-card:nth-child(2),
+          .feature-deck-card:nth-child(3),
+          .feature-deck-card:nth-child(4),
+          .feature-deck-card:nth-child(5) {
+            transform:
+              translate3d(
+                0,
+                calc(26px + var(--feature-index) * 5px),
+                0
+              )
+              rotate(
+                calc(
+                  (var(--feature-index) - 2) * .8deg
+                )
+              )
+              scale(.97);
+          }
+
+          .deck-visible .feature-deck-card {
+            transform:
+              translate3d(0,0,0)
+              rotate(0deg)
+              scale(1);
+          }
+
+          .deck-visible .feature-deck-card:hover {
+            transform:
+              translate3d(0,-4px,0)
+              scale(1.005);
+          }
+        }
+
+
+        /*
+        =========================================================
+        REDUCED MOTION
+        =========================================================
+        */
 
         @media (prefers-reduced-motion: reduce) {
-          .feature-card {
-            animation: none;
+
+          .feature-deck-card,
+          .deck-visible .feature-deck-card,
+          .deck-visible .feature-deck-card:hover,
+          .feature-deck-shadow,
+          .feature-deck-core {
+            opacity: 1 !important;
+
+            transform: none !important;
+
+            transition: none !important;
+
+            animation: none !important;
+          }
+
+          .feature-card-sheen {
+            display: none;
           }
         }
+
       `}</style>
     </section>
   );

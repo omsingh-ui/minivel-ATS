@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useReveal from "../hooks/useReveal";
 
 const FAQS = [
   {
@@ -149,8 +150,6 @@ function FAQItem({ faq, isOpen, onClick, index }) {
       >
         <div className="overflow-hidden">
           <div className="px-5 pb-5 pt-1 sm:pb-6 sm:pl-16 sm:pr-16">
-            
-
             <p className="max-w-2xl text-[12px] leading-[1.85] text-[#74747E] sm:text-[13px]">
               {faq.a}
             </p>
@@ -177,12 +176,15 @@ function FAQItem({ faq, isOpen, onClick, index }) {
 }
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const revealRef = useReveal();
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section
+      ref={revealRef}
       id="faq"
       className="
+        reveal-section
         relative overflow-hidden bg-[#050505]
         pb-11 pt-7
         sm:pb-12 sm:pt-8
@@ -214,26 +216,26 @@ export default function FAQ() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
-{/* Left */}
-<div className="text-center lg:sticky lg:top-28 lg:text-left">
-  <div>
-    <p className="section-label text-[#9186B3]">
-      Frequently Asked Questions
-    </p>
-  </div>
+          {/* Left */}
+          <div className="text-center lg:sticky lg:top-28 lg:text-left">
+            <div>
+              <p className="section-label text-[#9186B3]">
+                Frequently Asked Questions
+              </p>
+            </div>
 
-  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
-    Have questions
+            <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+              Have questions
 
-    <span className="mt-1 block bg-gradient-to-r from-white via-[#BBB2DA] to-[#9279C9] bg-clip-text text-transparent">
-      before getting started?
-    </span>
-  </h2>
+              <span className="mt-1 block bg-gradient-to-r from-white via-[#BBB2DA] to-[#9279C9] bg-clip-text text-transparent">
+                before getting started?
+              </span>
+            </h2>
 
-  <p className="section-description mx-auto mt-4 max-w-md text-[#74747E] lg:mx-0">
-    Find answers about Minivel ATS, from everyday use and onboarding
-    to integrations, data security and platform features.
-  </p>
+            <p className="section-description mx-auto mt-4 max-w-md text-[#74747E] lg:mx-0">
+              Find answers about Minivel ATS, from everyday use and onboarding
+              to integrations, data security and platform features.
+            </p>
 
             {/* Contact card */}
             <div

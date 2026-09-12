@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import useReveal from "../hooks/useReveal";
 
 const STATS = [
   {
@@ -170,6 +171,7 @@ function StatCard({ stat, active }) {
 }
 
 export default function Stats() {
+  const revealRef = useReveal();
   const sectionRef = useRef(null);
   const [active, setActive] = useState(false);
 
@@ -192,113 +194,115 @@ export default function Stats() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="stats"
-      className="
-        relative overflow-hidden
-        bg-[#050505]
-        pb-11 pt-7
-        sm:pb-12 sm:pt-8
-        lg:pb-13 lg:pt-9
-      "
-    >
-      {/* Previous section boundary */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+    <div ref={revealRef} className="reveal-section">
+      <section
+        ref={sectionRef}
+        id="stats"
+        className="
+          relative overflow-hidden
+          bg-[#050505]
+          pb-11 pt-7
+          sm:pb-12 sm:pt-8
+          lg:pb-13 lg:pt-9
+        "
+      >
+        {/* Previous section boundary */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
 
-      {/* Background atmosphere */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-44 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#5572B5]/[0.045] blur-[145px]" />
+        {/* Background atmosphere */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-44 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#5572B5]/[0.045] blur-[145px]" />
 
-        <div className="absolute -right-40 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#8E70B9]/[0.04] blur-[145px]" />
+          <div className="absolute -right-40 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#8E70B9]/[0.04] blur-[145px]" />
 
-        <div className="absolute bottom-[-220px] left-[38%] h-[420px] w-[420px] rounded-full bg-[#B49773]/[0.025] blur-[145px]" />
+          <div className="absolute bottom-[-220px] left-[38%] h-[420px] w-[420px] rounded-full bg-[#B49773]/[0.025] blur-[145px]" />
 
-        <div
-          className="absolute inset-0 opacity-[0.10]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)",
-            backgroundSize: "54px 54px",
-            maskImage:
-              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-       {/* Header */}
-<div className="mx-auto mb-8 max-w-4xl text-center">
-  <div>
-    <p className="section-label text-[#9186B3]">
-      Minivel in Numbers
-    </p>
-  </div>
-
-  <h2 className="section-title mt-2.5 text-[#F3F3F5]">
-    A clearer view of
-
-    <span className="mt-1 block bg-gradient-to-r from-white via-[#B8B0D8] to-[#9279C9] bg-clip-text text-transparent">
-      what Minivel supports.
-    </span>
-  </h2>
-
-  <p className="section-description mx-auto mt-4 max-w-2xl text-[#74747E]">
-    A snapshot of the scale, reach and recruitment activity
-    supported through Minivel.
-  </p>
-</div>
-
-        {/* Stats board */}
-        <div
-          className="
-            relative overflow-hidden
-            rounded-[26px]
-            border border-white/[0.065]
-            bg-[#0A0A0D]
-            shadow-[0_30px_90px_rgba(0,0,0,0.46)]
-            backdrop-blur-xl
-          "
-        >
-          {/* Board atmosphere */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#846DB9]/[0.025] blur-[100px]" />
-
-          {/* Top reflection */}
-          <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
-
-          <div className="relative grid sm:grid-cols-2 lg:grid-cols-4">
-            {STATS.map((stat, index) => (
-              <div
-                key={stat.label}
-                className={`
-                  ${
-                    index !== STATS.length - 1
-                      ? "lg:border-r lg:border-white/[0.055]"
-                      : ""
-                  }
-
-                  ${
-                    index < 2
-                      ? "sm:border-b sm:border-white/[0.055] lg:border-b-0"
-                      : ""
-                  }
-                `}
-              >
-                <StatCard stat={stat} active={active} />
-              </div>
-            ))}
-          </div>
+          <div
+            className="absolute inset-0 opacity-[0.10]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)",
+              backgroundSize: "54px 54px",
+              maskImage:
+                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+            }}
+          />
         </div>
 
-        {/* Bottom line */}
-        <div className="mt-5 text-center">
-  <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
-    Supporting recruitment from first contact to final hire
-  </p>
-</div>
-      </div>
-    </section>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mx-auto mb-8 max-w-4xl text-center">
+            <div>
+              <p className="section-label text-[#9186B3]">
+                Minivel in Numbers
+              </p>
+            </div>
+
+            <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+              A clearer view of
+
+              <span className="mt-1 block bg-gradient-to-r from-white via-[#B8B0D8] to-[#9279C9] bg-clip-text text-transparent">
+                what Minivel supports.
+              </span>
+            </h2>
+
+            <p className="section-description mx-auto mt-4 max-w-2xl text-[#74747E]">
+              A snapshot of the scale, reach and recruitment activity
+              supported through Minivel.
+            </p>
+          </div>
+
+          {/* Stats board */}
+          <div
+            className="
+              relative overflow-hidden
+              rounded-[26px]
+              border border-white/[0.065]
+              bg-[#0A0A0D]
+              shadow-[0_30px_90px_rgba(0,0,0,0.46)]
+              backdrop-blur-xl
+            "
+          >
+            {/* Board atmosphere */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#846DB9]/[0.025] blur-[100px]" />
+
+            {/* Top reflection */}
+            <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
+
+            <div className="relative grid sm:grid-cols-2 lg:grid-cols-4">
+              {STATS.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`
+                    ${
+                      index !== STATS.length - 1
+                        ? "lg:border-r lg:border-white/[0.055]"
+                        : ""
+                    }
+
+                    ${
+                      index < 2
+                        ? "sm:border-b sm:border-white/[0.055] lg:border-b-0"
+                        : ""
+                    }
+                  `}
+                >
+                  <StatCard stat={stat} active={active} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom line */}
+          <div className="mt-5 text-center">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
+              Supporting recruitment from first contact to final hire
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

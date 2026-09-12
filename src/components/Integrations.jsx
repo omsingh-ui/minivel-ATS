@@ -1,3 +1,4 @@
+import useReveal from "../hooks/useReveal";
 const INTEGRATIONS = [
   {
     name: 'LinkedIn',
@@ -376,12 +377,15 @@ function MinivelCore() {
 }
 
 export default function Integrations() {
+  const revealRef = useReveal();
   return (
-    <section
-      id="integrations"
-      className="
-        relative overflow-hidden
-        bg-[#050505]
+   <section
+  ref={revealRef}
+  id="integrations"
+  className="
+    reveal-section
+    relative overflow-hidden
+    bg-[#050505]
         pb-11 pt-7
         sm:pb-12 sm:pt-8
         lg:pb-13 lg:pt-8

@@ -1,3 +1,4 @@
+import useReveal from "../hooks/useReveal";
 const TRUST_BADGES = [
   {
     label: "GDPR Compliant",
@@ -263,14 +264,17 @@ function SecurityCard({ badge, index }) {
     </div>
   );
 }
-
 export default function TrustCompliance() {
+  const revealRef = useReveal();
+
   return (
-    <section
-      id="security"
-      className="
-        relative overflow-hidden
-        bg-[#050505]
+   <section
+  ref={revealRef}
+  id="security"
+  className="
+    reveal-section
+    relative overflow-hidden
+    bg-[#050505]
         pb-11 pt-7
         sm:pb-12 sm:pt-8
         lg:pb-13 lg:pt-9

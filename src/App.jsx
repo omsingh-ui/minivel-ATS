@@ -25,7 +25,7 @@ function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       <main>

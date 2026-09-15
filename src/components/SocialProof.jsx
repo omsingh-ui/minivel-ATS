@@ -5,49 +5,49 @@ const TEAMS = [
     name: "Recruitment Agencies",
     abbr: "RA",
     desc: "Agency hiring",
-    accent: "#7EA2FF",
+    accent: "#6478C8",
   },
   {
     name: "Staffing Teams",
     abbr: "ST",
     desc: "Workforce delivery",
-    accent: "#A8B2C7",
+    accent: "#73808F",
   },
   {
     name: "Talent Partners",
     abbr: "TP",
     desc: "Talent strategy",
-    accent: "#9184FF",
+    accent: "#7565B5",
   },
   {
     name: "Executive Search",
     abbr: "ES",
     desc: "Leadership hiring",
-    accent: "#B58BFF",
+    accent: "#8967B8",
   },
   {
     name: "Hiring Teams",
     abbr: "HT",
     desc: "Internal hiring",
-    accent: "#69B8F5",
+    accent: "#557FAE",
   },
   {
     name: "Recruitment Ops",
     abbr: "RO",
     desc: "Hiring operations",
-    accent: "#789BFF",
+    accent: "#5F76B8",
   },
   {
     name: "Talent Advisory",
     abbr: "TA",
     desc: "Hiring intelligence",
-    accent: "#A28BEE",
+    accent: "#7663A7",
   },
   {
     name: "People Teams",
     abbr: "PT",
     desc: "People operations",
-    accent: "#B0B7C5",
+    accent: "#7D858F",
   },
 ];
 
@@ -133,69 +133,89 @@ function TeamIcon({ item }) {
   return (
     <div
       className="
-        relative flex h-11 w-11 shrink-0
+        relative
+        flex h-[54px] w-[54px]
+        shrink-0
         items-center justify-center
-        overflow-hidden rounded-[13px]
-        border border-white/[0.07]
-        bg-[#151519]
-        transition-all duration-500 ease-out
+        overflow-hidden
+        rounded-[17px]
 
-        group-hover:scale-[1.08]
-        group-hover:border-white/[0.15]
-        group-hover:bg-[#19191E]
-        group-hover:shadow-[0_10px_30px_rgba(0,0,0,.35)]
+        border border-[#20202A]/[0.07]
+        bg-white
+
+        shadow-[0_7px_22px_rgba(28,28,40,.055)]
+
+        transition-all duration-500
+        ease-[cubic-bezier(.22,1,.36,1)]
+
+        group-hover:-translate-y-[1px]
+        group-hover:border-[#20202A]/[0.11]
+        group-hover:shadow-[0_12px_30px_rgba(28,28,40,.09)]
       "
     >
-      {/* Accent atmosphere */}
+      {/* Permanent soft brand tint */}
       <div
         className="
+          pointer-events-none
           absolute inset-0
-          opacity-[0.07]
-          transition-all duration-500
-          group-hover:scale-125
-          group-hover:opacity-[0.20]
+          opacity-[0.09]
+          transition-opacity duration-500
+          group-hover:opacity-[0.16]
         "
         style={{
           background: `radial-gradient(
-            circle at 30% 20%,
+            circle at 28% 22%,
             ${item.accent},
-            transparent 68%
+            transparent 72%
           )`,
         }}
       />
 
-      {/* Icon */}
+      {/* Inner premium surface */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-[5px]
+          rounded-[13px]
+          bg-white/55
+          opacity-80
+          backdrop-blur-sm
+        "
+      />
+
+      {/* Soft colored halo behind icon */}
+      <div
+        className="
+          pointer-events-none
+          absolute left-1/2 top-1/2
+          h-8 w-8
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+          opacity-[0.08]
+          blur-[11px]
+          transition-all duration-500
+          group-hover:scale-125
+          group-hover:opacity-[0.18]
+        "
+        style={{ backgroundColor: item.accent }}
+      />
+
       <svg
         className="
-          relative h-[19px] w-[19px]
-          transition-all duration-500
-          group-hover:-translate-y-[1px]
-          group-hover:scale-[1.10]
+          relative
+          h-[22px] w-[22px]
+          drop-shadow-[0_2px_5px_rgba(20,20,30,.06)]
         "
         viewBox="0 0 24 24"
         fill="none"
         stroke={item.accent}
-        strokeWidth="1.55"
+        strokeWidth="1.65"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         {icons[item.abbr]}
       </svg>
-
-      {/* Bottom icon accent */}
-      <div
-        className="
-          absolute bottom-0 left-1/2
-          h-px w-5
-          -translate-x-1/2
-          opacity-45
-          blur-[1px]
-          transition-all duration-500
-          group-hover:w-7
-          group-hover:opacity-90
-        "
-        style={{ backgroundColor: item.accent }}
-      />
     </div>
   );
 }
@@ -204,181 +224,191 @@ function TeamCard({ item }) {
   return (
     <div
       className="
-        group relative
-        flex min-w-[235px]
-        items-center gap-3.5
+        group
+        relative
+
+        flex min-w-[260px]
+        items-center gap-4
+
         overflow-hidden
-        rounded-[18px]
-        border border-white/[0.065]
-        bg-[#0E0E11]/94
-        px-4 py-3.5
-        shadow-[0_14px_40px_rgba(0,0,0,0.28)]
-        backdrop-blur-xl
+        rounded-[21px]
 
-        transition-all duration-500 ease-out
+        border border-[#20202A]/[0.065]
 
-        hover:-translate-y-[4px]
-        hover:scale-[1.015]
-        hover:border-white/[0.15]
-        hover:bg-[#141419]
-        hover:shadow-[0_28px_70px_rgba(0,0,0,0.56)]
+        bg-white
+
+        px-[18px] py-[17px]
+
+        shadow-[0_8px_28px_rgba(24,24,35,.045)]
+
+        transition-all duration-500
+        ease-[cubic-bezier(.22,1,.36,1)]
+
+        hover:-translate-y-[5px]
+        hover:border-[#37303F]/[0.13]
+        hover:shadow-[0_24px_58px_rgba(39,34,54,.12)]
       "
     >
-      {/* Accent glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute -left-10 top-1/2
-          h-28 w-28
-          -translate-y-1/2
-          scale-75
-          rounded-full
-          opacity-0
-          blur-[40px]
-          transition-all duration-700
-
-          group-hover:scale-110
-          group-hover:opacity-[0.14]
-        "
-        style={{ backgroundColor: item.accent }}
-      />
-
-      {/* Secondary depth glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute -right-12 bottom-[-45px]
-          h-24 w-24
-          rounded-full
-          opacity-0
-          blur-[44px]
-          transition-all duration-700
-          group-hover:opacity-[0.06]
-        "
-        style={{ backgroundColor: item.accent }}
-      />
-
-      {/* Glass sweep */}
+      {/* Permanent soft color wash */}
       <div
         className="
           pointer-events-none
           absolute inset-0
-          translate-x-[-135%]
-          skew-x-[-18deg]
-          bg-gradient-to-r
-          from-transparent
-          via-white/[0.04]
-          to-transparent
-          transition-transform duration-700
-          group-hover:translate-x-[135%]
+
+          opacity-[0.035]
+
+          transition-opacity duration-500
+
+          group-hover:opacity-[0.085]
         "
+        style={{
+          background: `radial-gradient(
+            circle at 10% 50%,
+            ${item.accent},
+            transparent 58%
+          )`,
+        }}
       />
 
-      {/* Top reflection */}
+      {/* Secondary color depth */}
       <div
         className="
           pointer-events-none
-          absolute left-[16%] right-[16%] top-0
-          h-px
-          bg-gradient-to-r
-          from-transparent
-          via-white/[0.18]
-          to-transparent
-          opacity-55
+          absolute
+          -right-20 -top-20
+
+          h-[170px] w-[170px]
+          rounded-full
+
+          opacity-[0.018]
+          blur-[50px]
+
+          transition-all duration-700
+
+          group-hover:scale-110
+          group-hover:opacity-[0.07]
+        "
+        style={{
+          backgroundColor: item.accent,
+        }}
+      />
+
+      {/* Larger atmospheric glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+
+          -left-20 top-1/2
+
+          h-[190px] w-[190px]
+
+          -translate-y-1/2
+          scale-75
+
+          rounded-full
+
+          opacity-0
+          blur-[65px]
+
+          transition-all duration-700
+
+          group-hover:scale-110
+          group-hover:opacity-[0.11]
+        "
+        style={{
+          backgroundColor: item.accent,
+        }}
+      />
+
+      {/* Clean glass-like surface */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+
+          bg-gradient-to-br
+          from-white/60
+          via-transparent
+          to-white/20
+
+          opacity-40
+
           transition-opacity duration-500
-          group-hover:opacity-100
+
+          group-hover:opacity-70
+        "
+      />
+
+      {/* Soft moving reflection — no line */}
+      <div
+        className="
+          pointer-events-none
+
+          absolute
+          -left-[70%]
+          top-[-70%]
+
+          h-[240%]
+          w-[35%]
+
+          rotate-[16deg]
+
+          bg-white/45
+          blur-[16px]
+
+          opacity-0
+
+          transition-all
+          duration-[900ms]
+          ease-out
+
+          group-hover:left-[135%]
+          group-hover:opacity-60
         "
       />
 
       <TeamIcon item={item} />
 
-      <div
-        className="
-          relative min-w-0 flex-1
-          transition-transform duration-500
-          group-hover:translate-x-[2px]
-        "
-      >
+      <div className="relative min-w-0 flex-1">
         <p
           className="
             truncate
-            text-[12.5px]
+
+            text-[13px]
             font-bold
-            tracking-[-0.012em]
-            text-[#E8E8EC]
+            tracking-[-0.015em]
+
+            text-[#232329]
+
             transition-colors duration-300
-            group-hover:text-white
+
+            group-hover:text-[#141418]
           "
         >
           {item.name}
         </p>
 
-        <div className="mt-1.5 flex items-center gap-2">
-          <span className="relative flex h-1.5 w-1.5">
-            <span
-              className="
-                absolute inline-flex
-                h-full w-full
-                rounded-full
-                opacity-0
-                group-hover:animate-ping
-                group-hover:opacity-20
-              "
-              style={{ backgroundColor: item.accent }}
-            />
+        <p
+          className="
+            mt-1.5
 
-            <span
-              className="
-                relative h-1.5 w-1.5
-                rounded-full
-                transition-all duration-300
-                group-hover:scale-110
-              "
-              style={{
-                backgroundColor: item.accent,
-                boxShadow: `0 0 8px ${item.accent}`,
-              }}
-            />
-          </span>
+            whitespace-nowrap
 
-          <span
-            className="
-              whitespace-nowrap
-              text-[9px]
-              font-medium
-              tracking-[0.025em]
-              text-[#686872]
-              transition-colors duration-300
-              group-hover:text-[#90909A]
-            "
-          >
-            {item.desc}
-          </span>
-        </div>
+            text-[9.5px]
+            font-medium
+            tracking-[0.015em]
+
+            text-[#7C7C86]
+
+            transition-colors duration-300
+
+            group-hover:text-[#575761]
+          "
+        >
+          {item.desc}
+        </p>
       </div>
-
-      {/* Bottom accent */}
-      <div
-        className="
-          pointer-events-none
-          absolute bottom-0 left-1/2
-          h-px w-0
-          -translate-x-1/2
-          opacity-0
-          blur-[0.5px]
-          transition-all duration-700
-          group-hover:w-[54%]
-          group-hover:opacity-80
-        "
-        style={{
-          background: `linear-gradient(
-            90deg,
-            transparent,
-            ${item.accent},
-            transparent
-          )`,
-        }}
-      />
     </div>
   );
 }
@@ -416,264 +446,224 @@ export default function SocialProof() {
         className="
           reveal-section
           relative overflow-hidden
-          bg-[#050505]
-          py-9
-          sm:py-10
-          lg:py-11
+
+          bg-white
+
+          py-11
+          sm:py-12
+          lg:py-12
         "
       >
-        {/* =====================================================
-            TOP TRANSITION
-        ===================================================== */}
-
+        {/* section transition */}
         <div
           className="
             pointer-events-none
             absolute inset-x-0 top-0
             h-px
+
             bg-gradient-to-r
             from-transparent
-            via-white/[0.07]
+            via-[#25252D]/[0.08]
             to-transparent
           "
         />
 
-        {/* =====================================================
-            BACKGROUND DEPTH
-        ===================================================== */}
-
+        {/* background depth */}
         <div className="pointer-events-none absolute inset-0">
-          {/* Left violet atmosphere */}
           <div
             className="
               absolute
-              left-[5%] top-[-140px]
-              h-[330px] w-[330px]
+              left-[4%] top-[-170px]
+
+              h-[360px] w-[360px]
               rounded-full
-              bg-[#765AB9]/[0.048]
-              blur-[130px]
+
+              bg-[#765AB9]/[0.035]
+              blur-[145px]
             "
           />
 
-          {/* Right blue atmosphere */}
           <div
             className="
               absolute
-              bottom-[-150px] right-[5%]
-              h-[350px] w-[350px]
+              bottom-[-180px] right-[4%]
+
+              h-[370px] w-[370px]
               rounded-full
-              bg-[#5579CB]/[0.04]
-              blur-[140px]
+
+              bg-[#5579CB]/[0.03]
+              blur-[150px]
             "
           />
 
-          {/* Center depth */}
           <div
             className="
               absolute
               left-1/2 top-[62%]
+
               h-[220px] w-[720px]
+
               -translate-x-1/2
               -translate-y-1/2
+
               rounded-full
-              bg-[#846DB9]/[0.022]
+
+              bg-[#846DB9]/[0.018]
               blur-[125px]
             "
           />
 
-          {/* Texture */}
+          {/* very restrained texture */}
           <div
-            className="absolute inset-0 opacity-[0.10]"
+            className="absolute inset-0 opacity-[0.18]"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0)",
-              backgroundSize: "32px 32px",
+                "radial-gradient(circle at 1px 1px, rgba(38,38,48,0.08) 1px, transparent 0)",
+              backgroundSize: "34px 34px",
               maskImage:
-                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
+                "linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)",
               WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
+                "linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)",
             }}
           />
         </div>
 
         <div className="relative">
-          {/* =====================================================
-              HEADING
-          ===================================================== */}
-
+          {/* Header — no eyebrow label */}
           <div
             className="
-              mx-auto mb-8
+              mx-auto mb-9
               max-w-7xl
               px-4
               text-center
+
               sm:px-6
               lg:px-8
             "
           >
-            <p className="section-label text-[#9186B3]">
-              Built for Recruitment Teams
-            </p>
-
-            <h2
-              className="
-                section-title
-                mx-auto mt-2.5
-                max-w-4xl
-                text-[#F3F3F5]
-              "
-            >
+            <h2 className="section-title">
               Designed for the teams managing hiring every day.
             </h2>
 
             <p
-              className="
-                section-description
-                mx-auto mt-4
-                max-w-2xl
-                text-[#74747E]
-              "
+              className="section-description mt-4"
             >
               Built to support recruiters across sourcing, screening,
               candidate management and everyday hiring work.
             </p>
           </div>
 
-          {/* =====================================================
-              SINGLE PREMIUM MARQUEE
-          ===================================================== */}
-
-          <div className="relative py-2">
-            {/* Very subtle marquee base */}
+          {/* Premium single-row marquee */}
+          <div className="relative py-3">
+            {/* soft base */}
             <div
               className="
                 pointer-events-none
                 absolute inset-x-[12%] top-1/2
-                h-24
+
+                h-28
                 -translate-y-1/2
+
                 rounded-full
-                bg-[#8873C0]/[0.018]
-                blur-[70px]
+
+                bg-[#7661A7]/[0.018]
+                blur-[75px]
               "
             />
 
-            {/* Left cinematic fade */}
+            {/* Left fade */}
             <div
               className="
                 pointer-events-none
                 absolute bottom-0 left-0 top-0
                 z-20
+
                 w-20
+
                 bg-gradient-to-r
-                from-[#050505]
-                via-[#050505]/98
+                from-white
+                via-white/95
                 to-transparent
+
                 sm:w-36
                 lg:w-52
               "
             />
 
-            {/* Right cinematic fade */}
+            {/* Right fade */}
             <div
               className="
                 pointer-events-none
                 absolute bottom-0 right-0 top-0
                 z-20
+
                 w-20
+
                 bg-gradient-to-l
-                from-[#050505]
-                via-[#050505]/98
+                from-white
+                via-white/95
                 to-transparent
+
                 sm:w-36
                 lg:w-52
               "
             />
 
-            <MovingRow
-              items={TEAMS}
-              speed="52s"
-            />
+            <MovingRow items={TEAMS} speed="52s" />
           </div>
 
-          {/* =====================================================
-              BOTTOM STATEMENT
-          ===================================================== */}
+         {/* Bottom statement */}
+<div
+  className="
+    mx-auto mt-9
+    max-w-7xl
+    px-4
+    text-center
 
-          <div
-            className="
-              mx-auto mt-8
-              max-w-7xl
-              px-4
-              text-center
-              sm:px-6
-              lg:px-8
-            "
-          >
-            <div
-              className="
-                mx-auto flex
-                max-w-2xl
-                items-center
-                justify-center
-                gap-4
-              "
-            >
-              <span
-                className="
-                  hidden h-px w-12
-                  bg-gradient-to-r
-                  from-transparent
-                  to-white/[0.10]
-                  sm:block
-                "
-              />
+    sm:px-6
+    lg:px-8
+  "
+>
+  <div
+    className="
+      mx-auto flex
+      max-w-2xl
+      items-center
+      justify-center
+      gap-4
+    "
+  >
+    <p
+      className="
+        text-[10px]
+        font-medium
+        tracking-[0.025em]
+        text-[#73737D]
 
-              <p
-                className="
-                  text-[10px]
-                  font-medium
-                  tracking-[0.025em]
-                  text-[#74747E]
-                  sm:text-[11px]
-                "
-              >
-                Everything your recruitment team needs to manage hiring in one
-                place.
-              </p>
-
-              <span
-                className="
-                  hidden h-px w-12
-                  bg-gradient-to-l
-                  from-transparent
-                  to-white/[0.10]
-                  sm:block
-                "
-              />
-            </div>
-          </div>
+        sm:text-[11px]
+      "
+    >
+      Everything your recruitment team needs to manage hiring in one
+      place.
+    </p>
+  </div>
+</div>
         </div>
 
-        {/* =====================================================
-            BOTTOM TRANSITION
-        ===================================================== */}
-
+        {/* bottom transition */}
         <div
           className="
             pointer-events-none
             absolute inset-x-0 bottom-0
             h-px
+
             bg-gradient-to-r
             from-transparent
-            via-white/[0.045]
+            via-[#25252D]/[0.065]
             to-transparent
           "
         />
       </section>
-
-      {/* =======================================================
-          MOTION
-      ======================================================= */}
 
       <style>{`
         @keyframes socialMove {

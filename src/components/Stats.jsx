@@ -8,8 +8,7 @@ const STATS = [
     display: "2,400+",
     label: "Recruiters Using Minivel",
     subtext: "Across global recruitment teams",
-    accent: "#8EA8EA",
-    glow: "rgba(100,130,220,.16)",
+    accent: "#667CC2",
   },
   {
     value: 1.8,
@@ -17,8 +16,7 @@ const STATS = [
     display: "1.8M+",
     label: "Candidates Processed",
     subtext: "Across connected hiring workflows",
-    accent: "#A58DDE",
-    glow: "rgba(145,110,210,.15)",
+    accent: "#7863A5",
   },
   {
     value: 850,
@@ -26,8 +24,7 @@ const STATS = [
     display: "850+",
     label: "Client Companies",
     subtext: "Supporting growing hiring teams",
-    accent: "#8EA9B6",
-    glow: "rgba(110,145,160,.13)",
+    accent: "#637E8B",
   },
   {
     value: 2019,
@@ -35,8 +32,7 @@ const STATS = [
     display: "2019",
     label: "Year Founded",
     subtext: "Building better recruitment experiences",
-    accent: "#B69A79",
-    glow: "rgba(170,132,91,.12)",
+    accent: "#9A795B",
   },
 ];
 
@@ -70,7 +66,7 @@ function useCountUp(target, active, duration = 1500) {
   return value;
 }
 
-function StatCard({ stat, active }) {
+function StatItem({ stat, active, index }) {
   const count = useCountUp(stat.value, active);
 
   let formatted;
@@ -80,7 +76,7 @@ function StatCard({ stat, active }) {
   } else if (stat.value >= 1000 && stat.value !== 2019) {
     formatted = `${Math.round(count).toLocaleString()}+`;
   } else if (stat.value === 2019) {
-    formatted = active ? Math.round(count) : 0;
+    formatted = active ? Math.round(count) : stat.display;
   } else {
     formatted = `${Math.round(count)}${stat.suffix}`;
   }
@@ -88,74 +84,96 @@ function StatCard({ stat, active }) {
   return (
     <div
       className="
-        group relative flex min-h-[195px] flex-col justify-center
-        overflow-hidden px-7 py-7
-        transition-all duration-500 ease-out
-        hover:bg-white/[0.018]
-        lg:min-h-[205px] lg:px-8
+        stat-item
+        group relative
+        min-h-[190px]
+        px-5 py-7
+        sm:px-7
+        lg:min-h-[215px]
+        lg:px-8 lg:py-8
       "
+      style={{
+        "--stat-accent": stat.accent,
+        "--stat-delay": `${index * 90}ms`,
+      }}
     >
-      {/* Hover atmosphere */}
+      {/* very subtle hover surface */}
       <div
         className="
-          pointer-events-none absolute left-1/2 top-1/2
-          h-[250px] w-[250px]
-          -translate-x-1/2 -translate-y-1/2
-          scale-75 rounded-full
-          opacity-0 blur-[70px]
-          transition-all duration-700
-          group-hover:scale-110
+          pointer-events-none
+          absolute inset-2
+          rounded-[20px]
+          bg-white
+          opacity-0
+          shadow-[0_16px_45px_rgba(32,29,42,.06)]
+          transition-all duration-500
           group-hover:opacity-100
         "
-        style={{ backgroundColor: stat.glow }}
       />
 
-      {/* Light sweep */}
       <div
         className="
-          pointer-events-none absolute -left-[130%] top-0
-          h-full w-[55%] rotate-[12deg]
-          bg-gradient-to-r
-          from-transparent via-white/[0.025] to-transparent
-          transition-all duration-[950ms]
-          group-hover:left-[135%]
+          relative z-10
+          flex h-full flex-col
+          justify-between
+          transition-transform duration-500
+          group-hover:-translate-y-[2px]
         "
-      />
+      >
+       
 
-      {/* Top highlight */}
-      <div className="pointer-events-none absolute left-[18%] right-[18%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.09] to-transparent" />
+        <div>
+          <div
+            className="
+              text-[42px]
+              font-black
+              leading-none
+              tracking-[-0.055em]
+              sm:text-[46px]
+              lg:text-[50px]
+            "
+            style={{ color: stat.accent }}
+          >
+            {active ? formatted : stat.display}
+          </div>
 
-      <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
-        <div
-          className="
-            text-[40px] font-black leading-none
-            tracking-[-0.055em]
-            transition-all duration-500
-            sm:text-[45px]
-            lg:text-[49px]
-          "
-          style={{ color: stat.accent }}
-        >
-          {active ? formatted : stat.display}
+          <h3
+            className="
+              mt-4
+              text-[13px]
+              font-bold
+              tracking-[-0.012em]
+              text-[#24242B]
+            "
+          >
+            {stat.label}
+          </h3>
+
+          <p
+            className="
+              mt-2
+              max-w-[205px]
+              text-[10.5px]
+              leading-[1.65]
+              text-[#777781]
+            "
+          >
+            {stat.subtext}
+          </p>
         </div>
-
-        <h3 className="mt-4 text-[13px] font-bold tracking-[-0.01em] text-[#EDEDF0] transition-colors duration-500 group-hover:text-white">
-          {stat.label}
-        </h3>
-
-        <p className="mt-2 max-w-[205px] text-[10.5px] leading-[1.7] text-[#666671] transition-colors duration-500 group-hover:text-[#85858F]">
-          {stat.subtext}
-        </p>
       </div>
 
-      {/* Bottom accent */}
+      {/* restrained bottom accent */}
       <div
         className="
-          pointer-events-none absolute bottom-0 left-1/2
-          h-px w-0 -translate-x-1/2
-          opacity-0 transition-all duration-700
-          group-hover:w-[48%]
-          group-hover:opacity-70
+          pointer-events-none
+          absolute bottom-0 left-1/2
+          h-px w-0
+          -translate-x-1/2
+          opacity-0
+          transition-all duration-500
+          group-hover:w-[42%]
+          group-hover:opacity-50
         "
         style={{
           background: `linear-gradient(
@@ -173,9 +191,14 @@ function StatCard({ stat, active }) {
 export default function Stats() {
   const revealRef = useReveal();
   const sectionRef = useRef(null);
+
   const [active, setActive] = useState(false);
 
   useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -183,12 +206,12 @@ export default function Stats() {
           observer.disconnect();
         }
       },
-      { threshold: 0.35 }
+      {
+        threshold: 0.3,
+      }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    observer.observe(section);
 
     return () => observer.disconnect();
   }, []);
@@ -200,108 +223,250 @@ export default function Stats() {
         id="stats"
         className="
           relative overflow-hidden
-          bg-[#050505]
-          pb-11 pt-7
-          sm:pb-12 sm:pt-8
-          lg:pb-13 lg:pt-9
+          bg-white
+          pb-16 pt-14
+          sm:pb-18 sm:pt-16
+          lg:pb-20 lg:pt-12
         "
       >
-        {/* Previous section boundary */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+        {/* top boundary */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-x-0 top-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-[#25252D]/[0.07]
+            to-transparent
+          "
+        />
 
-        {/* Background atmosphere */}
+        {/* restrained background atmosphere */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-44 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#5572B5]/[0.045] blur-[145px]" />
-
-          <div className="absolute -right-40 top-[-120px] h-[420px] w-[420px] rounded-full bg-[#8E70B9]/[0.04] blur-[145px]" />
-
-          <div className="absolute bottom-[-220px] left-[38%] h-[420px] w-[420px] rounded-full bg-[#B49773]/[0.025] blur-[145px]" />
+          <div
+            className="
+              absolute
+              -left-44 top-[-130px]
+              h-[420px] w-[420px]
+              rounded-full
+              bg-[#5572B5]/[0.03]
+              blur-[150px]
+            "
+          />
 
           <div
-            className="absolute inset-0 opacity-[0.10]"
+            className="
+              absolute
+              -right-40 top-[-130px]
+              h-[420px] w-[420px]
+              rounded-full
+              bg-[#8268AA]/[0.03]
+              blur-[150px]
+            "
+          />
+
+          <div
+            className="
+              absolute
+              bottom-[-220px] left-[38%]
+              h-[420px] w-[420px]
+              rounded-full
+              bg-[#A88968]/[0.02]
+              blur-[150px]
+            "
+          />
+
+          <div
+            className="absolute inset-0 opacity-[0.13]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)",
-              backgroundSize: "54px 54px",
+                "radial-gradient(circle at 1px 1px, rgba(35,35,45,.07) 1px, transparent 0)",
+              backgroundSize: "36px 36px",
               maskImage:
-                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
               WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+                "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
             }}
           />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mx-auto mb-8 max-w-4xl text-center">
-            <div>
-              <p className="section-label text-[#9186B3]">
-                Minivel in Numbers
-              </p>
-            </div>
-
-            <h2 className="section-title mt-2.5 text-[#F3F3F5]">
+        <div
+          className="
+            relative mx-auto
+            max-w-7xl
+            px-4
+            sm:px-6
+            lg:px-8
+          "
+        >
+          {/* HEADER — NO SMALL LABEL */}
+          <div
+            className="
+              mx-auto
+              mb-10
+              text-center
+              sm:mb-12
+              lg:mb-14
+            "
+          >
+            <h2 className="section-title">
               A clearer view of
-
-              <span className="mt-1 block bg-gradient-to-r from-white via-[#B8B0D8] to-[#9279C9] bg-clip-text text-transparent">
+              <span
+                className="
+                  mt-1 block
+                  bg-gradient-to-r
+                  from-[#25232A]
+                  via-[#55496F]
+                  to-[#66528F]
+                  bg-clip-text
+                  text-transparent
+                "
+              >
                 what Minivel supports.
               </span>
             </h2>
 
-            <p className="section-description mx-auto mt-4 max-w-2xl text-[#74747E]">
+           <p className="section-description mt-4">
               A snapshot of the scale, reach and recruitment activity
               supported through Minivel.
             </p>
           </div>
 
-          {/* Stats board */}
+          {/* EDITORIAL STAT BOARD */}
           <div
             className="
               relative overflow-hidden
               rounded-[26px]
-              border border-white/[0.065]
-              bg-[#0A0A0D]
-              shadow-[0_30px_90px_rgba(0,0,0,0.46)]
-              backdrop-blur-xl
+              border border-[#20202A]/[0.075]
+              bg-[#FAFAFB]
+              shadow-[0_18px_55px_rgba(30,30,42,.045)]
             "
           >
-            {/* Board atmosphere */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#846DB9]/[0.025] blur-[100px]" />
+            {/* top reflection */}
+            <div
+              className="
+                pointer-events-none
+                absolute left-[8%] right-[8%] top-0
+                h-px
+                bg-gradient-to-r
+                from-transparent
+                via-[#393441]/[0.12]
+                to-transparent
+              "
+            />
 
-            {/* Top reflection */}
-            <div className="absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
-
-            <div className="relative grid sm:grid-cols-2 lg:grid-cols-4">
+            <div
+              className="
+                relative grid
+                sm:grid-cols-2
+                lg:grid-cols-4
+              "
+            >
               {STATS.map((stat, index) => (
                 <div
                   key={stat.label}
                   className={`
+                    relative
+
                     ${
                       index !== STATS.length - 1
-                        ? "lg:border-r lg:border-white/[0.055]"
+                        ? "lg:border-r lg:border-[#24242D]/[0.07]"
                         : ""
                     }
 
                     ${
                       index < 2
-                        ? "sm:border-b sm:border-white/[0.055] lg:border-b-0"
+                        ? "sm:border-b sm:border-[#24242D]/[0.07] lg:border-b-0"
+                        : ""
+                    }
+
+                    ${
+                      index === 0
+                        ? "border-b border-[#24242D]/[0.07] sm:border-b"
+                        : ""
+                    }
+
+                    ${
+                      index === 2
+                        ? "border-b border-[#24242D]/[0.07] sm:border-b-0"
                         : ""
                     }
                   `}
                 >
-                  <StatCard stat={stat} active={active} />
+                  <StatItem
+                    stat={stat}
+                    active={active}
+                    index={index}
+                  />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Bottom line */}
-          <div className="mt-5 text-center">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
-              Supporting recruitment from first contact to final hire
-            </p>
-          </div>
+         {/* bottom statement */}
+<div
+  className="
+    mx-auto mt-7
+    flex max-w-2xl
+    items-center justify-center
+    gap-4
+    text-center
+  "
+>
+  <p
+    className="
+      text-[10px]
+      font-medium
+      tracking-[0.02em]
+      text-[#73737D]
+      sm:text-[11px]
+    "
+  >
+    Supporting recruitment from first contact to final hire.
+  </p>
+</div>
         </div>
+
+        {/* bottom boundary */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-x-0 bottom-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-[#25252D]/[0.065]
+            to-transparent
+          "
+        />
+
+        <style>{`
+          .stat-item {
+            opacity: 0;
+            transform: translateY(12px);
+
+            transition:
+              opacity 600ms cubic-bezier(.22,1,.36,1),
+              transform 700ms cubic-bezier(.22,1,.36,1);
+
+            transition-delay: var(--stat-delay);
+          }
+
+          .reveal-visible .stat-item,
+          .is-visible .stat-item {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .stat-item {
+              opacity: 1 !important;
+              transform: none !important;
+              transition: none !important;
+            }
+          }
+        `}</style>
       </section>
     </div>
   );

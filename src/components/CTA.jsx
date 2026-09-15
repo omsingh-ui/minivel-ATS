@@ -3,311 +3,547 @@ import useReveal from "../hooks/useReveal";
 
 export default function CTA() {
   const revealRef = useReveal();
+
   return (
-  <section
-  ref={revealRef}
-  className="
-    reveal-section
-    relative overflow-hidden
-        bg-[#050505]
-        pb-10 pt-7
-        sm:pb-11 sm:pt-8
-        lg:pb-12 lg:pt-9
-      "
-    >
-      {/* Section boundary */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.045] to-transparent" />
+    <>
+      <section
+        ref={revealRef}
+        className="
+          reveal-section
+          relative overflow-hidden
+          bg-white
+          px-4 py-16
+          sm:px-6 sm:py-20
+          lg:px-8 lg:py-12
+        "
+      >
+        {/* Section separator */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent" />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div
-          className="
-            group relative overflow-hidden
-            rounded-[30px]
-            border border-white/[0.075]
-            bg-[#09090C]
-            px-6 py-12
-            text-center
-            shadow-[0_35px_100px_rgba(0,0,0,0.55)]
-            sm:px-10 sm:py-14
-            lg:px-16 lg:py-16
-          "
-        >
-          {/* Base depth */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.025] via-transparent to-[#8E73C4]/[0.025]" />
-
-          {/* Left atmosphere */}
+        <div className="relative mx-auto max-w-7xl">
           <div
             className="
-              pointer-events-none absolute
-              -left-32 -top-32
-              h-[350px] w-[350px]
-              rounded-full
-              bg-[#5575BE]/[0.10]
-              blur-[120px]
-              transition-all duration-1000
-              group-hover:scale-125
-              group-hover:bg-[#5575BE]/[0.14]
+              cta-panel
+              group relative isolate
+              overflow-hidden
+              rounded-[30px]
+              border border-white/[0.09]
+              bg-[#0C0C10]
+              px-6 py-14
+              shadow-[0_30px_90px_rgba(25,20,35,0.18)]
+              sm:px-10 sm:py-16
+              lg:px-16 lg:py-[76px]
             "
-          />
+          >
+            {/* =========================
+                BACKGROUND
+            ========================= */}
 
-          {/* Right atmosphere */}
-          <div
-            className="
-              pointer-events-none absolute
-              -bottom-40 -right-28
-              h-[390px] w-[390px]
-              rounded-full
-              bg-[#9172C5]/[0.10]
-              blur-[125px]
-              transition-all duration-1000
-              group-hover:scale-125
-              group-hover:bg-[#9172C5]/[0.14]
-            "
-          />
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/[0.025] via-transparent to-[#8C72BF]/[0.035]" />
 
-          {/* Central glow */}
-          <div
-            className="
-              pointer-events-none absolute
-              left-1/2 top-[45%]
-              h-[250px] w-[520px]
-              -translate-x-1/2 -translate-y-1/2
-              rounded-full
-              bg-[#8974BC]/[0.055]
-              blur-[110px]
-            "
-          />
-
-          {/* Dot matrix */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.10]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0)",
-              backgroundSize: "30px 30px",
-              maskImage:
-                "radial-gradient(circle at center, black 0%, transparent 72%)",
-              WebkitMaskImage:
-                "radial-gradient(circle at center, black 0%, transparent 72%)",
-            }}
-          />
-
-          {/* Top reflection */}
-          <div
-            className="
-              pointer-events-none absolute
-              left-1/2 top-0
-              h-px w-[64%]
-              -translate-x-1/2
-              bg-gradient-to-r
-              from-transparent
-              via-white/[0.20]
-              to-transparent
-            "
-          />
-
-          {/* Side edge details */}
-          <div className="pointer-events-none absolute left-0 top-[28%] h-[44%] w-px bg-gradient-to-b from-transparent via-[#7694DB]/30 to-transparent" />
-
-          <div className="pointer-events-none absolute right-0 top-[28%] h-[44%] w-px bg-gradient-to-b from-transparent via-[#9D82D4]/30 to-transparent" />
-
-          {/* Content */}
-          <div className="relative z-10 mx-auto max-w-3xl">
-          
-          {/* Eyebrow */}
-<div className="mb-3">
-  <p className="section-label text-[#A08FD0]">
-    Built for Recruitment Teams
-  </p>
-</div>
-
-{/* Heading */}
-<h2 className="section-title text-[#F4F4F5]">
-  Make hiring simpler,
-
-  <span
-    className="
-      mt-1 block
-      bg-gradient-to-r
-      from-white
-      via-[#BDB4DC]
-      to-[#957ACB]
-      bg-clip-text
-      text-transparent
-    "
-  >
-    from start to finish.
-  </span>
-</h2>
-
-{/* Description */}
-<p className="section-description mx-auto mt-5 max-w-2xl text-[#74747E]">
-  Give your team one place to source candidates, review applications,
-  manage hiring and keep every step of the recruitment process organised.
-</p>
-            {/* Buttons */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              {/* Primary */}
-              <a
-                href="#contact"
-                className="
-                  group/button relative
-                  inline-flex min-w-[190px]
-                  items-center justify-center gap-2
-                  overflow-hidden rounded-[12px]
-                  bg-[#F3F3F5]
-                  px-7 py-3.5
-                  text-[12px] font-bold
-                  text-[#111116]
-                  shadow-[0_12px_35px_rgba(0,0,0,0.30)]
-                  transition-all duration-300
-                  hover:-translate-y-1
-                  hover:bg-white
-                  hover:shadow-[0_18px_50px_rgba(0,0,0,0.45)]
-                "
-              >
-                {/* Button sheen */}
-                <span
-                  className="
-                    absolute -left-[80%] top-0
-                    h-full w-[45%]
-                    skew-x-[-20deg]
-                    bg-gradient-to-r
-                    from-transparent via-white/70 to-transparent
-                    transition-all duration-700
-                    group-hover/button:left-[130%]
-                  "
-                />
-
-                <span className="relative">Get Started</span>
-
-                <svg
-                  className="
-                    relative h-4 w-4
-                    transition-transform duration-300
-                    group-hover/button:translate-x-1
-                  "
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.3}
-                    d="M17 8l4 4m0 0-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
-
-              {/* Secondary */}
-              <Link
-  to="/request-demo"
-  className="
-    group/demo
-    inline-flex min-w-[165px]
-    items-center justify-center gap-2
-    rounded-[12px]
-    border border-white/[0.10]
-    bg-white/[0.035]
-    px-7 py-3.5
-    text-[12px] font-semibold
-    text-[#D8D8DD]
-    backdrop-blur-xl
-    transition-all duration-300
-    hover:-translate-y-1
-    hover:border-white/[0.18]
-    hover:bg-white/[0.07]
-    hover:text-white
-  "
->
-  Request a Demo
-
-  <svg
-    className="
-      h-4 w-4
-      text-[#85858F]
-      transition-all duration-300
-      group-hover/demo:translate-x-1
-      group-hover/demo:text-[#B6A5E2]
-    "
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M9 18l6-6-6-6"
-    />
-  </svg>
-</Link>
-            </div>
-
-            {/* Confidence row */}
             <div
               className="
-                mt-7 flex flex-wrap
-                items-center justify-center
-                gap-x-6 gap-y-2.5
-                text-[10px] font-medium
-                tracking-[0.01em]
-                text-[#696973]
-                sm:text-[11px]
+                cta-orb cta-orb-left
+                pointer-events-none absolute -z-10
+                -left-36 -top-44
+                h-[430px] w-[430px]
+                rounded-full
+                bg-[#5E7DCA]/[0.13]
+                blur-[135px]
               "
-            >
-              {[
-                "Simple onboarding",
-                "Fits your recruitment process",
-                "Support when you need it",
-              ].map((item) => (
-                <span key={item} className="flex items-center gap-2">
-                  <span
-                    className="
-                      flex h-4 w-4
-                      items-center justify-center
-                      rounded-full
-                      border border-[#9B86D2]/20
-                      bg-[#9B86D2]/[0.07]
-                    "
-                  >
-                    <svg
-                      className="h-2.5 w-2.5 text-[#A58FDC]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.4}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+            />
+
+            <div
+              className="
+                cta-orb cta-orb-right
+                pointer-events-none absolute -z-10
+                -bottom-48 -right-36
+                h-[450px] w-[450px]
+                rounded-full
+                bg-[#9173C6]/[0.14]
+                blur-[140px]
+              "
+            />
+
+            {/* Soft center illumination */}
+            <div
+              className="
+                pointer-events-none absolute -z-10
+                left-1/2 top-1/2
+                h-[250px] w-[600px]
+                -translate-x-1/2 -translate-y-1/2
+                rounded-full
+                bg-[#8E75BE]/[0.055]
+                blur-[110px]
+              "
+            />
+
+            {/* Subtle grid */}
+            <div className="cta-grid pointer-events-none absolute inset-0 -z-10" />
+
+            {/* Moving light */}
+            <div className="cta-beam pointer-events-none absolute -z-10" />
+
+            {/* Top reflection */}
+            <div
+              className="
+                pointer-events-none absolute
+                left-1/2 top-0
+                h-px w-[58%]
+                -translate-x-1/2
+                bg-gradient-to-r
+                from-transparent
+                via-white/[0.28]
+                to-transparent
+              "
+            />
+
+            {/* Edge accents */}
+            <div className="pointer-events-none absolute left-0 top-[25%] h-1/2 w-px bg-gradient-to-b from-transparent via-[#7997DD]/35 to-transparent" />
+
+            <div className="pointer-events-none absolute right-0 top-[25%] h-1/2 w-px bg-gradient-to-b from-transparent via-[#A086D2]/35 to-transparent" />
+
+            {/* =========================
+                CONTENT
+            ========================= */}
+
+            <div className="relative z-20 mx-auto max-w-[820px] text-center">
+              {/* No eyebrow / small label */}
+
+              <h2
+                className="
+                  text-[34px]
+                  font-black
+                  leading-[1.05]
+                  tracking-[-0.045em]
+                  sm:text-[42px]
+                  lg:text-[48px]
+                "
+                style={{ color: "#F7F7F8" }}
+              >
+                Make hiring simpler,
+                <span
+                  className="
+                    mt-1.5 block
+                    bg-gradient-to-r
+                    from-[#FFFFFF]
+                    via-[#D0C7E7]
+                    to-[#A58BD7]
+                    bg-clip-text
+                    text-transparent
+                  "
+                >
+                  from start to finish.
+                </span>
+              </h2>
+
+              <p
+                className="
+                  mx-auto mt-5
+                  max-w-[650px]
+                  text-[13px]
+                  font-normal
+                  leading-[1.8]
+                  sm:text-[14px]
+                "
+                style={{ color: "#9696A1" }}
+              >
+                Bring candidate sourcing, applications and hiring workflows
+                together in one organised recruitment workspace built for
+                modern teams.
+              </p>
+
+              {/* =========================
+                  BUTTONS
+              ========================= */}
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link
+                  to="/request-demo"
+                  className="
+                    cta-primary
+                    group/primary
+                    relative
+                    inline-flex
+                    min-w-[190px]
+                    items-center justify-center
+                    gap-2
+                    overflow-hidden
+                    rounded-[12px]
+                    bg-[#F7F7F8]
+                    px-7 py-3.5
+                    text-[12px]
+                    font-bold
+                    text-[#17171B]
+                    shadow-[0_12px_32px_rgba(0,0,0,.28)]
+                  "
+                >
+                  <span className="cta-primary-sheen" />
+
+                  <span className="relative z-10">
+                    Request a Demo
                   </span>
 
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
+                  <svg
+                    className="
+                      relative z-10
+                      h-4 w-4
+                      transition-transform duration-300
+                      group-hover/primary:translate-x-1
+                    "
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M5 12h14M14 7l5 5-5 5"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
 
-          {/* Bottom light */}
-          <div
-            className="
-              pointer-events-none absolute
-              bottom-0 left-1/2
-              h-px w-[45%]
-              -translate-x-1/2
-              bg-gradient-to-r
-              from-transparent
-              via-[#947BCB]/50
-              to-transparent
-            "
-          />
+                <a
+                  href="#features"
+                  className="
+                    group/features
+                    inline-flex
+                    min-w-[175px]
+                    items-center justify-center
+                    gap-2
+                    rounded-[12px]
+                    border border-white/[0.12]
+                    bg-white/[0.04]
+                    px-7 py-3.5
+                    text-[12px]
+                    font-semibold
+                    text-[#D2D2D8]
+                    backdrop-blur-xl
+                    transition-all duration-300
+                    hover:-translate-y-[2px]
+                    hover:border-white/[0.20]
+                    hover:bg-white/[0.075]
+                    hover:text-white
+                  "
+                >
+                  Explore Features
+
+                  <svg
+                    className="
+                      h-4 w-4
+                      text-[#888894]
+                      transition-all duration-300
+                      group-hover/features:translate-x-1
+                      group-hover/features:text-[#B7A2E1]
+                    "
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="m9 18 6-6-6-6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              {/* =========================
+                  SUPPORTING POINTS
+              ========================= */}
+
+              <div
+                className="
+                  mt-8 flex flex-wrap
+                  items-center justify-center
+                  gap-x-7 gap-y-3
+                "
+              >
+                {[
+                  "Simple onboarding",
+                  "Flexible workflows",
+                  "Recruitment support",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="
+                      group/point
+                      flex items-center gap-2
+                      text-[10px]
+                      font-medium
+                      sm:text-[10.5px]
+                    "
+                    style={{ color: "#85858F" }}
+                  >
+                    <span
+                      className="
+                        flex h-[17px] w-[17px]
+                        items-center justify-center
+                        rounded-full
+                        border border-[#A18AD4]/20
+                        bg-[#A18AD4]/[0.075]
+                        transition-all duration-300
+                        group-hover/point:border-[#A18AD4]/35
+                        group-hover/point:bg-[#A18AD4]/[0.13]
+                      "
+                    >
+                      <svg
+                        className="h-2.5 w-2.5 text-[#AD97DC]"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeWidth="2.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom light */}
+            <div
+              className="
+                cta-bottom-line
+                pointer-events-none
+                absolute bottom-0 left-1/2
+                h-px
+                -translate-x-1/2
+                bg-gradient-to-r
+                from-transparent
+                via-[#9C82D0]
+                to-transparent
+              "
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <style>{`
+        /* =========================================
+           CTA PANEL
+        ========================================= */
+
+        .cta-panel {
+          transition:
+            border-color 600ms ease,
+            box-shadow 600ms ease;
+        }
+
+        .cta-panel:hover {
+          border-color: rgba(255,255,255,.13);
+
+          box-shadow:
+            0 38px 110px rgba(25,20,35,.22),
+            0 10px 35px rgba(121,94,172,.07);
+        }
+
+
+        /* =========================================
+           BACKGROUND GRID
+        ========================================= */
+
+        .cta-grid {
+          opacity: .10;
+
+          background-image:
+            linear-gradient(
+              rgba(255,255,255,.045) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(255,255,255,.045) 1px,
+              transparent 1px
+            );
+
+          background-size: 48px 48px;
+
+          mask-image:
+            radial-gradient(
+              ellipse at center,
+              black 0%,
+              transparent 72%
+            );
+
+          -webkit-mask-image:
+            radial-gradient(
+              ellipse at center,
+              black 0%,
+              transparent 72%
+            );
+
+          animation: ctaGridMove 22s linear infinite;
+        }
+
+        @keyframes ctaGridMove {
+          from {
+            background-position: 0 0;
+          }
+
+          to {
+            background-position: 48px 48px;
+          }
+        }
+
+
+        /* =========================================
+           AMBIENT ORBS
+        ========================================= */
+
+        .cta-orb {
+          transition:
+            transform 1200ms cubic-bezier(.22,1,.36,1),
+            opacity 1200ms ease;
+        }
+
+        .cta-panel:hover .cta-orb-left {
+          transform:
+            translate(20px, 15px)
+            scale(1.12);
+        }
+
+        .cta-panel:hover .cta-orb-right {
+          transform:
+            translate(-20px, -15px)
+            scale(1.12);
+        }
+
+
+        /* =========================================
+           MOVING LIGHT
+        ========================================= */
+
+        .cta-beam {
+          top: -45%;
+          left: -35%;
+
+          width: 25%;
+          height: 190%;
+
+          transform: rotate(17deg);
+
+          background:
+            linear-gradient(
+              90deg,
+              transparent,
+              rgba(255,255,255,.018),
+              rgba(157,132,207,.05),
+              transparent
+            );
+
+          animation: ctaBeam 9s ease-in-out infinite;
+        }
+
+        @keyframes ctaBeam {
+          0% {
+            left: -35%;
+            opacity: 0;
+          }
+
+          15% {
+            opacity: 1;
+          }
+
+          85% {
+            opacity: 1;
+          }
+
+          100% {
+            left: 125%;
+            opacity: 0;
+          }
+        }
+
+
+        /* =========================================
+           PRIMARY BUTTON
+        ========================================= */
+
+        .cta-primary {
+          transition:
+            transform 350ms cubic-bezier(.22,1,.36,1),
+            background-color 350ms ease,
+            box-shadow 350ms ease;
+        }
+
+        .cta-primary:hover {
+          transform: translateY(-3px);
+          background: #ffffff;
+
+          box-shadow:
+            0 18px 44px rgba(0,0,0,.32),
+            0 0 30px rgba(157,132,207,.08);
+        }
+
+        .cta-primary-sheen {
+          position: absolute;
+
+          top: 0;
+          left: -75%;
+
+          width: 42%;
+          height: 100%;
+
+          transform: skewX(-20deg);
+
+          background:
+            linear-gradient(
+              90deg,
+              transparent,
+              rgba(255,255,255,.95),
+              transparent
+            );
+
+          transition:
+            left 750ms cubic-bezier(.22,1,.36,1);
+        }
+
+        .cta-primary:hover .cta-primary-sheen {
+          left: 130%;
+        }
+
+
+        /* =========================================
+           BOTTOM ACCENT
+        ========================================= */
+
+        .cta-bottom-line {
+          width: 34%;
+          opacity: .45;
+
+          transition:
+            width 750ms cubic-bezier(.22,1,.36,1),
+            opacity 750ms ease;
+        }
+
+        .cta-panel:hover .cta-bottom-line {
+          width: 56%;
+          opacity: .8;
+        }
+
+
+        /* =========================================
+           ACCESSIBILITY
+        ========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+          .cta-grid,
+          .cta-beam {
+            animation: none !important;
+          }
+        }
+      `}</style>
+    </>
   );
 }

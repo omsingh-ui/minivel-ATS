@@ -38,14 +38,8 @@ const FLOATING_CARDS = [
     float: "hero-float-one",
     title: "Strong candidate match",
     text: "Profile relevance · 88%",
-    tone: "blue",
-    icon: (
-      <path
-        d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8z"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    ),
+    accent: "#6F78D9",
+    glow: "rgba(111,120,217,.15)",
   },
   {
     className: "left-[0%] top-[30%]",
@@ -53,15 +47,8 @@ const FLOATING_CARDS = [
     float: "hero-float-two",
     title: "AI-assisted screening",
     text: "Recruiter-led decisions",
-    tone: "violet",
-    icon: (
-      <path
-        d="M7 12.5 10.2 16 17 8.5"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
+    accent: "#8A6AC8",
+    glow: "rgba(138,106,200,.14)",
   },
   {
     className: "right-[1%] bottom-[7%]",
@@ -69,35 +56,12 @@ const FLOATING_CARDS = [
     float: "hero-float-three",
     title: "Pipeline visibility",
     text: "One connected workspace",
-    tone: "gold",
-    icon: (
-      <>
-        <path d="M5 18V12" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M12 18V7" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M19 18V10" strokeWidth="1.7" strokeLinecap="round" />
-      </>
-    ),
+    accent: "#B18A61",
+    glow: "rgba(177,138,97,.13)",
   },
 ];
 
-const tones = {
-  blue: {
-    icon: "border-[#7697D0]/20 bg-[#17243A] text-[#91ADE0]",
-    glow: "bg-[#668FE0]/10",
-  },
-  violet: {
-    icon: "border-[#9A83C7]/20 bg-[#211D2E] text-[#B19BDD]",
-    glow: "bg-[#A183D7]/10",
-  },
-  gold: {
-    icon: "border-[#C19A70]/20 bg-[#28221E] text-[#D0AB80]",
-    glow: "bg-[#C79A6B]/10",
-  },
-};
-
 function FloatingCard({ card }) {
-  const tone = tones[card.tone];
-
   return (
     <div
       className={`
@@ -110,40 +74,46 @@ function FloatingCard({ card }) {
         <div
           className="
             group relative flex min-w-[184px] items-center gap-3
-            overflow-hidden rounded-[18px]
-            border border-white/[0.08]
-            bg-[#101014]/88
+            overflow-hidden rounded-[17px]
+            border border-white/[0.085]
+            bg-[#111115]/95
             px-3.5 py-3
-            shadow-[0_18px_52px_rgba(0,0,0,0.48)]
+            shadow-[0_20px_55px_rgba(17,17,24,.24)]
             backdrop-blur-2xl
             transition-all duration-500 ease-out
 
             hover:-translate-y-0.5
-            hover:border-white/[0.14]
-            hover:bg-[#141419]
-            hover:shadow-[0_24px_64px_rgba(0,0,0,0.62)]
+            hover:border-white/[0.15]
+            hover:bg-[#15151A]
+            hover:shadow-[0_25px_65px_rgba(17,17,24,.30)]
           "
         >
           <div
-            className={`
+            className="
               pointer-events-none absolute -right-8 -top-8
-              h-20 w-20 rounded-full blur-2xl
-              opacity-0 transition-opacity duration-500
+              h-20 w-20 rounded-full
+              opacity-0 blur-2xl
+              transition-opacity duration-500
               group-hover:opacity-100
-              ${tone.glow}
-            `}
+            "
+            style={{ backgroundColor: card.glow }}
           />
 
           <div className="pointer-events-none absolute inset-x-[18%] top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
           <div
-            className={`
+            className="
               relative flex h-9 w-9 shrink-0
-              items-center justify-center rounded-xl border
+              items-center justify-center
+              rounded-xl border
               transition-transform duration-500
-              group-hover:scale-[1.06]
-              ${tone.icon}
-            `}
+              group-hover:scale-[1.05]
+            "
+            style={{
+              borderColor: `${card.accent}35`,
+              backgroundColor: `${card.accent}14`,
+              color: card.accent,
+            }}
           >
             <svg
               className="h-4 w-4"
@@ -151,16 +121,21 @@ function FloatingCard({ card }) {
               fill="none"
               stroke="currentColor"
             >
-              {card.icon}
+              <path
+                d="M12 4v16M4 12h16"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <circle cx="12" cy="12" r="4.5" strokeWidth="1.4" />
             </svg>
           </div>
 
           <div className="relative">
-            <p className="text-[10px] font-bold text-[#F0F0F3]">
+            <p className="text-[10px] font-bold text-[#F1F1F4]">
               {card.title}
             </p>
 
-            <p className="mt-1 text-[9px] text-[#777782]">
+            <p className="mt-1 text-[9px] text-[#777781]">
               {card.text}
             </p>
           </div>
@@ -173,24 +148,25 @@ function FloatingCard({ card }) {
 function DashboardMockup() {
   return (
     <div className="relative mx-auto h-[510px] w-full max-w-[650px]">
-      {/* Ambient depth */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[76%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#755BB8]/[0.09] blur-[115px]" />
+      {/* Soft depth behind product */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[76%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#755BB8]/[0.10] blur-[115px]" />
 
-      <div className="pointer-events-none absolute left-[65%] top-[48%] h-[54%] w-[48%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5274C7]/[0.085] blur-[105px]" />
+      <div className="pointer-events-none absolute left-[66%] top-[48%] h-[54%] w-[48%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5274C7]/[0.08] blur-[105px]" />
 
-      {/* Pointer-responsive light */}
+      {/* Thin orbital detail */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7463A5]/[0.07]" />
+
       <div
         className="
           hero-pointer-light
           pointer-events-none
           absolute inset-[6%]
-          z-10
-          rounded-[32px]
+          z-10 rounded-[32px]
           opacity-70
         "
       />
 
-      {/* Main dashboard */}
+      {/* Main ATS window */}
       <div className="absolute inset-x-[8%] top-[12%] z-20">
         <div className="hero-dashboard-reveal">
           <div className="hero-dashboard-float">
@@ -198,22 +174,21 @@ function DashboardMockup() {
               className="
                 relative overflow-hidden
                 rounded-[28px]
-                border border-white/[0.085]
-                bg-[#0D0D10]/96
-                shadow-[0_50px_135px_rgba(0,0,0,0.70)]
+                border border-white/[0.09]
+                bg-[#0D0D10]/[0.98]
+                shadow-[0_40px_100px_rgba(28,25,38,.28)]
                 backdrop-blur-2xl
                 transition-all duration-500
-                hover:border-white/[0.11]
-                hover:shadow-[0_60px_150px_rgba(0,0,0,0.76)]
+
+                hover:border-white/[0.12]
+                hover:shadow-[0_48px_115px_rgba(28,25,38,.33)]
               "
             >
-              {/* Premium top edge */}
               <div className="pointer-events-none absolute inset-x-[10%] top-0 z-30 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-              {/* Pointer reflection */}
               <div className="hero-dashboard-reflection pointer-events-none absolute inset-0 z-20 opacity-70" />
 
-              {/* Browser bar */}
+              {/* Window bar */}
               <div className="relative z-10 flex items-center justify-between border-b border-white/[0.06] bg-[#101013] px-5 py-3">
                 <div className="flex gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-[#39393E]" />
@@ -229,9 +204,9 @@ function DashboardMockup() {
               </div>
 
               <div className="relative z-10 bg-[#09090B] p-5">
-                {/* Internal depth */}
                 <div className="pointer-events-none absolute -right-20 -top-24 h-60 w-60 rounded-full bg-[#7661BD]/[0.06] blur-[95px]" />
 
+                {/* Dashboard heading */}
                 <div className="relative mb-4 flex items-center justify-between">
                   <div>
                     <p className="mb-1 text-[8px] font-bold uppercase tracking-[0.22em] text-[#5E5E69]">
@@ -244,7 +219,10 @@ function DashboardMockup() {
                   </div>
 
                   <div className="flex items-center gap-2 rounded-full border border-[#9077D1]/15 bg-[#8E71D0]/[0.07] px-3 py-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#A68CE8] shadow-[0_0_8px_rgba(166,140,232,.45)]" />
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A68CE8] opacity-20" />
+                      <span className="relative h-1.5 w-1.5 rounded-full bg-[#A68CE8]" />
+                    </span>
 
                     <span className="text-[8px] font-semibold text-[#A58EDB]">
                       Live workspace
@@ -269,7 +247,6 @@ function DashboardMockup() {
                         hover:-translate-y-0.5
                         hover:border-[#9B84D5]/15
                         hover:bg-[#16161C]
-                        hover:shadow-[0_10px_28px_rgba(0,0,0,.22)]
                       "
                       style={{
                         animationDelay: `${0.65 + index * 0.11}s`,
@@ -392,10 +369,9 @@ function DashboardMockup() {
 
                       hover:-translate-y-0.5
                       hover:border-[#A18BDA]/20
-                      hover:shadow-[0_22px_52px_rgba(0,0,0,.36)]
                     "
                   >
-                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#9A78E1]/10 blur-3xl transition-all duration-500 group-hover:bg-[#9A78E1]/15" />
+                    <div className="absolute -right-10 -top-3 h-28 w-28 rounded-full bg-[#9A78E1]/10 blur-3xl transition-all duration-500 group-hover:bg-[#9A78E1]/15" />
 
                     <div className="absolute inset-x-[18%] top-0 h-px bg-gradient-to-r from-transparent via-[#C2ACF1]/25 to-transparent" />
 
@@ -445,12 +421,11 @@ function DashboardMockup() {
         </div>
       </div>
 
-      {/* Floating cards */}
+      {/* Floating product signals */}
       {FLOATING_CARDS.map((card) => (
         <FloatingCard key={card.title} card={card} />
       ))}
 
-      {/* Compact activity indicator */}
       <div className="hero-card-four absolute bottom-[18%] left-[3%] z-30 hidden xl:block">
         <div className="hero-float-four">
           <div
@@ -458,9 +433,9 @@ function DashboardMockup() {
               flex items-center gap-2
               rounded-full
               border border-white/[0.08]
-              bg-[#101014]/88
+              bg-[#111115]/95
               px-3 py-2
-              shadow-[0_16px_42px_rgba(0,0,0,0.48)]
+              shadow-[0_16px_42px_rgba(17,17,24,.22)]
               backdrop-blur-2xl
             "
           >
@@ -494,10 +469,8 @@ export default function Hero() {
 
     element.style.setProperty("--x", `${centeredX * 5}px`);
     element.style.setProperty("--y", `${centeredY * 3.5}px`);
-
     element.style.setProperty("--rx", `${centeredY * -0.75}deg`);
     element.style.setProperty("--ry", `${centeredX * 0.95}deg`);
-
     element.style.setProperty("--mx", `${x * 100}%`);
     element.style.setProperty("--my", `${y * 100}%`);
   };
@@ -511,7 +484,6 @@ export default function Hero() {
     element.style.setProperty("--y", "0px");
     element.style.setProperty("--rx", "0deg");
     element.style.setProperty("--ry", "0deg");
-
     element.style.setProperty("--mx", "70%");
     element.style.setProperty("--my", "35%");
   };
@@ -519,112 +491,97 @@ export default function Hero() {
   return (
     <>
       <section
-        id="overview"
-        className="
-          relative overflow-hidden
-          bg-[#050505]
-          pt-7
-          lg:pt-8
-        "
-      >
-        {/* =====================================================
-            BACKGROUND
-        ===================================================== */}
-
+  id="overview"
+  className="
+    relative overflow-x-clip
+    bg-[#FAFAFB]
+  "
+>
+        {/* Light premium background */}
         <div
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             background: `
               radial-gradient(
                 ellipse 55% 52% at 77% 25%,
-                rgba(116, 83, 184, 0.15),
+                rgba(113, 86, 190, 0.10),
                 transparent 68%
               ),
               radial-gradient(
                 ellipse 38% 40% at 89% 67%,
-                rgba(71, 94, 174, 0.085),
+                rgba(76, 108, 190, 0.07),
                 transparent 72%
               ),
               radial-gradient(
-                ellipse 36% 32% at 12% 28%,
-                rgba(255,255,255,0.022),
+                ellipse 38% 34% at 10% 25%,
+                rgba(126, 111, 174, 0.035),
                 transparent 72%
               ),
               linear-gradient(
                 180deg,
-                #050505 0%,
-                #070707 50%,
-                #050505 100%
+                #FFFFFF 0%,
+                #FAFAFC 52%,
+                #FFFFFF 100%
               )
             `,
           }}
         />
 
-        {/* Right product glow */}
-        <div className="pointer-events-none absolute right-[-12%] top-[0%] h-[680px] w-[800px] rounded-full bg-[#7557BA]/[0.055] blur-[165px]" />
-
-        {/* Subtle texture */}
+        {/* Restrained grid */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.15]"
+          className="pointer-events-none absolute inset-0 opacity-[0.30]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px)
+              linear-gradient(rgba(40,40,55,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(40,40,55,0.025) 1px, transparent 1px)
             `,
             backgroundSize: "58px 58px",
             maskImage:
-              "linear-gradient(to bottom, black, rgba(0,0,0,.4) 65%, transparent)",
+              "linear-gradient(to bottom, black, rgba(0,0,0,.35) 66%, transparent)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, black, rgba(0,0,0,.4) 65%, transparent)",
+              "linear-gradient(to bottom, black, rgba(0,0,0,.35) 66%, transparent)",
           }}
         />
+
+        {/* Product-side atmosphere */}
+        <div className="pointer-events-none absolute right-[-12%] top-[0%] h-[680px] w-[800px] rounded-full bg-[#7557BA]/[0.045] blur-[165px]" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className="
-              grid min-h-[620px]
+              grid min-h-[565px]
               items-center
               gap-8
-              pb-8 pt-14
+              pb-9 pt-14
 
               sm:pt-16
 
               lg:grid-cols-[0.88fr_1.12fr]
               lg:gap-10
-              lg:pb-10
-              lg:pt-16
+              lg:pb-16
+              lg:pt-10
 
               xl:gap-12
             "
           >
-            {/* =================================================
-                LEFT
-            ================================================= */}
-
+            {/* Left */}
             <div className="relative z-20 max-w-[570px]">
-              <div className="hero-copy hero-delay-1 mb-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9B8CC2] sm:text-[11px]">
-                  Recruitment Technology by Minivel
-                </p>
-              </div>
-
-              <h1 className="hero-copy hero-delay-2 section-title text-[#F5F5F7]">
+              <h1 className="hero-copy hero-delay-2 section-title !mx-0 text-[#15151A]">
                 Recruitment,
 
-                <span className="mt-1 block bg-gradient-to-r from-white via-[#C1B5EC] to-[#9874D6] bg-clip-text text-transparent">
+                <span className="mt-1 block bg-gradient-to-r from-[#25232A] via-[#55496F] to-[#66528F] bg-clip-text text-transparent">
                   intelligently connected.
                 </span>
               </h1>
 
-              <p className="hero-copy hero-delay-3 section-description mt-5 max-w-[525px] text-[#9999A3]">
+              <p className="hero-copy hero-delay-3 section-description mt-5 max-w-[525px] text-[#65656F]">
                 Minivel ATS brings candidate sourcing, screening, pipeline
                 management and hiring collaboration into one focused
                 recruitment workspace.
               </p>
 
-              {/* CTA */}
+              {/* CTAs */}
               <div className="hero-copy hero-delay-4 mt-7 flex flex-col gap-3 sm:flex-row">
-                {/* Primary */}
                 <a
                   href="#sourcing"
                   className="
@@ -633,19 +590,18 @@ export default function Hero() {
                     inline-flex items-center justify-center gap-2.5
                     overflow-hidden
                     rounded-xl
-                    bg-[#F3F3F5]
+                    bg-[#17171C]
                     px-7 py-3.5
                     text-sm font-bold
-                    text-[#080808]
-                    shadow-[0_12px_35px_rgba(255,255,255,0.07)]
+                    text-white
+                    shadow-[0_12px_30px_rgba(24,22,32,.15)]
                     transition-all duration-300
 
                     hover:-translate-y-0.5
-                    hover:bg-white
-                    hover:shadow-[0_18px_48px_rgba(255,255,255,0.13)]
+                    hover:bg-[#24222B]
+                    hover:shadow-[0_18px_42px_rgba(24,22,32,.20)]
                   "
                 >
-                  {/* restrained sheen */}
                   <span
                     className="
                       pointer-events-none
@@ -654,9 +610,8 @@ export default function Hero() {
                       skew-x-[-20deg]
                       bg-gradient-to-r
                       from-transparent
-                      via-white
+                      via-white/40
                       to-transparent
-                      opacity-55
                       transition-all duration-700
                       group-hover/primary:left-[125%]
                     "
@@ -685,44 +640,30 @@ export default function Hero() {
                   </svg>
                 </a>
 
-                {/* Demo */}
                 <Link
                   to="/request-demo"
                   className="
                     group/demo
                     relative
-                    inline-flex items-center justify-center gap-2
+                    inline-flex items-center justify-center
                     overflow-hidden
                     rounded-xl
-                    border border-white/[0.10]
-                    bg-white/[0.035]
+                    border border-[#D9D9E1]
+                    bg-white/80
                     px-7 py-3.5
                     text-sm font-semibold
-                    text-[#D1D1D7]
+                    text-[#282830]
+                    shadow-[0_8px_24px_rgba(35,32,45,.045)]
                     backdrop-blur-xl
                     transition-all duration-300
 
                     hover:-translate-y-0.5
-                    hover:border-[#A28BEE]/30
-                    hover:bg-[#A28BEE]/[0.055]
-                    hover:text-white
-                    hover:shadow-[0_14px_40px_rgba(90,70,150,.10)]
+                    hover:border-[#9B84D5]/40
+                    hover:bg-white
+                    hover:text-[#65518F]
+                    hover:shadow-[0_14px_35px_rgba(71,56,105,.09)]
                   "
                 >
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute inset-x-[18%] top-0
-                      h-px
-                      bg-gradient-to-r
-                      from-transparent
-                      via-[#B3A2E4]/0
-                      to-transparent
-                      transition-all duration-500
-                      group-hover/demo:via-[#B3A2E4]/50
-                    "
-                  />
-
                   <span className="relative">
                     Book a Demo
                   </span>
@@ -738,20 +679,16 @@ export default function Hero() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-[11px] font-medium text-[#73737D]"
+                    className="flex items-center gap-2 text-[11px] font-medium text-[#686872]"
                   >
-                    <span className="h-1 w-1 rounded-full bg-[#A184DD]" />
-
+                    <span className="h-1 w-1 rounded-full bg-[#8067B7]" />
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* =================================================
-                RIGHT
-            ================================================= */}
-
+            {/* Right */}
             <div
               ref={visualRef}
               onMouseMove={handleMouseMove}
@@ -763,12 +700,9 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+        {/* Clean section transition */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#262631]/[0.09] to-transparent" />
       </section>
-
-      {/* =======================================================
-          HERO MOTION
-      ======================================================= */}
 
       <style>{`
         @keyframes copyReveal {
@@ -791,24 +725,20 @@ export default function Hero() {
             copyReveal 700ms cubic-bezier(.22,1,.36,1) forwards;
         }
 
-        .hero-delay-1 {
-          animation-delay: .05s;
-        }
-
         .hero-delay-2 {
-          animation-delay: .14s;
+          animation-delay: .08s;
         }
 
         .hero-delay-3 {
-          animation-delay: .23s;
+          animation-delay: .17s;
         }
 
         .hero-delay-4 {
-          animation-delay: .32s;
+          animation-delay: .26s;
         }
 
         .hero-delay-5 {
-          animation-delay: .41s;
+          animation-delay: .35s;
         }
 
         @keyframes dashboardReveal {
@@ -829,7 +759,7 @@ export default function Hero() {
           opacity: 0;
           animation:
             dashboardReveal
-            900ms cubic-bezier(.22,1,.36,1) .28s forwards;
+            900ms cubic-bezier(.22,1,.36,1) .24s forwards;
         }
 
         @keyframes dashboardFloat {
@@ -1002,7 +932,7 @@ export default function Hero() {
           --my: 35%;
 
           transform:
-            translate3d(var(--x), var(--y), 0)
+            translate3d(var(--x), calc(var(--y) + 32px), 0)
             perspective(1400px)
             rotateX(var(--rx))
             rotateY(var(--ry));

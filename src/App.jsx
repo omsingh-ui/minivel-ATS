@@ -14,6 +14,7 @@ import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 
 import RequestDemo from "./pages/RequestDemo";
+import FeaturesPage from "./pages/FeaturesPage";
 
 function LandingPage() {
   useEffect(() => {
@@ -51,6 +52,8 @@ export default function App() {
       <Routes>
         {/* Main ATS landing page */}
         <Route path="/" element={<LandingPage />} />
+
+        <Route path="/features" element={<FeaturesPage />} />
 
         {/* Demo page */}
         <Route path="/request-demo" element={<RequestDemo />} />

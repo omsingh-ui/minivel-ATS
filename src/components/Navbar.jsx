@@ -1,91 +1,93 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import minivelLogo from "../assets/minivel-logo.png";
+import useScrollToHash, { scrollToHashElement } from "../hooks/useScrollToHash";
 
 const NAV_LINKS = [
   {
     label: "Platform",
-    href: "#features",
+    href: "/platform",
     items: [
       {
         title: "Features",
         description: "Explore the Minivel recruitment platform",
-        href: "#features",
+        href: "/platform#features",
       },
       {
         title: "Recruitment Workflow",
         description: "See how hiring moves through Minivel",
-        href: "#workflow",
+        href: "/platform#recruitment-workflow",
       },
       {
         title: "Integrations",
         description: "Connect your recruitment ecosystem",
-        href: "#integrations",
+        href: "/platform#integrations",
       },
     ],
   },
 
   {
     label: "Workflow",
-    href: "#workflow",
+    href: "/workflow",
     items: [
       {
         title: "Hiring Workflow",
         description: "Move candidates from application to decision",
-        href: "#workflow",
+        href: "/workflow#hiring-workflow",
       },
       {
         title: "Candidate Management",
         description: "Organise profiles throughout the hiring process",
-        href: "#workflow",
+        href: "/workflow#candidate-management",
       },
       {
         title: "Team Collaboration",
         description: "Keep recruiters and hiring teams aligned",
-        href: "#workflow",
+        href: "/workflow#team-collaboration",
       },
     ],
   },
 
   {
     label: "Integrations",
-    href: "#integrations",
+    href: "/integrations",
     items: [
       {
         title: "Recruitment Channels",
         description: "Connect sourcing and candidate platforms",
-        href: "#integrations",
+        href: "/integrations#recruitment-channels",
       },
       {
         title: "Communication",
         description: "Bring hiring conversations into your workflow",
-        href: "#integrations",
+        href: "/integrations#communication",
       },
       {
         title: "Connected Tools",
         description: "Work with the tools your teams already use",
-        href: "#integrations",
+        href: "/integrations#connected-tools",
       },
     ],
   },
 
   {
     label: "Security",
-    href: "#security",
+    href: "/security",
     items: [
       {
         title: "Protected Access",
         description: "Control how recruitment information is accessed",
-        href: "#security",
+        href: "/security#protected-access",
       },
       {
         title: "Data Handling",
         description: "Support responsible candidate data management",
-        href: "#security",
+        href: "/security#data-handling",
       },
       {
         title: "Workflow Visibility",
         description: "Maintain visibility across recruitment activity",
-        href: "#security",
+        href: "/security#workflow-visibility",
       },
     ],
   },
@@ -130,8 +132,8 @@ function ChevronIcon() {
 function DesktopDropdown({ nav }) {
   return (
     <div className="group/navitem relative flex h-[52px] items-center">
-      <a
-        href={nav.href}
+      <Link
+        to={nav.href}
         className="relative flex h-[40px] items-center gap-[7px] rounded-[10px] px-3 text-[12px] font-semibold tracking-[-0.01em] text-[#D5D5D9] transition-all duration-300 hover:bg-white/[0.045] hover:text-white group-hover/navitem:bg-white/[0.045] group-hover/navitem:text-white"
       >
         <span>{nav.label}</span>
@@ -139,7 +141,7 @@ function DesktopDropdown({ nav }) {
         <ChevronIcon />
 
         <span className="pointer-events-none absolute inset-x-3 bottom-[2px] h-px origin-center scale-x-0 bg-gradient-to-r from-transparent via-[#A7D44C]/70 to-transparent opacity-0 transition-all duration-300 group-hover/navitem:scale-x-100 group-hover/navitem:opacity-100" />
-      </a>
+      </Link>
 
       <div className="pointer-events-auto absolute left-1/2 top-full h-[18px] w-[310px] -translate-x-1/2" />
 
@@ -152,9 +154,15 @@ function DesktopDropdown({ nav }) {
 
         <div className="relative">
           {nav.items.map((item) => (
-            <a
+            <Link
               key={item.title}
-              href={item.href}
+              to={item.href}
+              onClick={() => {
+                if (item.href.includes("#")) {
+                  const hash = item.href.slice(item.href.indexOf("#"));
+                  scrollToHashElement(hash);
+                }
+              }}
               className="group/dropitem relative flex items-center justify-between gap-5 overflow-hidden rounded-[14px] px-4 py-[14px] transition-all duration-300 hover:bg-white/[0.055]"
             >
               <span className="pointer-events-none absolute inset-0 -translate-x-[105%] bg-gradient-to-r from-[#9BCF4D]/[0.035] via-white/[0.018] to-transparent transition-transform duration-500 group-hover/dropitem:translate-x-0" />
@@ -172,7 +180,7 @@ function DesktopDropdown({ nav }) {
               <span className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.025] text-[#666670] transition-all duration-300 group-hover/dropitem:translate-x-[2px] group-hover/dropitem:border-[#A7D44C]/20 group-hover/dropitem:bg-[#A7D44C]/[0.055] group-hover/dropitem:text-[#B4D96D]">
                 <ArrowIcon className="h-3.5 w-3.5" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -181,6 +189,7 @@ function DesktopDropdown({ nav }) {
 }
 
 export default function Navbar() {
+  useScrollToHash();
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -272,8 +281,8 @@ export default function Navbar() {
           <div className="flex h-[84px] items-center justify-between lg:h-[90px]">
             {/* LOGO */}
 
-            <a
-              href="#overview"
+            <Link
+              to="/"
               aria-label="Minivel Services"
               className="relative flex h-full w-[235px] shrink-0 items-center overflow-visible sm:w-[260px] lg:w-[292px]"
             >
@@ -282,7 +291,7 @@ export default function Navbar() {
                 alt="Minivel Services"
                 className="h-[72px] w-[235px] object-contain object-left sm:h-[78px] sm:w-[255px] lg:h-[84px] lg:w-[285px]"
               />
-            </a>
+            </Link>
 
             {/* DESKTOP NAVIGATION */}
 
@@ -373,9 +382,9 @@ export default function Navbar() {
           <div className="flex-1">
             <nav>
               {NAV_LINKS.map((nav) => (
-                <a
+                <Link
                   key={nav.label}
-                  href={nav.href}
+                  to={nav.href}
                   onClick={() => setMenuOpen(false)}
                   className="group/mobile flex items-center justify-between border-b border-white/[0.07] py-5"
                 >
@@ -386,7 +395,7 @@ export default function Navbar() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.025] text-[#707079] transition-all duration-300 group-hover/mobile:border-[#A7D44C]/20 group-hover/mobile:text-[#B4D96D]">
                     <ArrowIcon className="h-4 w-4" />
                   </span>
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

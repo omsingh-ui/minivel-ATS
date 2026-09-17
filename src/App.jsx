@@ -15,14 +15,27 @@ import Footer from "./components/Footer";
 
 import RequestDemo from "./pages/RequestDemo";
 import FeaturesPage from "./pages/FeaturesPage";
+import PlatformPage from "./pages/PlatformPage";
+import WorkflowPage from "./pages/WorkflowPage";
+import IntegrationsPage from "./pages/IntegrationsPage";
+import SecurityPage from "./pages/SecurityPage";
+
+import useScrollToHash from "./hooks/useScrollToHash";
+
+function GlobalScrollHandler() {
+  useScrollToHash();
+  return null;
+}
 
 function LandingPage() {
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+    if (!window.location.hash) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant",
+      });
+    }
   }, []);
 
   return (
@@ -49,13 +62,19 @@ function LandingPage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <GlobalScrollHandler />
       <Routes>
         {/* Main ATS landing page */}
         <Route path="/" element={<LandingPage />} />
 
-        <Route path="/features" element={<FeaturesPage />} />
+        {/* Dedicated ATS Pages */}
+        <Route path="/platform" element={<PlatformPage />} />
+        <Route path="/workflow" element={<WorkflowPage />} />
+        <Route path="/integrations" element={<IntegrationsPage />} />
+        <Route path="/security" element={<SecurityPage />} />
 
-        {/* Demo page */}
+        {/* Legacy & Demo Pages */}
+        <Route path="/features" element={<FeaturesPage />} />
         <Route path="/request-demo" element={<RequestDemo />} />
       </Routes>
     </BrowserRouter>

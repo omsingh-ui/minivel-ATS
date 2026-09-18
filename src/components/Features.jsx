@@ -252,21 +252,22 @@ export default function Features() {
             </span>
           </h2>
 
-          <p className="section-description mt-4">
+          <p className="section-description mt-2">
             Manage sourcing, screening, candidate sharing and recruitment
             insights from one workspace built for your team.
           </p>
         </div>
 
         {/* DECK → GRID */}
-        <div
-          ref={deckRef}
-          className={`
-            feature-deck-stage
-            relative
-            ${deckVisible ? "deck-visible" : ""}
-          `}
-        >
+       <div
+  ref={deckRef}
+  className={`
+    feature-deck-stage
+    relative
+    -mt-4
+    ${deckVisible ? "deck-visible" : ""}
+  `}
+>
           {/* Light-theme deck floor */}
           <div
             className="
@@ -298,7 +299,7 @@ export default function Features() {
             "
           />
 
-          <div className="relative grid gap-3.5 md:grid-cols-2 lg:grid-cols-6">
+          <div className="relative grid gap-3 md:grid-cols-2 lg:grid-cols-6">
             {FEATURES.map((feature, index) => (
               <article
                 key={feature.id}

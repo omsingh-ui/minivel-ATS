@@ -25,7 +25,6 @@ const NAV_LINKS = [
       },
     ],
   },
-
   {
     label: "Workflow",
     href: "/workflow",
@@ -47,7 +46,6 @@ const NAV_LINKS = [
       },
     ],
   },
-
   {
     label: "Integrations",
     href: "/integrations",
@@ -69,7 +67,6 @@ const NAV_LINKS = [
       },
     ],
   },
-
   {
     label: "Security",
     href: "/security",
@@ -100,6 +97,7 @@ function ArrowIcon({ className = "h-4 w-4" }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
+      aria-hidden="true"
     >
       <path
         d="M7 12h10m-4-4 4 4-4 4"
@@ -118,6 +116,7 @@ function ChevronIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
+      aria-hidden="true"
     >
       <path
         d="m7 10 5 5 5-5"
@@ -145,7 +144,8 @@ function DesktopDropdown({ nav }) {
 
       <div className="pointer-events-auto absolute left-1/2 top-full h-[18px] w-[310px] -translate-x-1/2" />
 
-      <div className="pointer-events-none absolute left-1/2 top-[calc(100%+10px)] z-[70] w-[310px] -translate-x-1/2 translate-y-[8px] scale-[0.985] overflow-hidden rounded-[20px] border border-white/[0.09] bg-[#0D0D10]/[0.98] p-2 opacity-0 shadow-[0_28px_80px_rgba(0,0,0,.55)] backdrop-blur-2xl transition-all duration-300 ease-out group-hover/navitem:pointer-events-auto group-hover/navitem:translate-y-0 group-hover/navitem:scale-100 group-hover/navitem:opacity-100">
+      <div className="pointer-events-none absolute left-1/2 top-[calc(100%+10px)] z-[70] w-[310px] -translate-x-1/2 translate-y-[8px] scale-[0.985] overflow-hidden rounded-[20px] border border-white/[0.09] bg-[#0D0D10]/[0.98] p-2 opacity-0 shadow-[0_28px_80px_rgba(0,0,0,.55)] backdrop-blur-2xl transition-all duration-300 ease-out group-hover/navitem:pointer-events-auto group-hover/navitem:translate-y-0 group-hover/navitem:scale-100 group-hover/navitem:opacity-100"
+      >
         <div className="pointer-events-none absolute -right-16 -top-16 h-[150px] w-[150px] rounded-full bg-[#9279C9]/[0.07] blur-[65px]" />
 
         <div className="pointer-events-none absolute -left-14 bottom-[-70px] h-[130px] w-[130px] rounded-full bg-[#9BCF4D]/[0.045] blur-[60px]" />
@@ -190,6 +190,7 @@ function DesktopDropdown({ nav }) {
 
 export default function Navbar() {
   useScrollToHash();
+
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -205,16 +206,13 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           setScrolled(currentScrollY > 18);
 
-          // Always keep navbar visible near the top.
           if (currentScrollY <= 120) {
             setNavVisible(true);
           } else if (!menuOpen) {
-            // Scrolling down
             if (currentScrollY > lastScrollY + 4) {
               setNavVisible(false);
             }
 
-            // Scrolling up
             if (currentScrollY < lastScrollY - 4) {
               setNavVisible(true);
             }
@@ -252,6 +250,22 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  const closeMobileMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const handleMobileSubLink = (href) => {
+    setMenuOpen(false);
+
+    if (href.includes("#")) {
+      const hash = href.slice(href.indexOf("#"));
+
+      setTimeout(() => {
+        scrollToHashElement(hash);
+      }, 50);
+    }
+  };
 
   return (
     <>
@@ -322,7 +336,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen((current) => !current)}
-              aria-label="Toggle navigation"
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={menuOpen}
               className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.025] text-white transition-colors duration-300 hover:bg-white/[0.055] lg:hidden"
             >
@@ -332,6 +346,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     d="M6 6l12 12M18 6 6 18"
@@ -345,6 +360,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     d="M5 7h14M5 12h14M5 17h14"
@@ -379,26 +395,61 @@ export default function Navbar() {
         </div>
 
         <div className="relative flex min-h-screen flex-col px-6 pb-8 pt-[112px]">
-          <div className="flex-1">
-            <nav>
+          <div className="flex-1 overflow-y-auto">
+            <nav className="pb-8">
               {NAV_LINKS.map((nav) => (
-                <Link
+                <div
                   key={nav.label}
-                  to={nav.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="group/mobile flex items-center justify-between border-b border-white/[0.07] py-5"
+                  className="border-b border-white/[0.07]"
                 >
-                  <span className="text-[26px] font-bold tracking-[-0.04em] text-[#E5E5E8] transition-all duration-300 group-hover/mobile:translate-x-1 group-hover/mobile:text-white">
-                    {nav.label}
-                  </span>
+                  {/* MAIN MOBILE LINK */}
 
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.025] text-[#707079] transition-all duration-300 group-hover/mobile:border-[#A7D44C]/20 group-hover/mobile:text-[#B4D96D]">
-                    <ArrowIcon className="h-4 w-4" />
-                  </span>
-                </Link>
+                  <Link
+                    to={nav.href}
+                    onClick={closeMobileMenu}
+                    className="group/mobile flex items-center justify-between py-5"
+                  >
+                    <span className="text-[26px] font-bold tracking-[-0.04em] text-[#E5E5E8] transition-all duration-300 group-hover/mobile:translate-x-1 group-hover/mobile:text-white">
+                      {nav.label}
+                    </span>
+
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.025] text-[#707079] transition-all duration-300 group-hover/mobile:border-[#A7D44C]/20 group-hover/mobile:bg-[#A7D44C]/[0.04] group-hover/mobile:text-[#B4D96D]">
+                      <ArrowIcon className="h-4 w-4" />
+                    </span>
+                  </Link>
+
+                  {/* MOBILE SUB LINKS */}
+
+                  <div className="pb-4 pl-1">
+                    {nav.items.map((item) => (
+                      <Link
+                        key={item.title}
+                        to={item.href}
+                        onClick={() => handleMobileSubLink(item.href)}
+                        className="group/mobile-sub flex items-center justify-between gap-4 rounded-[12px] px-3 py-3 transition-all duration-300 hover:bg-white/[0.04]"
+                      >
+                        <div className="min-w-0">
+                          <p className="text-[14px] font-semibold tracking-[-0.01em] text-[#C8C8CD] transition-colors duration-300 group-hover/mobile-sub:text-white">
+                            {item.title}
+                          </p>
+
+                          <p className="mt-1 max-w-[280px] text-[10px] leading-[1.5] text-[#686872]">
+                            {item.description}
+                          </p>
+                        </div>
+
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.025] text-[#666670] transition-all duration-300 group-hover/mobile-sub:translate-x-1 group-hover/mobile-sub:border-[#A7D44C]/20 group-hover/mobile-sub:bg-[#A7D44C]/[0.055] group-hover/mobile-sub:text-[#B4D96D]">
+                          <ArrowIcon className="h-3.5 w-3.5" />
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </nav>
           </div>
+
+          {/* MOBILE SIGN IN */}
 
           <div className="border-t border-white/[0.07] pt-6">
             <a
